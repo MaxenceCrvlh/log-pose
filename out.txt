@@ -1,0 +1,26 @@
+== https://www.onepiece-cardgame.com/images/cardlist/card/OP01-001.png no referer
+200 image/png 143395
+== https://www.onepiece-cardgame.com/images/cardlist/card/OP01-001.png github referer
+200 image/png 143395
+== https://www.onepiece-cardgame.com/images/cardlist/card/OP01-001.png own referer
+200 image/png 143395
+== https://www.onepiece-cardgame.com/images/cardlist/card/OP01-001.png?260828 no referer
+200 image/png 143395
+== https://www.onepiece-cardgame.com/images/cardlist/card/OP01-001.png?260828 github referer
+200 image/png 143395
+== https://www.onepiece-cardgame.com/images/cardlist/card/OP01-001.png?260828 own referer
+200 image/png 143395
+== headers
+HTTP/2 200 
+date: Tue, 13 Oct 2026 04:34:13 GMT
+content-type: image/png
+content-length: 143395
+server: Apache
+last-modified: Fri, 07 Oct 2022 03:56:40 GMT
+accept-ranges: bytes
+cross-origin-resource-policy: same-site
+x-frame-options: SAMEORIGIN
+x-xss-protection: 1;mode=block
+x-content-type-options: nosniff
+strict-transport-security: max-age=31536000
+
