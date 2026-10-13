@@ -1,0 +1,21 @@
+name: Image diag
+on:
+  push:
+    paths: [".github/workflows/diag.yml"]
+permissions:
+  contents: write
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          U=https://www.onepiece-cardgame.com/images/cardlist/card/OP01-001.png
+          {
+          for q in "" "?260828"; do
+            echo "== $U$q no referer"; curl -s -o /dev/null -w "%{http_code} %{content_type} %{size_download}\n" "$U$q" -A "Mozilla/5.0 (iPhone)"
+            echo "== $U$q github referer"; curl -s -o /dev/null -w "%{http_code} %{content_type} %{size_download}\n" "$U$q" -A "Mozilla/5.0 (iPhone)" -e "https://maxencecrvlh.github.io/log-pose/"
+            echo "== $U$q own referer"; curl -s -o /dev/null -w "%{http_code} %{content_type} %{size_download}\n" "$U$q" -A "Mozilla/5.0 (iPhone)" -e "https://www.onepiece-cardgame.com/cardlist/"
+          done
+          echo "== headers"; curl -sI "$U" -A "Mozilla/5.0 (iPhone)" -e "https://maxencecrvlh.github.io/log-pose/"
+          } > out.txt 2>&1; cat out.txt
+          mkdir d && mv out.txt d/ && cd d && git init -q -b diag && git add . && git -c user.name=b -c user.email=b@x commit -qm d && git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" diag
