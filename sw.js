@@ -1,7 +1,7 @@
 // Log Pose service worker: keeps the app and card list working offline.
 // App files: fetched fresh when online (so updates arrive), saved copy as fallback.
 // Card pictures from the official site: kept once loaded.
-const CACHE = "lp-v1";
+const CACHE = "lp-v2";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./data/cards.json", "./icon-192.png", "./icon-512.png", "./apple-touch-icon.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener("activate", e => {
@@ -11,7 +11,10 @@ function withTimeout(p, ms){ return new Promise((res, rej) => { const t = setTim
 self.addEventListener("fetch", e => {
   const r = e.request; if (r.method !== "GET") return;
   const u = new URL(r.url);
-  if (u.origin === location.origin) {
+  if (u.origin === location.origin && u.pathname.includes("/img/")) {
+    // card pictures: never change, keep forever once loaded
+    e.respondWith(caches.open("lp-cards").then(c => c.match(r).then(m => m || fetch(r).then(res => { if (res.ok) c.put(r, res.clone()); return res; }))));
+  } else if (u.origin === location.origin) {
     e.respondWith(withTimeout(fetch(r, {cache: "no-cache"}), 5000).then(res => {
       if (res.ok) { const cp = res.clone(); caches.open(CACHE).then(c => c.put(r, cp)); }
       return res;

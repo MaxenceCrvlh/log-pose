@@ -28,7 +28,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install tools
-        run: pip install opencv-python-headless==4.10.0.84 numpy==2.1.3
+        run: pip install opencv-python-headless==4.10.0.84 numpy==2.1.3 pillow==11.0.0
 
       - name: Get the Japanese card data (punk-records)
         run: |
@@ -45,6 +45,9 @@ jobs:
       - name: Build card list (with artwork check)
         run: python tools/build_cards.py --punk punk/japanese --check-art --img-cache .imgcache
 
+      - name: Card pictures (thumbnails hosted with the app)
+        run: python tools/make_thumbs.py .imgcache
+
       - name: Review sheets (published to the review branch)
         run: |
           python tools/review_sheet.py .imgcache review 0 15
@@ -57,5 +60,5 @@ jobs:
         run: |
           git config user.name "log-pose-bot"
           git config user.email "log-pose-bot@users.noreply.github.com"
-          git add data/
+          git add data/ img/
           if git diff --cached --quiet; then echo "No changes"; else git commit -m "Update card list" && git push; fi
