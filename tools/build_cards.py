@@ -118,7 +118,11 @@ class Art:
 
 
 METHOD = "orb-art-v2"
-SAME_ART_MIN = 25     # inlier matches at/above this = same illustration (tuned with the review sheets)
+# inlier matches at/above this = same illustration (tuned with the review sheets, Oct 2026):
+#   characters: same art in another crop / tint scores >= 44, different art <= 25
+#   events: manga-style new art reuses manga panels and scores up to 64; same art >= 270
+SAME_ART_MIN = {"Event": 70}
+SAME_ART_DEFAULT = 40
 
 
 def main():
@@ -158,7 +162,7 @@ def main():
             return None
         if not compare_to:
             return True
-        return best < SAME_ART_MIN
+        return best < SAME_ART_MIN.get(card.get("category"), SAME_ART_DEFAULT)
 
     sets = []
     unchecked = 0
