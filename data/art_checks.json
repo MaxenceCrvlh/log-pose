@@ -3,22 +3,25 @@
 "against": [
 "EB01-003"
 ],
-"best": 128,
-"best_id": "EB01-003"
+"best": 2,
+"best_id": "EB01-003",
+"method": "orb-art-v2"
 },
 "EB01-009_p1": {
 "against": [
 "EB01-009"
 ],
-"best": 660,
-"best_id": "EB01-009"
+"best": 691,
+"best_id": "EB01-009",
+"method": "orb-art-v2"
 },
 "EB01-013_p1": {
 "against": [
 "EB01-013"
 ],
-"best": 121,
-"best_id": "EB01-013"
+"best": 10,
+"best_id": "EB01-013",
+"method": "orb-art-v2"
 },
 "EB01-015_p2": {
 "against": [
@@ -26,106 +29,121 @@
 "EB01-015_p1",
 "EB01-015_r1"
 ],
-"best": 155,
-"best_id": "EB01-015_r1"
+"best": 9,
+"best_id": "EB01-015_r1",
+"method": "orb-art-v2"
 },
 "EB01-018_p1": {
 "against": [
 "EB01-018"
 ],
-"best": 636,
-"best_id": "EB01-018"
+"best": 558,
+"best_id": "EB01-018",
+"method": "orb-art-v2"
 },
 "EB01-027_p1": {
 "against": [
 "EB01-027"
 ],
-"best": 67,
-"best_id": "EB01-027"
+"best": 4,
+"best_id": "EB01-027",
+"method": "orb-art-v2"
 },
 "EB01-031_p1": {
 "against": [
 "EB01-031"
 ],
-"best": 56,
-"best_id": "EB01-031"
+"best": 5,
+"best_id": "EB01-031",
+"method": "orb-art-v2"
 },
 "EB01-038_p1": {
 "against": [
 "EB01-038"
 ],
-"best": 575,
-"best_id": "EB01-038"
+"best": 527,
+"best_id": "EB01-038",
+"method": "orb-art-v2"
 },
 "EB01-049_p1": {
 "against": [
 "EB01-049"
 ],
-"best": 180,
-"best_id": "EB01-049"
+"best": 25,
+"best_id": "EB01-049",
+"method": "orb-art-v2"
 },
 "EB01-051_p1": {
 "against": [
 "EB01-051"
 ],
-"best": 192,
-"best_id": "EB01-051"
+"best": 7,
+"best_id": "EB01-051",
+"method": "orb-art-v2"
 },
 "EB01-056_p1": {
 "against": [
 "EB01-056"
 ],
-"best": 25,
-"best_id": "EB01-056"
+"best": 9,
+"best_id": "EB01-056",
+"method": "orb-art-v2"
 },
 "EB01-060_p1": {
 "against": [
 "EB01-060"
 ],
-"best": 590,
-"best_id": "EB01-060"
+"best": 626,
+"best_id": "EB01-060",
+"method": "orb-art-v2"
 },
 "EB02-003_p1": {
 "against": [
 "EB02-003"
 ],
-"best": 107,
-"best_id": "EB02-003"
+"best": 6,
+"best_id": "EB02-003",
+"method": "orb-art-v2"
 },
 "EB02-017_p1": {
 "against": [
 "EB02-017"
 ],
-"best": 10,
-"best_id": "EB02-017"
+"best": 20,
+"best_id": "EB02-017",
+"method": "orb-art-v2"
 },
 "EB02-022_p1": {
 "against": [
 "EB02-022"
 ],
-"best": 26,
-"best_id": "EB02-022"
+"best": 2,
+"best_id": "EB02-022",
+"method": "orb-art-v2"
 },
 "EB02-036_p1": {
 "against": [
 "EB02-036"
 ],
-"best": 73,
-"best_id": "EB02-036"
+"best": 4,
+"best_id": "EB02-036",
+"method": "orb-art-v2"
 },
 "EB02-048_p1": {
 "against": [
 "EB02-048"
 ],
-"best": 118,
-"best_id": "EB02-048"
+"best": 5,
+"best_id": "EB02-048",
+"method": "orb-art-v2"
 },
 "EB02-054_p1": {
 "against": [
 "EB02-054"
 ],
-"best": 15,
-"best_id": "EB02-054"
+"best": 7,
+"best_id": "EB02-054",
+"method": "orb-art-v2"
 },
 "EB02-061_p3": {
 "against": [
@@ -133,137 +151,156 @@
 "EB02-061_p1",
 "EB02-061_p2"
 ],
-"best": 18,
-"best_id": "EB02-061"
+"best": 3,
+"best_id": "EB02-061",
+"method": "orb-art-v2"
 },
 "EB03-008_p1": {
 "against": [
 "EB03-008"
 ],
-"best": 162,
-"best_id": "EB03-008"
+"best": 5,
+"best_id": "EB03-008",
+"method": "orb-art-v2"
 },
 "EB03-013_p1": {
 "against": [
 "EB03-013"
 ],
-"best": 102,
-"best_id": "EB03-013"
+"best": 5,
+"best_id": "EB03-013",
+"method": "orb-art-v2"
 },
 "EB03-025_p1": {
 "against": [
 "EB03-025"
 ],
-"best": 30,
-"best_id": "EB03-025"
+"best": 6,
+"best_id": "EB03-025",
+"method": "orb-art-v2"
 },
 "EB03-034_p1": {
 "against": [
 "EB03-034"
 ],
-"best": 124,
-"best_id": "EB03-034"
+"best": 12,
+"best_id": "EB03-034",
+"method": "orb-art-v2"
 },
 "EB03-041_p1": {
 "against": [
 "EB03-041"
 ],
-"best": 165,
-"best_id": "EB03-041"
+"best": 3,
+"best_id": "EB03-041",
+"method": "orb-art-v2"
 },
 "EB03-057_p1": {
 "against": [
 "EB03-057"
 ],
-"best": 14,
-"best_id": "EB03-057"
+"best": 5,
+"best_id": "EB03-057",
+"method": "orb-art-v2"
 },
 "EB04-002_p1": {
 "against": [
 "EB04-002"
 ],
-"best": 127,
-"best_id": "EB04-002"
+"best": 5,
+"best_id": "EB04-002",
+"method": "orb-art-v2"
 },
 "EB04-018_p1": {
 "against": [
 "EB04-018"
 ],
-"best": 114,
-"best_id": "EB04-018"
+"best": 4,
+"best_id": "EB04-018",
+"method": "orb-art-v2"
 },
 "EB04-022_p1": {
 "against": [
 "EB04-022"
 ],
-"best": 56,
-"best_id": "EB04-022"
+"best": 3,
+"best_id": "EB04-022",
+"method": "orb-art-v2"
 },
 "EB04-031_p1": {
 "against": [
 "EB04-031"
 ],
-"best": 39,
-"best_id": "EB04-031"
+"best": 2,
+"best_id": "EB04-031",
+"method": "orb-art-v2"
 },
 "EB04-043_p1": {
 "against": [
 "EB04-043"
 ],
-"best": 109,
-"best_id": "EB04-043"
+"best": 5,
+"best_id": "EB04-043",
+"method": "orb-art-v2"
 },
 "EB04-052_p1": {
 "against": [
 "EB04-052"
 ],
-"best": 16,
-"best_id": "EB04-052"
+"best": 10,
+"best_id": "EB04-052",
+"method": "orb-art-v2"
 },
 "OP01-006_p1": {
 "against": [
 "OP01-006",
 "OP01-006_p4"
 ],
-"best": 748,
-"best_id": "OP01-006"
+"best": 730,
+"best_id": "OP01-006",
+"method": "orb-art-v2"
 },
 "OP01-006_p2": {
 "against": [
 "OP01-006",
 "OP01-006_p4"
 ],
-"best": 292,
-"best_id": "OP01-006"
+"best": 552,
+"best_id": "OP01-006",
+"method": "orb-art-v2"
 },
 "OP01-006_p3": {
 "against": [
 "OP01-006",
 "OP01-006_p4"
 ],
-"best": 179,
-"best_id": "OP01-006_p4"
+"best": 17,
+"best_id": "OP01-006_p4",
+"method": "orb-art-v2"
 },
 "OP01-008_p1": {
 "against": [
 "OP01-008"
 ],
-"best": 155,
-"best_id": "OP01-008"
+"best": 158,
+"best_id": "OP01-008",
+"method": "orb-art-v2"
 },
 "OP01-013_p2": {
 "against": [
 "OP01-013"
 ],
-"best": 38,
-"best_id": "OP01-013"
+"best": 4,
+"best_id": "OP01-013",
+"method": "orb-art-v2"
 },
 "OP01-016_p2": {
 "against": [
 "OP01-016"
 ],
-"best": 124,
-"best_id": "OP01-016"
+"best": 8,
+"best_id": "OP01-016",
+"method": "orb-art-v2"
 },
 "OP01-016_p7": {
 "against": [
@@ -276,63 +313,71 @@
 "OP01-016_p6",
 "OP01-016_p8"
 ],
-"best": 30,
-"best_id": "OP01-016"
+"best": 7,
+"best_id": "OP01-016_p1",
+"method": "orb-art-v2"
 },
 "OP01-024_p2": {
 "against": [
 "OP01-024",
 "OP01-024_p1"
 ],
-"best": 106,
-"best_id": "OP01-024"
+"best": 11,
+"best_id": "OP01-024",
+"method": "orb-art-v2"
 },
 "OP01-029_p3": {
 "against": [
 "OP01-029",
 "OP01-029_p2"
 ],
-"best": 679,
-"best_id": "OP01-029"
+"best": 670,
+"best_id": "OP01-029",
+"method": "orb-art-v2"
 },
 "OP01-029_p4": {
 "against": [
 "OP01-029",
 "OP01-029_p2"
 ],
-"best": 628,
-"best_id": "OP01-029"
+"best": 603,
+"best_id": "OP01-029",
+"method": "orb-art-v2"
 },
 "OP01-033_p2": {
 "against": [
 "OP01-033",
 "OP01-033_p1"
 ],
-"best": 518,
-"best_id": "OP01-033"
+"best": 702,
+"best_id": "OP01-033",
+"method": "orb-art-v2"
 },
 "OP01-033_p3": {
 "against": [
 "OP01-033",
 "OP01-033_p1"
 ],
-"best": 401,
-"best_id": "OP01-033"
+"best": 490,
+"best_id": "OP01-033",
+"method": "orb-art-v2"
 },
 "OP01-033_p4": {
 "against": [
 "OP01-033",
 "OP01-033_p1"
 ],
-"best": 57,
-"best_id": "OP01-033"
+"best": 5,
+"best_id": "OP01-033",
+"method": "orb-art-v2"
 },
 "OP01-034_p1": {
 "against": [
 "OP01-034"
 ],
-"best": 104,
-"best_id": "OP01-034"
+"best": 181,
+"best_id": "OP01-034",
+"method": "orb-art-v2"
 },
 "OP01-039_p2": {
 "against": [
@@ -340,32 +385,36 @@
 "OP01-039_p1",
 "OP01-039_p3"
 ],
-"best": 486,
-"best_id": "OP01-039"
+"best": 470,
+"best_id": "OP01-039",
+"method": "orb-art-v2"
 },
 "OP01-041_p2": {
 "against": [
 "OP01-041",
 "OP01-041_p1"
 ],
-"best": 796,
-"best_id": "OP01-041"
+"best": 541,
+"best_id": "OP01-041",
+"method": "orb-art-v2"
 },
 "OP01-041_p3": {
 "against": [
 "OP01-041",
 "OP01-041_p1"
 ],
-"best": 757,
-"best_id": "OP01-041"
+"best": 210,
+"best_id": "OP01-041",
+"method": "orb-art-v2"
 },
 "OP01-041_p4": {
 "against": [
 "OP01-041",
 "OP01-041_p1"
 ],
-"best": 128,
-"best_id": "OP01-041_p1"
+"best": 18,
+"best_id": "OP01-041",
+"method": "orb-art-v2"
 },
 "OP01-047_p3": {
 "against": [
@@ -373,15 +422,17 @@
 "OP01-047_p1",
 "OP01-047_p2"
 ],
-"best": 87,
-"best_id": "OP01-047_p1"
+"best": 5,
+"best_id": "OP01-047",
+"method": "orb-art-v2"
 },
 "OP01-048_p1": {
 "against": [
 "OP01-048"
 ],
-"best": 139,
-"best_id": "OP01-048"
+"best": 44,
+"best_id": "OP01-048",
+"method": "orb-art-v2"
 },
 "OP01-051_p3": {
 "against": [
@@ -389,37 +440,42 @@
 "OP01-051_p1",
 "OP01-051_p2"
 ],
-"best": 76,
-"best_id": "OP01-051_p1"
+"best": 3,
+"best_id": "OP01-051_p1",
+"method": "orb-art-v2"
 },
 "OP01-052_p1": {
 "against": [
 "OP01-052"
 ],
-"best": 619,
-"best_id": "OP01-052"
+"best": 749,
+"best_id": "OP01-052",
+"method": "orb-art-v2"
 },
 "OP01-052_p2": {
 "against": [
 "OP01-052"
 ],
-"best": 215,
-"best_id": "OP01-052"
+"best": 619,
+"best_id": "OP01-052",
+"method": "orb-art-v2"
 },
 "OP01-055_p1": {
 "against": [
 "OP01-055",
 "OP01-055_p2"
 ],
-"best": 816,
-"best_id": "OP01-055"
+"best": 790,
+"best_id": "OP01-055",
+"method": "orb-art-v2"
 },
 "OP01-064_p1": {
 "against": [
 "OP01-064"
 ],
-"best": 62,
-"best_id": "OP01-064"
+"best": 363,
+"best_id": "OP01-064",
+"method": "orb-art-v2"
 },
 "OP01-070_p3": {
 "against": [
@@ -427,22 +483,25 @@
 "OP01-070_p1",
 "OP01-070_p2"
 ],
-"best": 121,
-"best_id": "OP01-070_p1"
+"best": 5,
+"best_id": "OP01-070",
+"method": "orb-art-v2"
 },
 "OP01-073_p1": {
 "against": [
 "OP01-073"
 ],
-"best": 60,
-"best_id": "OP01-073"
+"best": 7,
+"best_id": "OP01-073",
+"method": "orb-art-v2"
 },
 "OP01-077_p1": {
 "against": [
 "OP01-077"
 ],
-"best": 80,
-"best_id": "OP01-077"
+"best": 78,
+"best_id": "OP01-077",
+"method": "orb-art-v2"
 },
 "OP01-078_p3": {
 "against": [
@@ -450,36 +509,41 @@
 "OP01-078_p1",
 "OP01-078_p2"
 ],
-"best": 102,
-"best_id": "OP01-078_p1"
+"best": 5,
+"best_id": "OP01-078_p1",
+"method": "orb-art-v2"
 },
 "OP01-093_p1": {
 "against": [
 "OP01-093"
 ],
-"best": 71,
-"best_id": "OP01-093"
+"best": 3,
+"best_id": "OP01-093",
+"method": "orb-art-v2"
 },
 "OP01-097_p1": {
 "against": [
 "OP01-097"
 ],
-"best": 15,
-"best_id": "OP01-097"
+"best": 6,
+"best_id": "OP01-097",
+"method": "orb-art-v2"
 },
 "OP01-102_p1": {
 "against": [
 "OP01-102"
 ],
-"best": 55,
-"best_id": "OP01-102"
+"best": 15,
+"best_id": "OP01-102",
+"method": "orb-art-v2"
 },
 "OP01-109_p1": {
 "against": [
 "OP01-109"
 ],
-"best": 39,
-"best_id": "OP01-109"
+"best": 93,
+"best_id": "OP01-109",
+"method": "orb-art-v2"
 },
 "OP01-120_p5": {
 "against": [
@@ -488,8 +552,9 @@
 "OP01-120_p2",
 "OP01-120_p4"
 ],
-"best": 60,
-"best_id": "OP01-120"
+"best": 7,
+"best_id": "OP01-120",
+"method": "orb-art-v2"
 },
 "OP01-121_p3": {
 "against": [
@@ -497,8 +562,9 @@
 "OP01-121_p1",
 "OP01-121_p2"
 ],
-"best": 34,
-"best_id": "OP01-121_p2"
+"best": 5,
+"best_id": "OP01-121_p1",
+"method": "orb-art-v2"
 },
 "OP02-004_p4": {
 "against": [
@@ -507,8 +573,9 @@
 "OP02-004_p2",
 "OP02-004_p3"
 ],
-"best": 194,
-"best_id": "OP02-004_p3"
+"best": 6,
+"best_id": "OP02-004_p1",
+"method": "orb-art-v2"
 },
 "OP02-005_p3": {
 "against": [
@@ -516,45 +583,51 @@
 "OP02-005_p2",
 "OP02-005_p4"
 ],
-"best": 388,
-"best_id": "OP02-005"
+"best": 584,
+"best_id": "OP02-005",
+"method": "orb-art-v2"
 },
 "OP02-009_p1": {
 "against": [
 "OP02-009"
 ],
-"best": 341,
-"best_id": "OP02-009"
+"best": 807,
+"best_id": "OP02-009",
+"method": "orb-art-v2"
 },
 "OP02-015_p1": {
 "against": [
 "OP02-015",
 "OP02-015_p3"
 ],
-"best": 824,
-"best_id": "OP02-015"
+"best": 678,
+"best_id": "OP02-015",
+"method": "orb-art-v2"
 },
 "OP02-015_p2": {
 "against": [
 "OP02-015",
 "OP02-015_p3"
 ],
-"best": 221,
-"best_id": "OP02-015"
+"best": 591,
+"best_id": "OP02-015",
+"method": "orb-art-v2"
 },
 "OP02-017_p1": {
 "against": [
 "OP02-017"
 ],
-"best": 138,
-"best_id": "OP02-017"
+"best": 4,
+"best_id": "OP02-017",
+"method": "orb-art-v2"
 },
 "OP02-018_p1": {
 "against": [
 "OP02-018"
 ],
-"best": 42,
-"best_id": "OP02-018"
+"best": 5,
+"best_id": "OP02-018",
+"method": "orb-art-v2"
 },
 "OP02-018_p3": {
 "against": [
@@ -562,8 +635,9 @@
 "OP02-018_p1",
 "OP02-018_r1"
 ],
-"best": 953,
-"best_id": "OP02-018"
+"best": 790,
+"best_id": "OP02-018",
+"method": "orb-art-v2"
 },
 "OP02-018_p4": {
 "against": [
@@ -571,8 +645,9 @@
 "OP02-018_p1",
 "OP02-018_r1"
 ],
-"best": 82,
-"best_id": "OP02-018_p1"
+"best": 448,
+"best_id": "OP02-018_r1",
+"method": "orb-art-v2"
 },
 "OP02-018_p5": {
 "against": [
@@ -580,79 +655,90 @@
 "OP02-018_p1",
 "OP02-018_r1"
 ],
-"best": 83,
-"best_id": "OP02-018_p1"
+"best": 6,
+"best_id": "OP02-018_r1",
+"method": "orb-art-v2"
 },
 "OP02-031_p1": {
 "against": [
 "OP02-031"
 ],
-"best": 118,
-"best_id": "OP02-031"
+"best": 60,
+"best_id": "OP02-031",
+"method": "orb-art-v2"
 },
 "OP02-041_p1": {
 "against": [
 "OP02-041"
 ],
-"best": 48,
-"best_id": "OP02-041"
+"best": 7,
+"best_id": "OP02-041",
+"method": "orb-art-v2"
 },
 "OP02-058_p1": {
 "against": [
 "OP02-058"
 ],
-"best": 10,
-"best_id": "OP02-058"
+"best": 6,
+"best_id": "OP02-058",
+"method": "orb-art-v2"
 },
 "OP02-059_p1": {
 "against": [
 "OP02-059"
 ],
-"best": 45,
-"best_id": "OP02-059"
+"best": 88,
+"best_id": "OP02-059",
+"method": "orb-art-v2"
 },
 "OP02-068_p1": {
 "against": [
 "OP02-068",
 "OP02-068_p2"
 ],
-"best": 199,
-"best_id": "OP02-068_p2"
+"best": 7,
+"best_id": "OP02-068",
+"method": "orb-art-v2"
 },
 "OP02-073_p1": {
 "against": [
 "OP02-073"
 ],
-"best": 163,
-"best_id": "OP02-073"
+"best": 4,
+"best_id": "OP02-073",
+"method": "orb-art-v2"
 },
 "OP02-086_p1": {
 "against": [
 "OP02-086"
 ],
-"best": 68,
-"best_id": "OP02-086"
+"best": 272,
+"best_id": "OP02-086",
+"method": "orb-art-v2"
 },
 "OP02-089_p1": {
 "against": [
 "OP02-089"
 ],
-"best": 1149,
-"best_id": "OP02-089"
+"best": 1104,
+"best_id": "OP02-089",
+"method": "orb-art-v2"
 },
 "OP02-089_p2": {
 "against": [
 "OP02-089"
 ],
-"best": 1107,
-"best_id": "OP02-089"
+"best": 969,
+"best_id": "OP02-089",
+"method": "orb-art-v2"
 },
 "OP02-089_p3": {
 "against": [
 "OP02-089"
 ],
-"best": 216,
-"best_id": "OP02-089"
+"best": 5,
+"best_id": "OP02-089",
+"method": "orb-art-v2"
 },
 "OP02-096_p4": {
 "against": [
@@ -660,8 +746,9 @@
 "OP02-096_p1",
 "OP02-096_p3"
 ],
-"best": 206,
-"best_id": "OP02-096_p1"
+"best": 4,
+"best_id": "OP02-096",
+"method": "orb-art-v2"
 },
 "OP02-099_p5": {
 "against": [
@@ -670,15 +757,17 @@
 "OP02-099_p2",
 "OP02-099_p4"
 ],
-"best": 461,
-"best_id": "OP02-099_p1"
+"best": 6,
+"best_id": "OP02-099",
+"method": "orb-art-v2"
 },
 "OP02-105_p1": {
 "against": [
 "OP02-105"
 ],
-"best": 234,
-"best_id": "OP02-105"
+"best": 209,
+"best_id": "OP02-105",
+"method": "orb-art-v2"
 },
 "OP02-106_p4": {
 "against": [
@@ -686,8 +775,9 @@
 "OP02-106_p2",
 "OP02-106_r1"
 ],
-"best": 740,
-"best_id": "OP02-106"
+"best": 584,
+"best_id": "OP02-106",
+"method": "orb-art-v2"
 },
 "OP02-106_p5": {
 "against": [
@@ -695,15 +785,17 @@
 "OP02-106_p2",
 "OP02-106_r1"
 ],
-"best": 178,
-"best_id": "OP02-106"
+"best": 277,
+"best_id": "OP02-106_r1",
+"method": "orb-art-v2"
 },
 "OP02-108_p1": {
 "against": [
 "OP02-108"
 ],
-"best": 424,
-"best_id": "OP02-108"
+"best": 245,
+"best_id": "OP02-108",
+"method": "orb-art-v2"
 },
 "OP02-114_p4": {
 "against": [
@@ -711,15 +803,17 @@
 "OP02-114_p1",
 "OP02-114_p3"
 ],
-"best": 209,
-"best_id": "OP02-114"
+"best": 6,
+"best_id": "OP02-114_p1",
+"method": "orb-art-v2"
 },
 "OP02-115_p1": {
 "against": [
 "OP02-115"
 ],
-"best": 352,
-"best_id": "OP02-115"
+"best": 8,
+"best_id": "OP02-115",
+"method": "orb-art-v2"
 },
 "OP02-117_p4": {
 "against": [
@@ -727,8 +821,9 @@
 "OP02-117_p2",
 "OP02-117_r1"
 ],
-"best": 906,
-"best_id": "OP02-117_r1"
+"best": 567,
+"best_id": "OP02-117_r1",
+"method": "orb-art-v2"
 },
 "OP02-117_p5": {
 "against": [
@@ -736,16 +831,18 @@
 "OP02-117_p2",
 "OP02-117_r1"
 ],
-"best": 907,
-"best_id": "OP02-117_r1"
+"best": 689,
+"best_id": "OP02-117_r1",
+"method": "orb-art-v2"
 },
 "OP02-121_p2": {
 "against": [
 "OP02-121",
 "OP02-121_p1"
 ],
-"best": 50,
-"best_id": "OP02-121_p1"
+"best": 5,
+"best_id": "OP02-121",
+"method": "orb-art-v2"
 },
 "OP03-003_p3": {
 "against": [
@@ -753,8 +850,9 @@
 "OP03-003_p1",
 "OP03-003_r1"
 ],
-"best": 947,
-"best_id": "OP03-003"
+"best": 657,
+"best_id": "OP03-003",
+"method": "orb-art-v2"
 },
 "OP03-003_p4": {
 "against": [
@@ -762,8 +860,9 @@
 "OP03-003_p1",
 "OP03-003_r1"
 ],
-"best": 128,
-"best_id": "OP03-003"
+"best": 401,
+"best_id": "OP03-003",
+"method": "orb-art-v2"
 },
 "OP03-003_p5": {
 "against": [
@@ -771,8 +870,9 @@
 "OP03-003_p1",
 "OP03-003_r1"
 ],
-"best": 76,
-"best_id": "OP03-003"
+"best": 7,
+"best_id": "OP03-003",
+"method": "orb-art-v2"
 },
 "OP03-008_p2": {
 "against": [
@@ -780,147 +880,167 @@
 "OP03-008_p1",
 "OP03-008_p3"
 ],
-"best": 512,
-"best_id": "OP03-008"
+"best": 653,
+"best_id": "OP03-008",
+"method": "orb-art-v2"
 },
 "OP03-018_p1": {
 "against": [
 "OP03-018"
 ],
-"best": 89,
-"best_id": "OP03-018"
+"best": 5,
+"best_id": "OP03-018",
+"method": "orb-art-v2"
 },
 "OP03-024_p1": {
 "against": [
 "OP03-024"
 ],
-"best": 5,
-"best_id": "OP03-024"
+"best": 3,
+"best_id": "OP03-024",
+"method": "orb-art-v2"
 },
 "OP03-047_p1": {
 "against": [
 "OP03-047"
 ],
-"best": 52,
-"best_id": "OP03-047"
+"best": 3,
+"best_id": "OP03-047",
+"method": "orb-art-v2"
 },
 "OP03-048_p1": {
 "against": [
 "OP03-048",
 "OP03-048_p2"
 ],
-"best": 570,
-"best_id": "OP03-048"
+"best": 655,
+"best_id": "OP03-048",
+"method": "orb-art-v2"
 },
 "OP03-055_p2": {
 "against": [
 "OP03-055",
 "OP03-055_p1"
 ],
-"best": 777,
-"best_id": "OP03-055"
+"best": 750,
+"best_id": "OP03-055",
+"method": "orb-art-v2"
 },
 "OP03-055_p3": {
 "against": [
 "OP03-055",
 "OP03-055_p1"
 ],
-"best": 733,
-"best_id": "OP03-055"
+"best": 695,
+"best_id": "OP03-055",
+"method": "orb-art-v2"
 },
 "OP03-056_p1": {
 "against": [
 "OP03-056"
 ],
-"best": 746,
-"best_id": "OP03-056"
+"best": 661,
+"best_id": "OP03-056",
+"method": "orb-art-v2"
 },
 "OP03-056_p2": {
 "against": [
 "OP03-056"
 ],
-"best": 765,
-"best_id": "OP03-056"
+"best": 667,
+"best_id": "OP03-056",
+"method": "orb-art-v2"
 },
 "OP03-056_p3": {
 "against": [
 "OP03-056"
 ],
-"best": 10,
-"best_id": "OP03-056"
+"best": 1,
+"best_id": "OP03-056",
+"method": "orb-art-v2"
 },
 "OP03-057_p1": {
 "against": [
 "OP03-057"
 ],
-"best": 1066,
-"best_id": "OP03-057"
+"best": 1100,
+"best_id": "OP03-057",
+"method": "orb-art-v2"
 },
 "OP03-057_p2": {
 "against": [
 "OP03-057"
 ],
-"best": 1063,
-"best_id": "OP03-057"
+"best": 1085,
+"best_id": "OP03-057",
+"method": "orb-art-v2"
 },
 "OP03-057_p3": {
 "against": [
 "OP03-057"
 ],
-"best": 102,
-"best_id": "OP03-057"
+"best": 4,
+"best_id": "OP03-057",
+"method": "orb-art-v2"
 },
 "OP03-060_p1": {
 "against": [
 "OP03-060"
 ],
-"best": 801,
-"best_id": "OP03-060"
+"best": 490,
+"best_id": "OP03-060",
+"method": "orb-art-v2"
 },
 "OP03-060_p2": {
 "against": [
 "OP03-060"
 ],
-"best": 105,
-"best_id": "OP03-060"
+"best": 289,
+"best_id": "OP03-060",
+"method": "orb-art-v2"
 },
 "OP03-072_p1": {
 "against": [
 "OP03-072",
 "OP03-072_p2"
 ],
-"best": 198,
-"best_id": "OP03-072_p2"
+"best": 4,
+"best_id": "OP03-072",
+"method": "orb-art-v2"
 },
 "OP03-079_p2": {
 "against": [
 "OP03-079",
 "OP03-079_r1"
 ],
-"best": 663,
-"best_id": "OP03-079"
+"best": 652,
+"best_id": "OP03-079",
+"method": "orb-art-v2"
 },
 "OP03-079_p3": {
 "against": [
 "OP03-079",
 "OP03-079_r1"
 ],
-"best": 237,
-"best_id": "OP03-079"
+"best": 497,
+"best_id": "OP03-079",
+"method": "orb-art-v2"
 },
 "OP03-081_p1": {
 "against": [
 "OP03-081"
 ],
-"best": 225,
-"best_id": "OP03-081"
+"best": 6,
+"best_id": "OP03-081",
+"method": "orb-art-v2"
 },
 "OP03-086_p1": {
 "against": [
 "OP03-086"
 ],
-"best": 177,
-"best_id": "OP03-086"
+"best": 6,
+"best_id": "OP03-086",
+"method": "orb-art-v2"
 },
 "OP03-089_p3": {
 "against": [
@@ -928,8 +1048,9 @@
 "OP03-089_p1",
 "OP03-089_r1"
 ],
-"best": 904,
-"best_id": "OP03-089"
+"best": 1003,
+"best_id": "OP03-089",
+"method": "orb-art-v2"
 },
 "OP03-089_p4": {
 "against": [
@@ -937,8 +1058,9 @@
 "OP03-089_p1",
 "OP03-089_r1"
 ],
-"best": 183,
-"best_id": "OP03-089"
+"best": 475,
+"best_id": "OP03-089",
+"method": "orb-art-v2"
 },
 "OP03-089_p5": {
 "against": [
@@ -946,69 +1068,78 @@
 "OP03-089_p1",
 "OP03-089_r1"
 ],
-"best": 160,
-"best_id": "OP03-089"
+"best": 5,
+"best_id": "OP03-089_p1",
+"method": "orb-art-v2"
 },
 "OP03-094_p1": {
 "against": [
 "OP03-094"
 ],
-"best": 937,
-"best_id": "OP03-094"
+"best": 750,
+"best_id": "OP03-094",
+"method": "orb-art-v2"
 },
 "OP03-094_p2": {
 "against": [
 "OP03-094"
 ],
-"best": 920,
-"best_id": "OP03-094"
+"best": 655,
+"best_id": "OP03-094",
+"method": "orb-art-v2"
 },
 "OP03-108_p2": {
 "against": [
 "OP03-108",
 "OP03-108_p1"
 ],
-"best": 193,
-"best_id": "OP03-108_p1"
+"best": 8,
+"best_id": "OP03-108_p1",
+"method": "orb-art-v2"
 },
 "OP03-110_p2": {
 "against": [
 "OP03-110",
 "OP03-110_r2"
 ],
-"best": 1114,
-"best_id": "OP03-110"
+"best": 709,
+"best_id": "OP03-110",
+"method": "orb-art-v2"
 },
 "OP03-110_p3": {
 "against": [
 "OP03-110",
 "OP03-110_r2"
 ],
-"best": 430,
-"best_id": "OP03-110"
+"best": 367,
+"best_id": "OP03-110",
+"method": "orb-art-v2"
 },
 "OP03-110_p4": {
 "against": [
 "OP03-110",
 "OP03-110_r2"
 ],
-"best": 205,
-"best_id": "OP03-110"
+"best": 2,
+"best_id": "OP03-110_r2",
+"method": "orb-art-v2"
 },
 "OP03-112_p1": {
 "against": [
 "OP03-112"
 ],
-"best": 91,
-"best_id": "OP03-112"
+"best": 5,
+"best_id": "OP03-112",
+"method": "orb-art-v2"
 },
 "OP03-113_p2": {
 "against": [
 "OP03-113",
 "OP03-113_p1"
 ],
-"best": 250,
-"best_id": "OP03-113_p1"
+"best": 4,
+"best_id": "OP03-113_p1",
+"method": "orb-art-v2"
 },
 "OP03-116_p2": {
 "against": [
@@ -1016,8 +1147,9 @@
 "OP03-116_p1",
 "OP03-116_p4"
 ],
-"best": 608,
-"best_id": "OP03-116"
+"best": 416,
+"best_id": "OP03-116",
+"method": "orb-art-v2"
 },
 "OP03-116_p3": {
 "against": [
@@ -1025,8 +1157,9 @@
 "OP03-116_p1",
 "OP03-116_p4"
 ],
-"best": 307,
-"best_id": "OP03-116"
+"best": 359,
+"best_id": "OP03-116",
+"method": "orb-art-v2"
 },
 "OP03-121_p4": {
 "against": [
@@ -1034,8 +1167,9 @@
 "OP03-121_p2",
 "OP03-121_r2"
 ],
-"best": 726,
-"best_id": "OP03-121"
+"best": 757,
+"best_id": "OP03-121_r2",
+"method": "orb-art-v2"
 },
 "OP03-121_p5": {
 "against": [
@@ -1043,8 +1177,9 @@
 "OP03-121_p2",
 "OP03-121_r2"
 ],
-"best": 707,
-"best_id": "OP03-121"
+"best": 684,
+"best_id": "OP03-121_r2",
+"method": "orb-art-v2"
 },
 "OP03-123_p3": {
 "against": [
@@ -1052,8 +1187,9 @@
 "OP03-123_p1",
 "OP03-123_p2"
 ],
-"best": 101,
-"best_id": "OP03-123_p1"
+"best": 7,
+"best_id": "OP03-123_p1",
+"method": "orb-art-v2"
 },
 "OP04-016_p1": {
 "against": [
@@ -1061,74 +1197,84 @@
 "OP04-016_p2",
 "OP04-016_p3"
 ],
-"best": 159,
-"best_id": "OP04-016_p2"
+"best": 5,
+"best_id": "OP04-016_p2",
+"method": "orb-art-v2"
 },
 "OP04-028_p1": {
 "against": [
 "OP04-028"
 ],
-"best": 49,
-"best_id": "OP04-028"
+"best": 6,
+"best_id": "OP04-028",
+"method": "orb-art-v2"
 },
 "OP04-029_p1": {
 "against": [
 "OP04-029"
 ],
-"best": 679,
-"best_id": "OP04-029"
+"best": 630,
+"best_id": "OP04-029",
+"method": "orb-art-v2"
 },
 "OP04-029_p2": {
 "against": [
 "OP04-029"
 ],
-"best": 298,
-"best_id": "OP04-029"
+"best": 535,
+"best_id": "OP04-029",
+"method": "orb-art-v2"
 },
 "OP04-030_p1": {
 "against": [
 "OP04-030"
 ],
-"best": 48,
-"best_id": "OP04-030"
+"best": 6,
+"best_id": "OP04-030",
+"method": "orb-art-v2"
 },
 "OP04-031_p2": {
 "against": [
 "OP04-031",
 "OP04-031_p1"
 ],
-"best": 174,
-"best_id": "OP04-031_p1"
+"best": 6,
+"best_id": "OP04-031",
+"method": "orb-art-v2"
 },
 "OP04-032_p1": {
 "against": [
 "OP04-032",
 "OP04-032_p3"
 ],
-"best": 674,
-"best_id": "OP04-032"
+"best": 744,
+"best_id": "OP04-032",
+"method": "orb-art-v2"
 },
 "OP04-032_p2": {
 "against": [
 "OP04-032",
 "OP04-032_p3"
 ],
-"best": 292,
-"best_id": "OP04-032"
+"best": 657,
+"best_id": "OP04-032",
+"method": "orb-art-v2"
 },
 "OP04-036_p1": {
 "against": [
 "OP04-036"
 ],
-"best": 680,
-"best_id": "OP04-036"
+"best": 770,
+"best_id": "OP04-036",
+"method": "orb-art-v2"
 },
 "OP04-036_p2": {
 "against": [
 "OP04-036"
 ],
-"best": 689,
-"best_id": "OP04-036"
+"best": 774,
+"best_id": "OP04-036",
+"method": "orb-art-v2"
 },
 "OP04-044_p3": {
 "against": [
@@ -1136,110 +1282,125 @@
 "OP04-044_p1",
 "OP04-044_p2"
 ],
-"best": 114,
-"best_id": "OP04-044_p1"
+"best": 7,
+"best_id": "OP04-044_p2",
+"method": "orb-art-v2"
 },
 "OP04-051_p1": {
 "against": [
 "OP04-051"
 ],
-"best": 25,
-"best_id": "OP04-051"
+"best": 4,
+"best_id": "OP04-051",
+"method": "orb-art-v2"
 },
 "OP04-056_p1": {
 "against": [
 "OP04-056"
 ],
-"best": 899,
-"best_id": "OP04-056"
+"best": 1057,
+"best_id": "OP04-056",
+"method": "orb-art-v2"
 },
 "OP04-056_p2": {
 "against": [
 "OP04-056"
 ],
-"best": 892,
-"best_id": "OP04-056"
+"best": 1058,
+"best_id": "OP04-056",
+"method": "orb-art-v2"
 },
 "OP04-056_p3": {
 "against": [
 "OP04-056"
 ],
-"best": 128,
-"best_id": "OP04-056"
+"best": 2,
+"best_id": "OP04-056",
+"method": "orb-art-v2"
 },
 "OP04-072_p1": {
 "against": [
 "OP04-072"
 ],
-"best": 77,
-"best_id": "OP04-072"
+"best": 4,
+"best_id": "OP04-072",
+"method": "orb-art-v2"
 },
 "OP04-077_p1": {
 "against": [
 "OP04-077",
 "OP04-077_p2"
 ],
-"best": 599,
-"best_id": "OP04-077"
+"best": 559,
+"best_id": "OP04-077",
+"method": "orb-art-v2"
 },
 "OP04-082_p1": {
 "against": [
 "OP04-082"
 ],
-"best": 167,
-"best_id": "OP04-082"
+"best": 5,
+"best_id": "OP04-082",
+"method": "orb-art-v2"
 },
 "OP04-089_p1": {
 "against": [
 "OP04-089"
 ],
-"best": 636,
-"best_id": "OP04-089"
+"best": 734,
+"best_id": "OP04-089",
+"method": "orb-art-v2"
 },
 "OP04-089_p2": {
 "against": [
 "OP04-089"
 ],
-"best": 209,
-"best_id": "OP04-089"
+"best": 289,
+"best_id": "OP04-089",
+"method": "orb-art-v2"
 },
 "OP04-089_p3": {
 "against": [
 "OP04-089"
 ],
-"best": 190,
-"best_id": "OP04-089"
+"best": 4,
+"best_id": "OP04-089",
+"method": "orb-art-v2"
 },
 "OP04-095_p2": {
 "against": [
 "OP04-095",
 "OP04-095_p1"
 ],
-"best": 718,
-"best_id": "OP04-095"
+"best": 659,
+"best_id": "OP04-095",
+"method": "orb-art-v2"
 },
 "OP04-095_p3": {
 "against": [
 "OP04-095",
 "OP04-095_p1"
 ],
-"best": 713,
-"best_id": "OP04-095"
+"best": 597,
+"best_id": "OP04-095",
+"method": "orb-art-v2"
 },
 "OP04-096_p1": {
 "against": [
 "OP04-096",
 "OP04-096_p2"
 ],
-"best": 639,
-"best_id": "OP04-096"
+"best": 611,
+"best_id": "OP04-096",
+"method": "orb-art-v2"
 },
 "OP04-100_p1": {
 "against": [
 "OP04-100"
 ],
-"best": 149,
-"best_id": "OP04-100"
+"best": 9,
+"best_id": "OP04-100",
+"method": "orb-art-v2"
 },
 "OP04-100_p3": {
 "against": [
@@ -1247,8 +1408,9 @@
 "OP04-100_p1",
 "OP04-100_p2"
 ],
-"best": 765,
-"best_id": "OP04-100"
+"best": 752,
+"best_id": "OP04-100",
+"method": "orb-art-v2"
 },
 "OP04-100_p4": {
 "against": [
@@ -1256,8 +1418,9 @@
 "OP04-100_p1",
 "OP04-100_p2"
 ],
-"best": 276,
-"best_id": "OP04-100"
+"best": 410,
+"best_id": "OP04-100",
+"method": "orb-art-v2"
 },
 "OP04-100_p5": {
 "against": [
@@ -1265,16 +1428,18 @@
 "OP04-100_p1",
 "OP04-100_p2"
 ],
-"best": 142,
-"best_id": "OP04-100_p2"
+"best": 16,
+"best_id": "OP04-100_p1",
+"method": "orb-art-v2"
 },
 "OP04-104_p2": {
 "against": [
 "OP04-104",
 "OP04-104_p1"
 ],
-"best": 267,
-"best_id": "OP04-104_p1"
+"best": 5,
+"best_id": "OP04-104",
+"method": "orb-art-v2"
 },
 "OP04-112_p3": {
 "against": [
@@ -1282,16 +1447,18 @@
 "OP04-112_p1",
 "OP04-112_p2"
 ],
-"best": 112,
-"best_id": "OP04-112"
+"best": 7,
+"best_id": "OP04-112",
+"method": "orb-art-v2"
 },
 "OP05-004_p2": {
 "against": [
 "OP05-004",
 "OP05-004_p1"
 ],
-"best": 579,
-"best_id": "OP05-004"
+"best": 622,
+"best_id": "OP05-004",
+"method": "orb-art-v2"
 },
 "OP05-006_p2": {
 "against": [
@@ -1299,179 +1466,203 @@
 "OP05-006_p1",
 "OP05-006_p3"
 ],
-"best": 93,
-"best_id": "OP05-006_p1"
+"best": 19,
+"best_id": "OP05-006",
+"method": "orb-art-v2"
 },
 "OP05-007_p2": {
 "against": [
 "OP05-007",
 "OP05-007_p1"
 ],
-"best": 119,
-"best_id": "OP05-007_p1"
+"best": 5,
+"best_id": "OP05-007",
+"method": "orb-art-v2"
 },
 "OP05-010_p1": {
 "against": [
 "OP05-010"
 ],
-"best": 591,
-"best_id": "OP05-010"
+"best": 497,
+"best_id": "OP05-010",
+"method": "orb-art-v2"
 },
 "OP05-010_p2": {
 "against": [
 "OP05-010"
 ],
-"best": 175,
-"best_id": "OP05-010"
+"best": 316,
+"best_id": "OP05-010",
+"method": "orb-art-v2"
 },
 "OP05-015_p1": {
 "against": [
 "OP05-015"
 ],
-"best": 92,
-"best_id": "OP05-015"
+"best": 7,
+"best_id": "OP05-015",
+"method": "orb-art-v2"
 },
 "OP05-015_p2": {
 "against": [
 "OP05-015",
 "OP05-015_p1"
 ],
-"best": 629,
-"best_id": "OP05-015"
+"best": 883,
+"best_id": "OP05-015",
+"method": "orb-art-v2"
 },
 "OP05-015_p3": {
 "against": [
 "OP05-015",
 "OP05-015_p1"
 ],
-"best": 164,
-"best_id": "OP05-015"
+"best": 691,
+"best_id": "OP05-015",
+"method": "orb-art-v2"
 },
 "OP05-015_p4": {
 "against": [
 "OP05-015",
 "OP05-015_p1"
 ],
-"best": 153,
-"best_id": "OP05-015_p1"
+"best": 5,
+"best_id": "OP05-015",
+"method": "orb-art-v2"
 },
 "OP05-021_p2": {
 "against": [
 "OP05-021"
 ],
-"best": 831,
-"best_id": "OP05-021"
+"best": 689,
+"best_id": "OP05-021",
+"method": "orb-art-v2"
 },
 "OP05-030_p2": {
 "against": [
 "OP05-030",
 "OP05-030_p1"
 ],
-"best": 79,
-"best_id": "OP05-030_p1"
+"best": 6,
+"best_id": "OP05-030",
+"method": "orb-art-v2"
 },
 "OP05-034_p1": {
 "against": [
 "OP05-034"
 ],
-"best": 33,
-"best_id": "OP05-034"
+"best": 5,
+"best_id": "OP05-034",
+"method": "orb-art-v2"
 },
 "OP05-034_p2": {
 "against": [
 "OP05-034",
 "OP05-034_p1"
 ],
-"best": 694,
-"best_id": "OP05-034"
+"best": 960,
+"best_id": "OP05-034",
+"method": "orb-art-v2"
 },
 "OP05-034_p3": {
 "against": [
 "OP05-034",
 "OP05-034_p1"
 ],
-"best": 158,
-"best_id": "OP05-034"
+"best": 813,
+"best_id": "OP05-034",
+"method": "orb-art-v2"
 },
 "OP05-034_p4": {
 "against": [
 "OP05-034",
 "OP05-034_p1"
 ],
-"best": 86,
-"best_id": "OP05-034_p1"
+"best": 5,
+"best_id": "OP05-034",
+"method": "orb-art-v2"
 },
 "OP05-036_p2": {
 "against": [
 "OP05-036",
 "OP05-036_p1"
 ],
-"best": 498,
-"best_id": "OP05-036"
+"best": 641,
+"best_id": "OP05-036",
+"method": "orb-art-v2"
 },
 "OP05-043_p2": {
 "against": [
 "OP05-043",
 "OP05-043_p1"
 ],
-"best": 81,
-"best_id": "OP05-043"
+"best": 7,
+"best_id": "OP05-043",
+"method": "orb-art-v2"
 },
 "OP05-052_p1": {
 "against": [
 "OP05-052"
 ],
-"best": 792,
-"best_id": "OP05-052"
+"best": 688,
+"best_id": "OP05-052",
+"method": "orb-art-v2"
 },
 "OP05-055_p1": {
 "against": [
 "OP05-055"
 ],
-"best": 62,
-"best_id": "OP05-055"
+"best": 9,
+"best_id": "OP05-055",
+"method": "orb-art-v2"
 },
 "OP05-057_p1": {
 "against": [
 "OP05-057"
 ],
-"best": 1132,
-"best_id": "OP05-057"
+"best": 1090,
+"best_id": "OP05-057",
+"method": "orb-art-v2"
 },
 "OP05-057_p2": {
 "against": [
 "OP05-057"
 ],
-"best": 1112,
-"best_id": "OP05-057"
+"best": 1039,
+"best_id": "OP05-057",
+"method": "orb-art-v2"
 },
 "OP05-057_p3": {
 "against": [
 "OP05-057"
 ],
-"best": 90,
-"best_id": "OP05-057"
+"best": 4,
+"best_id": "OP05-057",
+"method": "orb-art-v2"
 },
 "OP05-067_p1": {
 "against": [
 "OP05-067"
 ],
-"best": 103,
-"best_id": "OP05-067"
+"best": 6,
+"best_id": "OP05-067",
+"method": "orb-art-v2"
 },
 "OP05-073_p1": {
 "against": [
 "OP05-073"
 ],
-"best": 685,
-"best_id": "OP05-073"
+"best": 569,
+"best_id": "OP05-073",
+"method": "orb-art-v2"
 },
 "OP05-073_p2": {
 "against": [
 "OP05-073"
 ],
-"best": 310,
-"best_id": "OP05-073"
+"best": 373,
+"best_id": "OP05-073",
+"method": "orb-art-v2"
 },
 "OP05-074_p4": {
 "against": [
@@ -1480,64 +1671,73 @@
 "OP05-074_p2",
 "OP05-074_p3"
 ],
-"best": 127,
-"best_id": "OP05-074_p1"
+"best": 5,
+"best_id": "OP05-074_p3",
+"method": "orb-art-v2"
 },
 "OP05-077_p1": {
 "against": [
 "OP05-077"
 ],
-"best": 547,
-"best_id": "OP05-077"
+"best": 599,
+"best_id": "OP05-077",
+"method": "orb-art-v2"
 },
 "OP05-081_p1": {
 "against": [
 "OP05-081"
 ],
-"best": 801,
-"best_id": "OP05-081"
+"best": 672,
+"best_id": "OP05-081",
+"method": "orb-art-v2"
 },
 "OP05-081_p2": {
 "against": [
 "OP05-081"
 ],
-"best": 362,
-"best_id": "OP05-081"
+"best": 439,
+"best_id": "OP05-081",
+"method": "orb-art-v2"
 },
 "OP05-081_p3": {
 "against": [
 "OP05-081"
 ],
-"best": 296,
-"best_id": "OP05-081"
+"best": 18,
+"best_id": "OP05-081",
+"method": "orb-art-v2"
 },
 "OP05-082_p1": {
 "against": [
 "OP05-082"
 ],
-"best": 805,
-"best_id": "OP05-082"
+"best": 780,
+"best_id": "OP05-082",
+"method": "orb-art-v2"
 },
 "OP05-082_p2": {
 "against": [
 "OP05-082"
 ],
-"best": 186,
-"best_id": "OP05-082"
+"best": 347,
+"best_id": "OP05-082",
+"method": "orb-art-v2"
 },
 "OP05-082_p3": {
 "against": [
 "OP05-082"
 ],
-"best": 164,
-"best_id": "OP05-082"
+"best": 20,
+"best_id": "OP05-082",
+"method": "orb-art-v2"
 },
 "OP05-088_p1": {
 "against": [
 "OP05-088"
 ],
-"best": 174,
-"best_id": "OP05-088"
+"best": 6,
+"best_id": "OP05-088",
+"method": "orb-art-v2"
 },
 "OP05-091_p4": {
 "against": [
@@ -1546,116 +1746,132 @@
 "OP05-091_p2",
 "OP05-091_p3"
 ],
-"best": 40,
-"best_id": "OP05-091_p2"
+"best": 7,
+"best_id": "OP05-091",
+"method": "orb-art-v2"
 },
 "OP05-097_p1": {
 "against": [
 "OP05-097"
 ],
-"best": 267,
-"best_id": "OP05-097"
+"best": 6,
+"best_id": "OP05-097",
+"method": "orb-art-v2"
 },
 "OP05-097_p2": {
 "against": [
 "OP05-097"
 ],
-"best": 583,
-"best_id": "OP05-097"
+"best": 562,
+"best_id": "OP05-097",
+"method": "orb-art-v2"
 },
 "OP05-102_p1": {
 "against": [
 "OP05-102"
 ],
-"best": 17,
-"best_id": "OP05-102"
+"best": 11,
+"best_id": "OP05-102",
+"method": "orb-art-v2"
 },
 "OP05-105_p1": {
 "against": [
 "OP05-105"
 ],
-"best": 950,
-"best_id": "OP05-105"
+"best": 956,
+"best_id": "OP05-105",
+"method": "orb-art-v2"
 },
 "OP05-105_p2": {
 "against": [
 "OP05-105"
 ],
-"best": 631,
-"best_id": "OP05-105"
+"best": 501,
+"best_id": "OP05-105",
+"method": "orb-art-v2"
 },
 "OP05-105_p3": {
 "against": [
 "OP05-105"
 ],
-"best": 224,
-"best_id": "OP05-105"
+"best": 7,
+"best_id": "OP05-105",
+"method": "orb-art-v2"
 },
 "OP05-114_p2": {
 "against": [
 "OP05-114",
 "OP05-114_p1"
 ],
-"best": 685,
-"best_id": "OP05-114"
+"best": 690,
+"best_id": "OP05-114",
+"method": "orb-art-v2"
 },
 "OP05-114_p3": {
 "against": [
 "OP05-114",
 "OP05-114_p1"
 ],
-"best": 671,
-"best_id": "OP05-114"
+"best": 739,
+"best_id": "OP05-114",
+"method": "orb-art-v2"
 },
 "OP05-115_p1": {
 "against": [
 "OP05-115"
 ],
-"best": 969,
-"best_id": "OP05-115"
+"best": 907,
+"best_id": "OP05-115",
+"method": "orb-art-v2"
 },
 "OP05-115_p2": {
 "against": [
 "OP05-115"
 ],
-"best": 904,
-"best_id": "OP05-115"
+"best": 533,
+"best_id": "OP05-115",
+"method": "orb-art-v2"
 },
 "OP05-115_p3": {
 "against": [
 "OP05-115"
 ],
-"best": 226,
-"best_id": "OP05-115"
+"best": 5,
+"best_id": "OP05-115",
+"method": "orb-art-v2"
 },
 "OP05-117_p1": {
 "against": [
 "OP05-117"
 ],
-"best": 424,
-"best_id": "OP05-117"
+"best": 457,
+"best_id": "OP05-117",
+"method": "orb-art-v2"
 },
 "OP05-117_p2": {
 "against": [
 "OP05-117"
 ],
-"best": 565,
-"best_id": "OP05-117"
+"best": 346,
+"best_id": "OP05-117",
+"method": "orb-art-v2"
 },
 "OP05-117_p3": {
 "against": [
 "OP05-117"
 ],
-"best": 16,
-"best_id": "OP05-117"
+"best": 6,
+"best_id": "OP05-117",
+"method": "orb-art-v2"
 },
 "OP05-118_p2": {
 "against": [
 "OP05-118",
 "OP05-118_p1"
 ],
-"best": 53,
-"best_id": "OP05-118_p1"
+"best": 4,
+"best_id": "OP05-118_p1",
+"method": "orb-art-v2"
 },
 "OP05-119_p3": {
 "against": [
@@ -1667,117 +1883,133 @@
 "OP05-119_p7",
 "OP05-119_p8"
 ],
-"best": 22,
-"best_id": "OP05-119_p8"
+"best": 7,
+"best_id": "OP05-119_p6",
+"method": "orb-art-v2"
 },
 "OP06-003_p1": {
 "against": [
 "OP06-003"
 ],
-"best": 731,
-"best_id": "OP06-003"
+"best": 522,
+"best_id": "OP06-003",
+"method": "orb-art-v2"
 },
 "OP06-003_p2": {
 "against": [
 "OP06-003"
 ],
-"best": 272,
-"best_id": "OP06-003"
+"best": 472,
+"best_id": "OP06-003",
+"method": "orb-art-v2"
 },
 "OP06-007_p2": {
 "against": [
 "OP06-007",
 "OP06-007_p1"
 ],
-"best": 43,
-"best_id": "OP06-007_p1"
+"best": 4,
+"best_id": "OP06-007",
+"method": "orb-art-v2"
 },
 "OP06-013_p1": {
 "against": [
 "OP06-013"
 ],
-"best": 266,
-"best_id": "OP06-013"
+"best": 4,
+"best_id": "OP06-013",
+"method": "orb-art-v2"
 },
 "OP06-023_p1": {
 "against": [
 "OP06-023"
 ],
-"best": 987,
-"best_id": "OP06-023"
+"best": 893,
+"best_id": "OP06-023",
+"method": "orb-art-v2"
 },
 "OP06-023_p2": {
 "against": [
 "OP06-023"
 ],
-"best": 145,
-"best_id": "OP06-023"
+"best": 545,
+"best_id": "OP06-023",
+"method": "orb-art-v2"
 },
 "OP06-023_p3": {
 "against": [
 "OP06-023"
 ],
-"best": 111,
-"best_id": "OP06-023"
+"best": 5,
+"best_id": "OP06-023",
+"method": "orb-art-v2"
 },
 "OP06-025_p1": {
 "against": [
 "OP06-025"
 ],
-"best": 34,
-"best_id": "OP06-025"
+"best": 9,
+"best_id": "OP06-025",
+"method": "orb-art-v2"
 },
 "OP06-035_p2": {
 "against": [
 "OP06-035",
 "OP06-035_p1"
 ],
-"best": 178,
-"best_id": "OP06-035_p1"
+"best": 6,
+"best_id": "OP06-035_p1",
+"method": "orb-art-v2"
 },
 "OP06-036_p1": {
 "against": [
 "OP06-036"
 ],
-"best": 755,
-"best_id": "OP06-036"
+"best": 711,
+"best_id": "OP06-036",
+"method": "orb-art-v2"
 },
 "OP06-036_p2": {
 "against": [
 "OP06-036"
 ],
-"best": 41,
-"best_id": "OP06-036"
+"best": 507,
+"best_id": "OP06-036",
+"method": "orb-art-v2"
 },
 "OP06-036_p3": {
 "against": [
 "OP06-036"
 ],
-"best": 23,
-"best_id": "OP06-036"
+"best": 4,
+"best_id": "OP06-036",
+"method": "orb-art-v2"
 },
 "OP06-038_p2": {
 "against": [
 "OP06-038",
 "OP06-038_p1"
 ],
-"best": 840,
-"best_id": "OP06-038"
+"best": 860,
+"best_id": "OP06-038",
+"method": "orb-art-v2"
 },
 "OP06-038_p3": {
 "against": [
 "OP06-038",
 "OP06-038_p1"
 ],
-"best": 872,
-"best_id": "OP06-038"
+"best": 830,
+"best_id": "OP06-038",
+"method": "orb-art-v2"
 },
 "OP06-044_p1": {
 "against": [
 "OP06-044"
 ],
-"best": 638,
-"best_id": "OP06-044"
+"best": 608,
+"best_id": "OP06-044",
+"method": "orb-art-v2"
 },
 "OP06-047_p3": {
 "against": [
@@ -1785,22 +2017,25 @@
 "OP06-047_p1",
 "OP06-047_p2"
 ],
-"best": 6,
-"best_id": "OP06-047"
+"best": 7,
+"best_id": "OP06-047",
+"method": "orb-art-v2"
 },
 "OP06-049_p1": {
 "against": [
 "OP06-049"
 ],
-"best": 538,
-"best_id": "OP06-049"
+"best": 690,
+"best_id": "OP06-049",
+"method": "orb-art-v2"
 },
 "OP06-050_p1": {
 "against": [
 "OP06-050"
 ],
-"best": 52,
-"best_id": "OP06-050"
+"best": 6,
+"best_id": "OP06-050",
+"method": "orb-art-v2"
 },
 "OP06-056_p1": {
 "against": [
@@ -1808,8 +2043,9 @@
 "OP06-056_p3",
 "OP06-056_r2"
 ],
-"best": 595,
-"best_id": "OP06-056"
+"best": 547,
+"best_id": "OP06-056",
+"method": "orb-art-v2"
 },
 "OP06-056_p2": {
 "against": [
@@ -1817,8 +2053,9 @@
 "OP06-056_p3",
 "OP06-056_r2"
 ],
-"best": 566,
-"best_id": "OP06-056"
+"best": 494,
+"best_id": "OP06-056",
+"method": "orb-art-v2"
 },
 "OP06-056_p3": {
 "against": [
@@ -1827,135 +2064,154 @@
 "OP06-056_p2",
 "OP06-056_r1"
 ],
-"best": 494,
-"best_id": "OP06-056"
+"best": 549,
+"best_id": "OP06-056",
+"method": "orb-art-v2"
 },
 "OP06-058_p1": {
 "against": [
 "OP06-058"
 ],
-"best": 178,
-"best_id": "OP06-058"
+"best": 7,
+"best_id": "OP06-058",
+"method": "orb-art-v2"
 },
 "OP06-059_p1": {
 "against": [
 "OP06-059"
 ],
-"best": 617,
-"best_id": "OP06-059"
+"best": 563,
+"best_id": "OP06-059",
+"method": "orb-art-v2"
 },
 "OP06-060_p1": {
 "against": [
 "OP06-060"
 ],
-"best": 534,
-"best_id": "OP06-060"
+"best": 541,
+"best_id": "OP06-060",
+"method": "orb-art-v2"
 },
 "OP06-060_p2": {
 "against": [
 "OP06-060"
 ],
-"best": 39,
-"best_id": "OP06-060"
+"best": 388,
+"best_id": "OP06-060",
+"method": "orb-art-v2"
 },
 "OP06-061_p1": {
 "against": [
 "OP06-061"
 ],
-"best": 94,
-"best_id": "OP06-061"
+"best": 5,
+"best_id": "OP06-061",
+"method": "orb-art-v2"
 },
 "OP06-063_p2": {
 "against": [
 "OP06-063",
 "OP06-063_p1"
 ],
-"best": 656,
-"best_id": "OP06-063"
+"best": 501,
+"best_id": "OP06-063",
+"method": "orb-art-v2"
 },
 "OP06-064_p1": {
 "against": [
 "OP06-064"
 ],
-"best": 763,
-"best_id": "OP06-064"
+"best": 547,
+"best_id": "OP06-064",
+"method": "orb-art-v2"
 },
 "OP06-064_p2": {
 "against": [
 "OP06-064"
 ],
-"best": 43,
-"best_id": "OP06-064"
+"best": 413,
+"best_id": "OP06-064",
+"method": "orb-art-v2"
 },
 "OP06-065_p1": {
 "against": [
 "OP06-065"
 ],
-"best": 727,
-"best_id": "OP06-065"
+"best": 671,
+"best_id": "OP06-065",
+"method": "orb-art-v2"
 },
 "OP06-065_p2": {
 "against": [
 "OP06-065"
 ],
-"best": 138,
-"best_id": "OP06-065"
+"best": 368,
+"best_id": "OP06-065",
+"method": "orb-art-v2"
 },
 "OP06-065_p3": {
 "against": [
 "OP06-065"
 ],
-"best": 58,
-"best_id": "OP06-065"
+"best": 13,
+"best_id": "OP06-065",
+"method": "orb-art-v2"
 },
 "OP06-066_p1": {
 "against": [
 "OP06-066"
 ],
-"best": 795,
-"best_id": "OP06-066"
+"best": 650,
+"best_id": "OP06-066",
+"method": "orb-art-v2"
 },
 "OP06-066_p2": {
 "against": [
 "OP06-066"
 ],
-"best": 100,
-"best_id": "OP06-066"
+"best": 415,
+"best_id": "OP06-066",
+"method": "orb-art-v2"
 },
 "OP06-067_p1": {
 "against": [
 "OP06-067"
 ],
-"best": 831,
-"best_id": "OP06-067"
+"best": 833,
+"best_id": "OP06-067",
+"method": "orb-art-v2"
 },
 "OP06-067_p2": {
 "against": [
 "OP06-067"
 ],
-"best": 204,
-"best_id": "OP06-067"
+"best": 580,
+"best_id": "OP06-067",
+"method": "orb-art-v2"
 },
 "OP06-067_p3": {
 "against": [
 "OP06-067"
 ],
-"best": 146,
-"best_id": "OP06-067"
+"best": 2,
+"best_id": "OP06-067",
+"method": "orb-art-v2"
 },
 "OP06-068_p1": {
 "against": [
 "OP06-068"
 ],
-"best": 875,
-"best_id": "OP06-068"
+"best": 616,
+"best_id": "OP06-068",
+"method": "orb-art-v2"
 },
 "OP06-068_p2": {
 "against": [
 "OP06-068"
 ],
-"best": 185,
-"best_id": "OP06-068"
+"best": 452,
+"best_id": "OP06-068",
+"method": "orb-art-v2"
 },
 "OP06-069_p3": {
 "against": [
@@ -1963,111 +2219,126 @@
 "OP06-069_p1",
 "OP06-069_p2"
 ],
-"best": 254,
-"best_id": "OP06-069_p1"
+"best": 6,
+"best_id": "OP06-069",
+"method": "orb-art-v2"
 },
 "OP06-073_p1": {
 "against": [
 "OP06-073"
 ],
-"best": 535,
-"best_id": "OP06-073"
+"best": 490,
+"best_id": "OP06-073",
+"method": "orb-art-v2"
 },
 "OP06-076_p2": {
 "against": [
 "OP06-076",
 "OP06-076_p1"
 ],
-"best": 601,
-"best_id": "OP06-076"
+"best": 631,
+"best_id": "OP06-076",
+"method": "orb-art-v2"
 },
 "OP06-078_p1": {
 "against": [
 "OP06-078"
 ],
-"best": 610,
-"best_id": "OP06-078"
+"best": 584,
+"best_id": "OP06-078",
+"method": "orb-art-v2"
 },
 "OP06-079_p1": {
 "against": [
 "OP06-079"
 ],
-"best": 694,
-"best_id": "OP06-079"
+"best": 596,
+"best_id": "OP06-079",
+"method": "orb-art-v2"
 },
 "OP06-079_p2": {
 "against": [
 "OP06-079"
 ],
-"best": 586,
-"best_id": "OP06-079"
+"best": 508,
+"best_id": "OP06-079",
+"method": "orb-art-v2"
 },
 "OP06-079_p3": {
 "against": [
 "OP06-079"
 ],
-"best": 65,
-"best_id": "OP06-079"
+"best": 6,
+"best_id": "OP06-079",
+"method": "orb-art-v2"
 },
 "OP06-081_p1": {
 "against": [
 "OP06-081"
 ],
-"best": 184,
-"best_id": "OP06-081"
+"best": 6,
+"best_id": "OP06-081",
+"method": "orb-art-v2"
 },
 "OP06-086_p2": {
 "against": [
 "OP06-086",
 "OP06-086_p1"
 ],
-"best": 193,
-"best_id": "OP06-086_p1"
+"best": 6,
+"best_id": "OP06-086",
+"method": "orb-art-v2"
 },
 "OP06-091_p1": {
 "against": [
 "OP06-091"
 ],
-"best": 806,
-"best_id": "OP06-091"
+"best": 514,
+"best_id": "OP06-091",
+"method": "orb-art-v2"
 },
 "OP06-091_p2": {
 "against": [
 "OP06-091"
 ],
-"best": 299,
-"best_id": "OP06-091"
+"best": 512,
+"best_id": "OP06-091",
+"method": "orb-art-v2"
 },
 "OP06-100_p1": {
 "against": [
 "OP06-100",
 "OP06-100_r2"
 ],
-"best": 755,
-"best_id": "OP06-100_r2"
+"best": 611,
+"best_id": "OP06-100",
+"method": "orb-art-v2"
 },
 "OP06-100_p2": {
 "against": [
 "OP06-100",
 "OP06-100_r2"
 ],
-"best": 134,
-"best_id": "OP06-100_r2"
+"best": 457,
+"best_id": "OP06-100",
+"method": "orb-art-v2"
 },
 "OP06-101_p1": {
 "against": [
 "OP06-101"
 ],
-"best": 82,
-"best_id": "OP06-101"
+"best": 8,
+"best_id": "OP06-101",
+"method": "orb-art-v2"
 },
 "OP06-106_p2": {
 "against": [
 "OP06-106",
 "OP06-106_p1"
 ],
-"best": 193,
-"best_id": "OP06-106_p1"
+"best": 6,
+"best_id": "OP06-106",
+"method": "orb-art-v2"
 },
 "OP06-110_p1": {
 "against": [
@@ -2075,8 +2346,9 @@
 "OP06-110_p3",
 "OP06-110_r2"
 ],
-"best": 623,
-"best_id": "OP06-110_r2"
+"best": 537,
+"best_id": "OP06-110_r2",
+"method": "orb-art-v2"
 },
 "OP06-110_p2": {
 "against": [
@@ -2084,29 +2356,33 @@
 "OP06-110_p3",
 "OP06-110_r2"
 ],
-"best": 249,
-"best_id": "OP06-110_r2"
+"best": 433,
+"best_id": "OP06-110",
+"method": "orb-art-v2"
 },
 "OP06-114_p1": {
 "against": [
 "OP06-114"
 ],
-"best": 617,
-"best_id": "OP06-114"
+"best": 564,
+"best_id": "OP06-114",
+"method": "orb-art-v2"
 },
 "OP06-114_p2": {
 "against": [
 "OP06-114"
 ],
-"best": 9,
-"best_id": "OP06-114"
+"best": 493,
+"best_id": "OP06-114",
+"method": "orb-art-v2"
 },
 "OP06-115_p1": {
 "against": [
 "OP06-115"
 ],
-"best": 214,
-"best_id": "OP06-115"
+"best": 5,
+"best_id": "OP06-115",
+"method": "orb-art-v2"
 },
 "OP06-119_p3": {
 "against": [
@@ -2114,29 +2390,33 @@
 "OP06-119_p1",
 "OP06-119_p2"
 ],
-"best": 13,
-"best_id": "OP06-119"
+"best": 6,
+"best_id": "OP06-119_p1",
+"method": "orb-art-v2"
 },
 "OP07-005_p1": {
 "against": [
 "OP07-005"
 ],
-"best": 100,
-"best_id": "OP07-005"
+"best": 16,
+"best_id": "OP07-005",
+"method": "orb-art-v2"
 },
 "OP07-014_p1": {
 "against": [
 "OP07-014"
 ],
-"best": 759,
-"best_id": "OP07-014"
+"best": 564,
+"best_id": "OP07-014",
+"method": "orb-art-v2"
 },
 "OP07-017_p1": {
 "against": [
 "OP07-017"
 ],
-"best": 584,
-"best_id": "OP07-017"
+"best": 587,
+"best_id": "OP07-017",
+"method": "orb-art-v2"
 },
 "OP07-021_p4": {
 "against": [
@@ -2146,257 +2426,292 @@
 "OP07-021_p3",
 "OP07-021_r1"
 ],
-"best": 71,
-"best_id": "OP07-021_p1"
+"best": 10,
+"best_id": "OP07-021_r1",
+"method": "orb-art-v2"
 },
 "OP07-022_p1": {
 "against": [
 "OP07-022"
 ],
-"best": 101,
-"best_id": "OP07-022"
+"best": 12,
+"best_id": "OP07-022",
+"method": "orb-art-v2"
 },
 "OP07-031_p1": {
 "against": [
 "OP07-031",
 "OP07-031_r1"
 ],
-"best": 594,
-"best_id": "OP07-031_r1"
+"best": 488,
+"best_id": "OP07-031_r1",
+"method": "orb-art-v2"
 },
 "OP07-040_p1": {
 "against": [
 "OP07-040",
 "OP07-040_p3"
 ],
-"best": 41,
-"best_id": "OP07-040_p3"
+"best": 16,
+"best_id": "OP07-040",
+"method": "orb-art-v2"
 },
 "OP07-040_p2": {
 "against": [
 "OP07-040",
 "OP07-040_p3"
 ],
-"best": 217,
-"best_id": "OP07-040"
+"best": 702,
+"best_id": "OP07-040",
+"method": "orb-art-v2"
 },
 "OP07-046_p1": {
 "against": [
 "OP07-046"
 ],
-"best": 87,
-"best_id": "OP07-046"
+"best": 2,
+"best_id": "OP07-046",
+"method": "orb-art-v2"
 },
 "OP07-047_p1": {
 "against": [
 "OP07-047"
 ],
-"best": 66,
-"best_id": "OP07-047"
+"best": 6,
+"best_id": "OP07-047",
+"method": "orb-art-v2"
 },
 "OP07-056_p1": {
 "against": [
 "OP07-056"
 ],
-"best": 523,
-"best_id": "OP07-056"
+"best": 637,
+"best_id": "OP07-056",
+"method": "orb-art-v2"
 },
 "OP07-071_p1": {
 "against": [
 "OP07-071"
 ],
-"best": 38,
-"best_id": "OP07-071"
+"best": 2,
+"best_id": "OP07-071",
+"method": "orb-art-v2"
 },
 "OP07-076_p1": {
 "against": [
 "OP07-076"
 ],
-"best": 545,
-"best_id": "OP07-076"
+"best": 533,
+"best_id": "OP07-076",
+"method": "orb-art-v2"
 },
 "OP07-107_p1": {
 "against": [
 "OP07-107"
 ],
-"best": 599,
-"best_id": "OP07-107"
+"best": 6,
+"best_id": "OP07-107",
+"method": "orb-art-v2"
 },
 "OP07-114_p1": {
 "against": [
 "OP07-114"
 ],
-"best": 671,
-"best_id": "OP07-114"
+"best": 666,
+"best_id": "OP07-114",
+"method": "orb-art-v2"
 },
 "OP08-015_p1": {
 "against": [
 "OP08-015"
 ],
-"best": 94,
-"best_id": "OP08-015"
+"best": 5,
+"best_id": "OP08-015",
+"method": "orb-art-v2"
 },
 "OP08-023_p2": {
 "against": [
 "OP08-023",
 "OP08-023_p1"
 ],
-"best": 18,
-"best_id": "OP08-023_p1"
+"best": 5,
+"best_id": "OP08-023_p1",
+"method": "orb-art-v2"
 },
 "OP08-030_p1": {
 "against": [
 "OP08-030"
 ],
-"best": 32,
-"best_id": "OP08-030"
+"best": 6,
+"best_id": "OP08-030",
+"method": "orb-art-v2"
 },
 "OP08-052_p1": {
 "against": [
 "OP08-052"
 ],
-"best": 78,
-"best_id": "OP08-052"
+"best": 8,
+"best_id": "OP08-052",
+"method": "orb-art-v2"
 },
 "OP08-067_p1": {
 "against": [
 "OP08-067"
 ],
-"best": 152,
-"best_id": "OP08-067"
+"best": 0,
+"best_id": null,
+"method": "orb-art-v2"
 },
 "OP08-076_p1": {
 "against": [
 "OP08-076"
 ],
-"best": 681,
-"best_id": "OP08-076"
+"best": 602,
+"best_id": "OP08-076",
+"method": "orb-art-v2"
 },
 "OP08-080_p1": {
 "against": [
 "OP08-080"
 ],
-"best": 80,
-"best_id": "OP08-080"
+"best": 5,
+"best_id": "OP08-080",
+"method": "orb-art-v2"
 },
 "OP08-087_p1": {
 "against": [
 "OP08-087"
 ],
-"best": 505,
-"best_id": "OP08-087"
+"best": 510,
+"best_id": "OP08-087",
+"method": "orb-art-v2"
 },
 "OP08-099_p1": {
 "against": [
 "OP08-099",
 "OP08-099_p2"
 ],
-"best": 345,
-"best_id": "OP08-099"
+"best": 422,
+"best_id": "OP08-099",
+"method": "orb-art-v2"
 },
 "OP08-110_p1": {
 "against": [
 "OP08-110"
 ],
-"best": 16,
-"best_id": "OP08-110"
+"best": 7,
+"best_id": "OP08-110",
+"method": "orb-art-v2"
 },
 "OP09-002_p1": {
 "against": [
 "OP09-002"
 ],
-"best": 145,
-"best_id": "OP09-002"
+"best": 7,
+"best_id": "OP09-002",
+"method": "orb-art-v2"
 },
 "OP09-014_p2": {
 "against": [
 "OP09-014",
 "OP09-014_r1"
 ],
-"best": 80,
-"best_id": "OP09-014"
+"best": 6,
+"best_id": "OP09-014_r1",
+"method": "orb-art-v2"
 },
 "OP09-014_p3": {
 "against": [
 "OP09-014",
 "OP09-014_r1"
 ],
-"best": 708,
-"best_id": "OP09-014_r1"
+"best": 606,
+"best_id": "OP09-014_r1",
+"method": "orb-art-v2"
 },
 "OP09-020_p2": {
 "against": [
 "OP09-020",
 "OP09-020_p1"
 ],
-"best": 45,
-"best_id": "OP09-020"
+"best": 23,
+"best_id": "OP09-020_p1",
+"method": "orb-art-v2"
 },
 "OP09-027_p2": {
 "against": [
 "OP09-027",
 "OP09-027_p1"
 ],
-"best": 463,
-"best_id": "OP09-027"
+"best": 522,
+"best_id": "OP09-027",
+"method": "orb-art-v2"
 },
 "OP09-033_p1": {
 "against": [
 "OP09-033"
 ],
-"best": 535,
-"best_id": "OP09-033"
+"best": 489,
+"best_id": "OP09-033",
+"method": "orb-art-v2"
 },
 "OP09-034_p1": {
 "against": [
 "OP09-034"
 ],
-"best": 50,
-"best_id": "OP09-034"
+"best": 9,
+"best_id": "OP09-034",
+"method": "orb-art-v2"
 },
 "OP09-050_p1": {
 "against": [
 "OP09-050"
 ],
-"best": 54,
-"best_id": "OP09-050"
+"best": 13,
+"best_id": "OP09-050",
+"method": "orb-art-v2"
 },
 "OP09-051_p1": {
 "against": [
 "OP09-051"
 ],
-"best": 47,
-"best_id": "OP09-051"
+"best": 6,
+"best_id": "OP09-051",
+"method": "orb-art-v2"
 },
 "OP09-051_p2": {
 "against": [
 "OP09-051"
 ],
-"best": 4,
-"best_id": "OP09-051"
+"best": 3,
+"best_id": "OP09-051",
+"method": "orb-art-v2"
 },
 "OP09-056_p1": {
 "against": [
 "OP09-056",
 "OP09-056_r1"
 ],
-"best": 99,
-"best_id": "OP09-056_r1"
+"best": 7,
+"best_id": "OP09-056",
+"method": "orb-art-v2"
 },
 "OP09-057_p2": {
 "against": [
 "OP09-057",
 "OP09-057_p1"
 ],
-"best": 26,
-"best_id": "OP09-057"
+"best": 35,
+"best_id": "OP09-057_p1",
+"method": "orb-art-v2"
 },
 "OP09-069_p1": {
 "against": [
 "OP09-069"
 ],
-"best": 48,
-"best_id": "OP09-069"
+"best": 12,
+"best_id": "OP09-069",
+"method": "orb-art-v2"
 },
 "OP09-076_p1": {
 "against": [
@@ -2404,8 +2719,9 @@
 "OP09-076_p2",
 "OP09-076_r1"
 ],
-"best": 233,
-"best_id": "OP09-076_p2"
+"best": 7,
+"best_id": "OP09-076_r1",
+"method": "orb-art-v2"
 },
 "OP09-077_p1": {
 "against": [
@@ -2413,175 +2729,199 @@
 "OP09-077_p2",
 "OP09-077_r1"
 ],
-"best": 710,
-"best_id": "OP09-077_r1"
+"best": 592,
+"best_id": "OP09-077_r1",
+"method": "orb-art-v2"
 },
 "OP09-078_p2": {
 "against": [
 "OP09-078",
 "OP09-078_p1"
 ],
-"best": 30,
-"best_id": "OP09-078"
+"best": 39,
+"best_id": "OP09-078",
+"method": "orb-art-v2"
 },
 "OP09-079_p1": {
 "against": [
 "OP09-079"
 ],
-"best": 654,
-"best_id": "OP09-079"
+"best": 628,
+"best_id": "OP09-079",
+"method": "orb-art-v2"
 },
 "OP09-084_p1": {
 "against": [
 "OP09-084"
 ],
-"best": 608,
-"best_id": "OP09-084"
+"best": 462,
+"best_id": "OP09-084",
+"method": "orb-art-v2"
 },
 "OP09-086_p1": {
 "against": [
 "OP09-086",
 "OP09-086_r1"
 ],
-"best": 328,
-"best_id": "OP09-086_r1"
+"best": 22,
+"best_id": "OP09-086_r1",
+"method": "orb-art-v2"
 },
 "OP09-096_p1": {
 "against": [
 "OP09-096"
 ],
-"best": 40,
-"best_id": "OP09-096"
+"best": 26,
+"best_id": "OP09-096",
+"method": "orb-art-v2"
 },
 "OP09-097_p1": {
 "against": [
 "OP09-097"
 ],
-"best": 683,
-"best_id": "OP09-097"
+"best": 648,
+"best_id": "OP09-097",
+"method": "orb-art-v2"
 },
 "OP09-098_p1": {
 "against": [
 "OP09-098"
 ],
-"best": 386,
-"best_id": "OP09-098"
+"best": 427,
+"best_id": "OP09-098",
+"method": "orb-art-v2"
 },
 "OP09-107_p1": {
 "against": [
 "OP09-107"
 ],
-"best": 131,
-"best_id": "OP09-107"
+"best": 6,
+"best_id": "OP09-107",
+"method": "orb-art-v2"
 },
 "OP10-011_p1": {
 "against": [
 "OP10-011"
 ],
-"best": 93,
-"best_id": "OP10-011"
+"best": 6,
+"best_id": "OP10-011",
+"method": "orb-art-v2"
 },
 "OP10-018_p1": {
 "against": [
 "OP10-018"
 ],
-"best": 612,
-"best_id": "OP10-018"
+"best": 543,
+"best_id": "OP10-018",
+"method": "orb-art-v2"
 },
 "OP10-019_p1": {
 "against": [
 "OP10-019"
 ],
-"best": 18,
-"best_id": "OP10-019"
+"best": 6,
+"best_id": "OP10-019",
+"method": "orb-art-v2"
 },
 "OP10-037_p1": {
 "against": [
 "OP10-037"
 ],
-"best": 121,
-"best_id": "OP10-037"
+"best": 6,
+"best_id": "OP10-037",
+"method": "orb-art-v2"
 },
 "OP10-045_p1": {
 "against": [
 "OP10-045"
 ],
-"best": 89,
-"best_id": "OP10-045"
+"best": 5,
+"best_id": "OP10-045",
+"method": "orb-art-v2"
 },
 "OP10-067_p1": {
 "against": [
 "OP10-067"
 ],
-"best": 66,
-"best_id": "OP10-067"
+"best": 5,
+"best_id": "OP10-067",
+"method": "orb-art-v2"
 },
 "OP10-079_p1": {
 "against": [
 "OP10-079"
 ],
-"best": 736,
-"best_id": "OP10-079"
+"best": 642,
+"best_id": "OP10-079",
+"method": "orb-art-v2"
 },
 "OP10-090_p1": {
 "against": [
 "OP10-090"
 ],
-"best": 169,
-"best_id": "OP10-090"
+"best": 6,
+"best_id": "OP10-090",
+"method": "orb-art-v2"
 },
 "OP10-095_p1": {
 "against": [
 "OP10-095"
 ],
-"best": 158,
-"best_id": "OP10-095"
+"best": 6,
+"best_id": "OP10-095",
+"method": "orb-art-v2"
 },
 "OP10-105_p1": {
 "against": [
 "OP10-105"
 ],
-"best": 759,
-"best_id": "OP10-105"
+"best": 748,
+"best_id": "OP10-105",
+"method": "orb-art-v2"
 },
 "OP10-108_p1": {
 "against": [
 "OP10-108",
 "OP10-108_p2"
 ],
-"best": 660,
-"best_id": "OP10-108"
+"best": 652,
+"best_id": "OP10-108",
+"method": "orb-art-v2"
 },
 "OP10-109_p1": {
 "against": [
 "OP10-109",
 "OP10-109_r2"
 ],
-"best": 210,
-"best_id": "OP10-109_r2"
+"best": 7,
+"best_id": "OP10-109_r2",
+"method": "orb-art-v2"
 },
 "OP10-111_p1": {
 "against": [
 "OP10-111"
 ],
-"best": 25,
-"best_id": "OP10-111"
+"best": 3,
+"best_id": "OP10-111",
+"method": "orb-art-v2"
 },
 "OP10-114_p1": {
 "against": [
 "OP10-114",
 "OP10-114_r2"
 ],
-"best": 18,
-"best_id": "OP10-114_r2"
+"best": 7,
+"best_id": "OP10-114",
+"method": "orb-art-v2"
 },
 "OP10-114_p2": {
 "against": [
 "OP10-114",
 "OP10-114_r2"
 ],
-"best": 627,
-"best_id": "OP10-114"
+"best": 680,
+"best_id": "OP10-114",
+"method": "orb-art-v2"
 },
 "OP10-119_p3": {
 "against": [
@@ -2589,903 +2929,1039 @@
 "OP10-119_p1",
 "OP10-119_p2"
 ],
-"best": 28,
-"best_id": "OP10-119"
+"best": 7,
+"best_id": "OP10-119",
+"method": "orb-art-v2"
 },
 "OP11-008_p1": {
 "against": [
 "OP11-008"
 ],
-"best": 27,
-"best_id": "OP11-008"
+"best": 4,
+"best_id": "OP11-008",
+"method": "orb-art-v2"
 },
 "OP11-018_p1": {
 "against": [
 "OP11-018"
 ],
-"best": 100,
-"best_id": "OP11-018"
+"best": 4,
+"best_id": "OP11-018",
+"method": "orb-art-v2"
 },
 "OP11-023_p1": {
 "against": [
 "OP11-023"
 ],
-"best": 109,
-"best_id": "OP11-023"
+"best": 6,
+"best_id": "OP11-023",
+"method": "orb-art-v2"
 },
 "OP11-047_p1": {
 "against": [
 "OP11-047"
 ],
-"best": 44,
-"best_id": "OP11-047"
+"best": 7,
+"best_id": "OP11-047",
+"method": "orb-art-v2"
 },
 "OP11-073_p1": {
 "against": [
 "OP11-073"
 ],
-"best": 108,
-"best_id": "OP11-073"
+"best": 4,
+"best_id": "OP11-073",
+"method": "orb-art-v2"
 },
 "OP11-080_p1": {
 "against": [
 "OP11-080"
 ],
-"best": 129,
-"best_id": "OP11-080"
+"best": 30,
+"best_id": "OP11-080",
+"method": "orb-art-v2"
 },
 "OP11-084_p1": {
 "against": [
 "OP11-084"
 ],
-"best": 147,
-"best_id": "OP11-084"
+"best": 4,
+"best_id": "OP11-084",
+"method": "orb-art-v2"
 },
 "OP11-106_p1": {
 "against": [
 "OP11-106"
 ],
-"best": 64,
-"best_id": "OP11-106"
+"best": 1,
+"best_id": "OP11-106",
+"method": "orb-art-v2"
 },
 "OP11-114_p1": {
 "against": [
 "OP11-114"
 ],
-"best": 27,
-"best_id": "OP11-114"
+"best": 34,
+"best_id": "OP11-114",
+"method": "orb-art-v2"
 },
 "OP12-008_p1": {
 "against": [
 "OP12-008"
 ],
-"best": 77,
-"best_id": "OP12-008"
+"best": 4,
+"best_id": "OP12-008",
+"method": "orb-art-v2"
 },
 "OP12-031_p1": {
 "against": [
 "OP12-031"
 ],
-"best": 34,
-"best_id": "OP12-031"
+"best": 1,
+"best_id": "OP12-031",
+"method": "orb-art-v2"
 },
 "OP12-037_p1": {
 "against": [
 "OP12-037"
 ],
-"best": 16,
-"best_id": "OP12-037"
+"best": 7,
+"best_id": "OP12-037",
+"method": "orb-art-v2"
 },
 "OP12-043_p1": {
 "against": [
 "OP12-043"
 ],
-"best": 34,
-"best_id": "OP12-043"
+"best": 4,
+"best_id": "OP12-043",
+"method": "orb-art-v2"
 },
 "OP12-060_p1": {
 "against": [
 "OP12-060"
 ],
-"best": 18,
-"best_id": "OP12-060"
+"best": 51,
+"best_id": "OP12-060",
+"method": "orb-art-v2"
 },
 "OP12-070_p1": {
 "against": [
 "OP12-070"
 ],
-"best": 82,
-"best_id": "OP12-070"
+"best": 3,
+"best_id": "OP12-070",
+"method": "orb-art-v2"
 },
 "OP12-086_p1": {
 "against": [
 "OP12-086"
 ],
-"best": 158,
-"best_id": "OP12-086"
+"best": 12,
+"best_id": "OP12-086",
+"method": "orb-art-v2"
 },
 "OP12-108_p1": {
 "against": [
 "OP12-108"
 ],
-"best": 34,
-"best_id": "OP12-108"
+"best": 6,
+"best_id": "OP12-108",
+"method": "orb-art-v2"
 },
 "OP13-016_p1": {
 "against": [
 "OP13-016"
 ],
-"best": 107,
-"best_id": "OP13-016"
+"best": 5,
+"best_id": "OP13-016",
+"method": "orb-art-v2"
 },
 "OP13-027_p1": {
 "against": [
 "OP13-027"
 ],
-"best": 56,
-"best_id": "OP13-027"
+"best": 4,
+"best_id": "OP13-027",
+"method": "orb-art-v2"
 },
 "OP13-051_p1": {
 "against": [
 "OP13-051"
 ],
-"best": 96,
-"best_id": "OP13-051"
+"best": 4,
+"best_id": "OP13-051",
+"method": "orb-art-v2"
 },
 "OP13-065_p1": {
 "against": [
 "OP13-065"
 ],
-"best": 57,
-"best_id": "OP13-065"
+"best": 14,
+"best_id": "OP13-065",
+"method": "orb-art-v2"
 },
 "OP13-076_p1": {
 "against": [
 "OP13-076"
 ],
-"best": 6,
-"best_id": "OP13-076"
+"best": 14,
+"best_id": "OP13-076",
+"method": "orb-art-v2"
 },
 "OP13-080_p1": {
 "against": [
 "OP13-080"
 ],
-"best": 346,
-"best_id": "OP13-080"
+"best": 12,
+"best_id": "OP13-080",
+"method": "orb-art-v2"
 },
 "OP13-080_p2": {
 "against": [
 "OP13-080"
 ],
-"best": 7,
-"best_id": "OP13-080"
+"best": 15,
+"best_id": "OP13-080",
+"method": "orb-art-v2"
 },
 "OP13-083_p1": {
 "against": [
 "OP13-083"
 ],
-"best": 292,
-"best_id": "OP13-083"
+"best": 11,
+"best_id": "OP13-083",
+"method": "orb-art-v2"
 },
 "OP13-083_p2": {
 "against": [
 "OP13-083"
 ],
-"best": 5,
-"best_id": "OP13-083"
+"best": 10,
+"best_id": "OP13-083",
+"method": "orb-art-v2"
 },
 "OP13-084_p1": {
 "against": [
 "OP13-084"
 ],
-"best": 228,
-"best_id": "OP13-084"
+"best": 6,
+"best_id": "OP13-084",
+"method": "orb-art-v2"
 },
 "OP13-084_p2": {
 "against": [
 "OP13-084"
 ],
-"best": 4,
-"best_id": "OP13-084"
+"best": 7,
+"best_id": "OP13-084",
+"method": "orb-art-v2"
 },
 "OP13-089_p1": {
 "against": [
 "OP13-089"
 ],
-"best": 311,
-"best_id": "OP13-089"
+"best": 18,
+"best_id": "OP13-089",
+"method": "orb-art-v2"
 },
 "OP13-089_p2": {
 "against": [
 "OP13-089"
 ],
-"best": 16,
-"best_id": "OP13-089"
+"best": 21,
+"best_id": "OP13-089",
+"method": "orb-art-v2"
 },
 "OP13-091_p1": {
 "against": [
 "OP13-091"
 ],
-"best": 185,
-"best_id": "OP13-091"
+"best": 6,
+"best_id": "OP13-091",
+"method": "orb-art-v2"
 },
 "OP13-091_p2": {
 "against": [
 "OP13-091"
 ],
-"best": 8,
-"best_id": "OP13-091"
+"best": 7,
+"best_id": "OP13-091",
+"method": "orb-art-v2"
 },
 "OP13-113_p1": {
 "against": [
 "OP13-113"
 ],
-"best": 92,
-"best_id": "OP13-113"
+"best": 8,
+"best_id": "OP13-113",
+"method": "orb-art-v2"
 },
 "OP13-114_p1": {
 "against": [
 "OP13-114"
 ],
-"best": 151,
-"best_id": "OP13-114"
+"best": 4,
+"best_id": "OP13-114",
+"method": "orb-art-v2"
 },
 "OP14-015_p1": {
 "against": [
 "OP14-015"
 ],
-"best": 146,
-"best_id": "OP14-015"
+"best": 4,
+"best_id": "OP14-015",
+"method": "orb-art-v2"
 },
 "OP14-027_p1": {
 "against": [
 "OP14-027"
 ],
-"best": 40,
-"best_id": "OP14-027"
+"best": 4,
+"best_id": "OP14-027",
+"method": "orb-art-v2"
 },
 "OP14-042_p1": {
 "against": [
 "OP14-042"
 ],
-"best": 16,
-"best_id": "OP14-042"
+"best": 3,
+"best_id": "OP14-042",
+"method": "orb-art-v2"
 },
 "OP14-061_p1": {
 "against": [
 "OP14-061"
 ],
-"best": 41,
-"best_id": "OP14-061"
+"best": 4,
+"best_id": "OP14-061",
+"method": "orb-art-v2"
 },
 "OP14-090_p1": {
 "against": [
 "OP14-090"
 ],
-"best": 295,
-"best_id": "OP14-090"
+"best": 7,
+"best_id": "OP14-090",
+"method": "orb-art-v2"
 },
 "OP14-096_p1": {
 "against": [
 "OP14-096"
 ],
-"best": 39,
-"best_id": "OP14-096"
+"best": 9,
+"best_id": "OP14-096",
+"method": "orb-art-v2"
 },
 "OP14-111_p1": {
 "against": [
 "OP14-111"
 ],
-"best": 305,
-"best_id": "OP14-111"
+"best": 3,
+"best_id": "OP14-111",
+"method": "orb-art-v2"
 },
 "OP14-118_p1": {
 "against": [
 "OP14-118"
 ],
-"best": 188,
-"best_id": "OP14-118"
+"best": 64,
+"best_id": "OP14-118",
+"method": "orb-art-v2"
 },
 "OP15-003_p1": {
 "against": [
 "OP15-003"
 ],
-"best": 45,
-"best_id": "OP15-003"
+"best": 4,
+"best_id": "OP15-003",
+"method": "orb-art-v2"
 },
 "OP15-025_p1": {
 "against": [
 "OP15-025"
 ],
-"best": 39,
-"best_id": "OP15-025"
+"best": 2,
+"best_id": "OP15-025",
+"method": "orb-art-v2"
 },
 "OP15-047_p1": {
 "against": [
 "OP15-047"
 ],
-"best": 32,
-"best_id": "OP15-047"
+"best": 4,
+"best_id": "OP15-047",
+"method": "orb-art-v2"
 },
 "OP15-061_p1": {
 "against": [
 "OP15-061"
 ],
-"best": 42,
-"best_id": "OP15-061"
+"best": 17,
+"best_id": "OP15-061",
+"method": "orb-art-v2"
 },
 "OP15-077_p1": {
 "against": [
 "OP15-077"
 ],
-"best": 49,
-"best_id": "OP15-077"
+"best": 4,
+"best_id": "OP15-077",
+"method": "orb-art-v2"
 },
 "OP15-092_p1": {
 "against": [
 "OP15-092"
 ],
-"best": 210,
-"best_id": "OP15-092"
+"best": 4,
+"best_id": "OP15-092",
+"method": "orb-art-v2"
 },
 "OP15-109_p1": {
 "against": [
 "OP15-109"
 ],
-"best": 25,
-"best_id": "OP15-109"
+"best": 4,
+"best_id": "OP15-109",
+"method": "orb-art-v2"
 },
 "OP15-116_p1": {
 "against": [
 "OP15-116"
 ],
-"best": 20,
-"best_id": "OP15-116"
+"best": 5,
+"best_id": "OP15-116",
+"method": "orb-art-v2"
 },
 "OP16-014_p1": {
 "against": [
 "OP16-014"
 ],
-"best": 35,
-"best_id": "OP16-014"
+"best": 4,
+"best_id": "OP16-014",
+"method": "orb-art-v2"
 },
 "OP16-021_p1": {
 "against": [
 "OP16-021"
 ],
-"best": 44,
-"best_id": "OP16-021"
+"best": 5,
+"best_id": "OP16-021",
+"method": "orb-art-v2"
 },
 "OP16-034_p1": {
 "against": [
 "OP16-034"
 ],
-"best": 60,
-"best_id": "OP16-034"
+"best": 2,
+"best_id": "OP16-034",
+"method": "orb-art-v2"
 },
 "OP16-055_p1": {
 "against": [
 "OP16-055"
 ],
-"best": 125,
-"best_id": "OP16-055"
+"best": 2,
+"best_id": "OP16-055",
+"method": "orb-art-v2"
 },
 "OP16-063_p1": {
 "against": [
 "OP16-063"
 ],
-"best": 68,
-"best_id": "OP16-063"
+"best": 3,
+"best_id": "OP16-063",
+"method": "orb-art-v2"
 },
 "OP16-063_p2": {
 "against": [
 "OP16-063"
 ],
-"best": 9,
-"best_id": "OP16-063"
+"best": 5,
+"best_id": "OP16-063",
+"method": "orb-art-v2"
 },
 "OP16-073_p1": {
 "against": [
 "OP16-073"
 ],
-"best": 106,
-"best_id": "OP16-073"
+"best": 5,
+"best_id": "OP16-073",
+"method": "orb-art-v2"
 },
 "OP16-073_p2": {
 "against": [
 "OP16-073"
 ],
-"best": 8,
-"best_id": "OP16-073"
+"best": 5,
+"best_id": "OP16-073",
+"method": "orb-art-v2"
 },
 "OP16-085_p1": {
 "against": [
 "OP16-085"
 ],
-"best": 412,
-"best_id": "OP16-085"
+"best": 4,
+"best_id": "OP16-085",
+"method": "orb-art-v2"
 },
 "OP16-116_p1": {
 "against": [
 "OP16-116"
 ],
-"best": 46,
-"best_id": "OP16-116"
+"best": 3,
+"best_id": "OP16-116",
+"method": "orb-art-v2"
 },
 "OP17-006_p1": {
 "against": [
 "OP17-006"
 ],
-"best": 768,
-"best_id": "OP17-006"
+"best": 356,
+"best_id": "OP17-006",
+"method": "orb-art-v2"
 },
 "OP17-025_p1": {
 "against": [
 "OP17-025"
 ],
-"best": 956,
-"best_id": "OP17-025"
+"best": 191,
+"best_id": "OP17-025",
+"method": "orb-art-v2"
 },
 "OP17-027_p1": {
 "against": [
 "OP17-027"
 ],
-"best": 30,
-"best_id": "OP17-027"
+"best": 3,
+"best_id": "OP17-027",
+"method": "orb-art-v2"
 },
 "OP17-037_p1": {
 "against": [
 "OP17-037"
 ],
-"best": 49,
-"best_id": "OP17-037"
+"best": 29,
+"best_id": "OP17-037",
+"method": "orb-art-v2"
 },
 "OP17-045_p1": {
 "against": [
 "OP17-045"
 ],
-"best": 656,
-"best_id": "OP17-045"
+"best": 340,
+"best_id": "OP17-045",
+"method": "orb-art-v2"
 },
 "OP17-049_p1": {
 "against": [
 "OP17-049"
 ],
-"best": 65,
-"best_id": "OP17-049"
+"best": 5,
+"best_id": "OP17-049",
+"method": "orb-art-v2"
 },
 "OP17-054_p1": {
 "against": [
 "OP17-054"
 ],
-"best": 170,
-"best_id": "OP17-054"
+"best": 1,
+"best_id": "OP17-054",
+"method": "orb-art-v2"
 },
 "OP17-061_p1": {
 "against": [
 "OP17-061"
 ],
-"best": 56,
-"best_id": "OP17-061"
+"best": 3,
+"best_id": "OP17-061",
+"method": "orb-art-v2"
 },
 "OP17-070_p1": {
 "against": [
 "OP17-070"
 ],
-"best": 636,
-"best_id": "OP17-070"
+"best": 252,
+"best_id": "OP17-070",
+"method": "orb-art-v2"
 },
 "OP17-087_p1": {
 "against": [
 "OP17-087"
 ],
-"best": 155,
-"best_id": "OP17-087"
+"best": 4,
+"best_id": "OP17-087",
+"method": "orb-art-v2"
 },
 "OP17-088_p1": {
 "against": [
 "OP17-088"
 ],
-"best": 756,
-"best_id": "OP17-088"
+"best": 371,
+"best_id": "OP17-088",
+"method": "orb-art-v2"
 },
 "OP17-107_p1": {
 "against": [
 "OP17-107"
 ],
-"best": 863,
-"best_id": "OP17-107"
+"best": 285,
+"best_id": "OP17-107",
+"method": "orb-art-v2"
 },
 "OP17-114_p1": {
 "against": [
 "OP17-114"
 ],
-"best": 100,
-"best_id": "OP17-114"
+"best": 4,
+"best_id": "OP17-114",
+"method": "orb-art-v2"
 },
 "P-014_p1": {
 "against": [
 "P-014"
 ],
-"best": 693,
-"best_id": "P-014"
+"best": 694,
+"best_id": "P-014",
+"method": "orb-art-v2"
 },
 "P-014_p2": {
 "against": [
 "P-014"
 ],
-"best": 214,
-"best_id": "P-014"
+"best": 515,
+"best_id": "P-014",
+"method": "orb-art-v2"
 },
 "P-029_p2": {
 "against": [
 "P-029",
 "P-029_r2"
 ],
-"best": 190,
-"best_id": "P-029_r2"
+"best": 557,
+"best_id": "P-029_r2",
+"method": "orb-art-v2"
 },
 "P-029_p3": {
 "against": [
 "P-029",
 "P-029_r2"
 ],
-"best": 746,
-"best_id": "P-029_r2"
+"best": 434,
+"best_id": "P-029_r2",
+"method": "orb-art-v2"
 },
 "P-044_p1": {
 "against": [
 "P-044"
 ],
-"best": 366,
-"best_id": "P-044"
+"best": 622,
+"best_id": "P-044",
+"method": "orb-art-v2"
 },
 "P-053_p2": {
 "against": [
 "P-053",
 "P-053_p1"
 ],
-"best": 801,
-"best_id": "P-053"
+"best": 553,
+"best_id": "P-053",
+"method": "orb-art-v2"
 },
 "P-053_p3": {
 "against": [
 "P-053",
 "P-053_p1"
 ],
-"best": 118,
-"best_id": "P-053"
+"best": 407,
+"best_id": "P-053",
+"method": "orb-art-v2"
 },
 "P-055_p2": {
 "against": [
 "P-055",
 "P-055_p1"
 ],
-"best": 637,
-"best_id": "P-055"
+"best": 515,
+"best_id": "P-055",
+"method": "orb-art-v2"
 },
 "P-055_p3": {
 "against": [
 "P-055",
 "P-055_p1"
 ],
-"best": 158,
-"best_id": "P-055_p1"
+"best": 330,
+"best_id": "P-055",
+"method": "orb-art-v2"
 },
 "P-063_p1": {
 "against": [
 "P-063"
 ],
-"best": 81,
-"best_id": "P-063"
+"best": 0,
+"best_id": null,
+"method": "orb-art-v2"
 },
 "P-063_p2": {
 "against": [
 "P-063"
 ],
-"best": 162,
-"best_id": "P-063"
+"best": 563,
+"best_id": "P-063",
+"method": "orb-art-v2"
 },
 "P-068_p1": {
 "against": [
 "P-068"
 ],
-"best": 688,
-"best_id": "P-068"
+"best": 541,
+"best_id": "P-068",
+"method": "orb-art-v2"
 },
 "P-069_p2": {
 "against": [
 "P-069",
 "P-069_p1"
 ],
-"best": 655,
-"best_id": "P-069"
+"best": 510,
+"best_id": "P-069",
+"method": "orb-art-v2"
 },
 "P-070_p1": {
 "against": [
 "P-070"
 ],
-"best": 334,
-"best_id": "P-070"
+"best": 565,
+"best_id": "P-070",
+"method": "orb-art-v2"
 },
 "P-073_p2": {
 "against": [
 "P-073",
 "P-073_p1"
 ],
-"best": 219,
-"best_id": "P-073_p1"
+"best": 429,
+"best_id": "P-073_p1",
+"method": "orb-art-v2"
 },
 "P-074_p2": {
 "against": [
 "P-074",
 "P-074_p1"
 ],
-"best": 165,
-"best_id": "P-074_p1"
+"best": 381,
+"best_id": "P-074_p1",
+"method": "orb-art-v2"
 },
 "P-075_p2": {
 "against": [
 "P-075",
 "P-075_p1"
 ],
-"best": 411,
-"best_id": "P-075_p1"
+"best": 579,
+"best_id": "P-075_p1",
+"method": "orb-art-v2"
 },
 "P-078_p2": {
 "against": [
 "P-078",
 "P-078_p1"
 ],
-"best": 52,
-"best_id": "P-078_p1"
+"best": 447,
+"best_id": "P-078_p1",
+"method": "orb-art-v2"
 },
 "P-079_p2": {
 "against": [
 "P-079",
 "P-079_p1"
 ],
-"best": 280,
-"best_id": "P-079_p1"
+"best": 649,
+"best_id": "P-079_p1",
+"method": "orb-art-v2"
 },
 "P-081_p2": {
 "against": [
 "P-081_p1"
 ],
-"best": 145,
-"best_id": "P-081_p1"
+"best": 569,
+"best_id": "P-081_p1",
+"method": "orb-art-v2"
 },
 "P-082_p2": {
 "against": [
 "P-082_p1"
 ],
-"best": 217,
-"best_id": "P-082_p1"
+"best": 662,
+"best_id": "P-082_p1",
+"method": "orb-art-v2"
 },
 "P-083_p1": {
 "against": [
 "P-083"
 ],
-"best": 283,
-"best_id": "P-083"
+"best": 554,
+"best_id": "P-083",
+"method": "orb-art-v2"
 },
 "P-085_p1": {
 "against": [
 "P-085",
 "P-085_r2"
 ],
-"best": 606,
-"best_id": "P-085"
+"best": 485,
+"best_id": "P-085",
+"method": "orb-art-v2"
 },
 "P-088_p1": {
 "against": [
 "P-088",
 "P-088_r2"
 ],
-"best": 788,
-"best_id": "P-088"
+"best": 755,
+"best_id": "P-088",
+"method": "orb-art-v2"
 },
 "PRB01-001": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB01-001_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-001": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-001_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-002": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-002_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-003": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-003_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-004": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-004_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-005": {
 "against": [
 "PRB02-005_p2"
 ],
-"best": 91,
-"best_id": "PRB02-005_p2"
+"best": 6,
+"best_id": "PRB02-005_p2",
+"method": "orb-art-v2"
 },
 "PRB02-005_p1": {
 "against": [
 "PRB02-005_p2"
 ],
-"best": 109,
-"best_id": "PRB02-005_p2"
+"best": 4,
+"best_id": "PRB02-005_p2",
+"method": "orb-art-v2"
 },
 "PRB02-006": {
 "against": [
 "PRB02-006_p2"
 ],
-"best": 5,
-"best_id": "PRB02-006_p2"
+"best": 6,
+"best_id": "PRB02-006_p2",
+"method": "orb-art-v2"
 },
 "PRB02-006_p1": {
 "against": [
 "PRB02-006_p2"
 ],
-"best": 4,
-"best_id": "PRB02-006_p2"
+"best": 5,
+"best_id": "PRB02-006_p2",
+"method": "orb-art-v2"
 },
 "PRB02-007": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-007_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-008": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-008_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-009": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-009_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-010": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-010_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-011": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-011_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-012": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-012_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-013": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-013_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-014": {
 "against": [
 "PRB02-014_p2"
 ],
-"best": 5,
-"best_id": "PRB02-014_p2"
+"best": 6,
+"best_id": "PRB02-014_p2",
+"method": "orb-art-v2"
 },
 "PRB02-014_p1": {
 "against": [
 "PRB02-014_p2"
 ],
 "best": 5,
-"best_id": "PRB02-014_p2"
+"best_id": "PRB02-014_p2",
+"method": "orb-art-v2"
 },
 "PRB02-015": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-015_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-016": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-016_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-017": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-017_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-018": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "PRB02-018_p1": {
 "against": [],
 "best": 0,
-"best_id": null
+"best_id": null,
+"method": "orb-art-v2"
 },
 "ST01-006_p10": {
 "against": [
@@ -3497,8 +3973,9 @@
 "ST01-006_p7",
 "ST01-006_r1"
 ],
-"best": 171,
-"best_id": "ST01-006_p6"
+"best": 11,
+"best_id": "ST01-006_p7",
+"method": "orb-art-v2"
 },
 "ST01-006_p8": {
 "against": [
@@ -3510,8 +3987,9 @@
 "ST01-006_p7",
 "ST01-006_r1"
 ],
-"best": 486,
-"best_id": "ST01-006"
+"best": 618,
+"best_id": "ST01-006",
+"method": "orb-art-v2"
 },
 "ST01-006_p9": {
 "against": [
@@ -3523,8 +4001,9 @@
 "ST01-006_p7",
 "ST01-006_r1"
 ],
-"best": 152,
-"best_id": "ST01-006"
+"best": 376,
+"best_id": "ST01-006",
+"method": "orb-art-v2"
 },
 "ST01-011_p5": {
 "against": [
@@ -3535,24 +4014,27 @@
 "ST01-011_p6",
 "ST01-011_r1"
 ],
-"best": 441,
-"best_id": "ST01-011"
+"best": 497,
+"best_id": "ST01-011",
+"method": "orb-art-v2"
 },
 "ST01-014_p2": {
 "against": [
 "ST01-014",
 "ST01-014_r2"
 ],
-"best": 965,
-"best_id": "ST01-014"
+"best": 889,
+"best_id": "ST01-014",
+"method": "orb-art-v2"
 },
 "ST01-014_p3": {
 "against": [
 "ST01-014",
 "ST01-014_r2"
 ],
-"best": 945,
-"best_id": "ST01-014"
+"best": 902,
+"best_id": "ST01-014",
+"method": "orb-art-v2"
 },
 "ST02-004_p3": {
 "against": [
@@ -3560,8 +4042,9 @@
 "ST02-004_p2",
 "ST02-004_r1"
 ],
-"best": 412,
-"best_id": "ST02-004"
+"best": 681,
+"best_id": "ST02-004",
+"method": "orb-art-v2"
 },
 "ST02-004_p4": {
 "against": [
@@ -3569,8 +4052,9 @@
 "ST02-004_p2",
 "ST02-004_r1"
 ],
-"best": 439,
-"best_id": "ST02-004"
+"best": 430,
+"best_id": "ST02-004",
+"method": "orb-art-v2"
 },
 "ST02-004_p5": {
 "against": [
@@ -3578,8 +4062,9 @@
 "ST02-004_p2",
 "ST02-004_r1"
 ],
-"best": 107,
-"best_id": "ST02-004_p2"
+"best": 5,
+"best_id": "ST02-004_p2",
+"method": "orb-art-v2"
 },
 "ST02-007_p4": {
 "against": [
@@ -3589,8 +4074,9 @@
 "ST02-007_p5",
 "ST02-007_r1"
 ],
-"best": 88,
-"best_id": "ST02-007"
+"best": 442,
+"best_id": "ST02-007",
+"method": "orb-art-v2"
 },
 "ST03-005_p4": {
 "against": [
@@ -3599,8 +4085,9 @@
 "ST03-005_p2",
 "ST03-005_r2"
 ],
-"best": 670,
-"best_id": "ST03-005_r2"
+"best": 756,
+"best_id": "ST03-005",
+"method": "orb-art-v2"
 },
 "ST03-005_p5": {
 "against": [
@@ -3609,8 +4096,9 @@
 "ST03-005_p2",
 "ST03-005_r2"
 ],
-"best": 216,
-"best_id": "ST03-005_r2"
+"best": 514,
+"best_id": "ST03-005",
+"method": "orb-art-v2"
 },
 "ST03-008_p7": {
 "against": [
@@ -3621,8 +4109,9 @@
 "ST03-008_p5",
 "ST03-008_r2"
 ],
-"best": 502,
-"best_id": "ST03-008_r2"
+"best": 826,
+"best_id": "ST03-008",
+"method": "orb-art-v2"
 },
 "ST03-008_p8": {
 "against": [
@@ -3633,32 +4122,36 @@
 "ST03-008_p5",
 "ST03-008_r2"
 ],
-"best": 330,
-"best_id": "ST03-008"
+"best": 762,
+"best_id": "ST03-008",
+"method": "orb-art-v2"
 },
 "ST03-013_p2": {
 "against": [
 "ST03-013",
 "ST03-013_p1"
 ],
-"best": 663,
-"best_id": "ST03-013"
+"best": 601,
+"best_id": "ST03-013",
+"method": "orb-art-v2"
 },
 "ST03-013_p3": {
 "against": [
 "ST03-013",
 "ST03-013_p1"
 ],
-"best": 179,
-"best_id": "ST03-013"
+"best": 486,
+"best_id": "ST03-013",
+"method": "orb-art-v2"
 },
 "ST03-013_p4": {
 "against": [
 "ST03-013",
 "ST03-013_p1"
 ],
-"best": 180,
-"best_id": "ST03-013_p1"
+"best": 7,
+"best_id": "ST03-013",
+"method": "orb-art-v2"
 },
 "ST04-003_p4": {
 "against": [
@@ -3667,8 +4160,9 @@
 "ST04-003_p3",
 "ST04-003_p5"
 ],
-"best": 148,
-"best_id": "ST04-003_p5"
+"best": 5,
+"best_id": "ST04-003",
+"method": "orb-art-v2"
 },
 "ST04-005_p4": {
 "against": [
@@ -3676,8 +4170,9 @@
 "ST04-005_p2",
 "ST04-005_p3"
 ],
-"best": 619,
-"best_id": "ST04-005"
+"best": 612,
+"best_id": "ST04-005",
+"method": "orb-art-v2"
 },
 "ST04-005_p5": {
 "against": [
@@ -3685,24 +4180,27 @@
 "ST04-005_p2",
 "ST04-005_p3"
 ],
-"best": 149,
-"best_id": "ST04-005"
+"best": 558,
+"best_id": "ST04-005",
+"method": "orb-art-v2"
 },
 "ST04-016_p3": {
 "against": [
 "ST04-016",
 "ST04-016_p2"
 ],
-"best": 650,
-"best_id": "ST04-016"
+"best": 711,
+"best_id": "ST04-016",
+"method": "orb-art-v2"
 },
 "ST04-016_p4": {
 "against": [
 "ST04-016",
 "ST04-016_p2"
 ],
-"best": 634,
-"best_id": "ST04-016"
+"best": 684,
+"best_id": "ST04-016",
+"method": "orb-art-v2"
 },
 "ST06-008_p2": {
 "against": [
@@ -3710,229 +4208,260 @@
 "ST06-008_p1",
 "ST06-008_p3"
 ],
-"best": 439,
-"best_id": "ST06-008"
+"best": 594,
+"best_id": "ST06-008",
+"method": "orb-art-v2"
 },
 "ST06-010_p1": {
 "against": [
 "ST06-010"
 ],
-"best": 600,
-"best_id": "ST06-010"
+"best": 544,
+"best_id": "ST06-010",
+"method": "orb-art-v2"
 },
 "ST06-010_p2": {
 "against": [
 "ST06-010"
 ],
-"best": 235,
-"best_id": "ST06-010"
+"best": 388,
+"best_id": "ST06-010",
+"method": "orb-art-v2"
 },
 "ST06-014_p1": {
 "against": [
 "ST06-014"
 ],
-"best": 650,
-"best_id": "ST06-014"
+"best": 611,
+"best_id": "ST06-014",
+"method": "orb-art-v2"
 },
 "ST06-014_p2": {
 "against": [
 "ST06-014"
 ],
-"best": 569,
-"best_id": "ST06-014"
+"best": 598,
+"best_id": "ST06-014",
+"method": "orb-art-v2"
 },
 "ST07-007_p2": {
 "against": [
 "ST07-007",
 "ST07-007_p1"
 ],
-"best": 679,
-"best_id": "ST07-007"
+"best": 700,
+"best_id": "ST07-007",
+"method": "orb-art-v2"
 },
 "ST07-007_p3": {
 "against": [
 "ST07-007",
 "ST07-007_p1"
 ],
-"best": 373,
-"best_id": "ST07-007"
+"best": 622,
+"best_id": "ST07-007",
+"method": "orb-art-v2"
 },
 "ST09-014_p1": {
 "against": [
 "ST09-014"
 ],
-"best": 706,
-"best_id": "ST09-014"
+"best": 726,
+"best_id": "ST09-014",
+"method": "orb-art-v2"
 },
 "ST09-014_p2": {
 "against": [
 "ST09-014"
 ],
-"best": 700,
-"best_id": "ST09-014"
+"best": 731,
+"best_id": "ST09-014",
+"method": "orb-art-v2"
 },
 "ST10-005_p1": {
 "against": [
 "ST10-005"
 ],
-"best": 545,
-"best_id": "ST10-005"
+"best": 539,
+"best_id": "ST10-005",
+"method": "orb-art-v2"
 },
 "ST10-008_p2": {
 "against": [
 "ST10-008",
 "ST10-008_p1"
 ],
-"best": 582,
-"best_id": "ST10-008"
+"best": 562,
+"best_id": "ST10-008",
+"method": "orb-art-v2"
 },
 "ST10-010_p3": {
 "against": [
 "ST10-010",
 "ST10-010_p2"
 ],
-"best": 93,
-"best_id": "ST10-010"
+"best": 5,
+"best_id": "ST10-010_p2",
+"method": "orb-art-v2"
 },
 "ST12-005_p1": {
 "against": [
 "ST12-005"
 ],
-"best": 408,
-"best_id": "ST12-005"
+"best": 537,
+"best_id": "ST12-005",
+"method": "orb-art-v2"
 },
 "ST12-014_p1": {
 "against": [
 "ST12-014"
 ],
-"best": 483,
-"best_id": "ST12-014"
+"best": 493,
+"best_id": "ST12-014",
+"method": "orb-art-v2"
 },
 "ST12-014_p2": {
 "against": [
 "ST12-014"
 ],
-"best": 31,
-"best_id": "ST12-014"
+"best": 332,
+"best_id": "ST12-014",
+"method": "orb-art-v2"
 },
 "ST12-017_p1": {
 "against": [
 "ST12-017"
 ],
-"best": 479,
-"best_id": "ST12-017"
+"best": 274,
+"best_id": "ST12-017",
+"method": "orb-art-v2"
 },
 "ST13-004_p2": {
 "against": [
 "ST13-004",
 "ST13-004_p1"
 ],
-"best": 493,
-"best_id": "ST13-004"
+"best": 471,
+"best_id": "ST13-004",
+"method": "orb-art-v2"
 },
 "ST13-007_p2": {
 "against": [
 "ST13-007",
 "ST13-007_p1"
 ],
-"best": 486,
-"best_id": "ST13-007"
+"best": 410,
+"best_id": "ST13-007",
+"method": "orb-art-v2"
 },
 "ST13-010_p2": {
 "against": [
 "ST13-010",
 "ST13-010_p1"
 ],
-"best": 489,
-"best_id": "ST13-010"
+"best": 536,
+"best_id": "ST13-010",
+"method": "orb-art-v2"
 },
 "ST13-014_p2": {
 "against": [
 "ST13-014",
 "ST13-014_p1"
 ],
-"best": 475,
-"best_id": "ST13-014"
+"best": 460,
+"best_id": "ST13-014",
+"method": "orb-art-v2"
 },
 "ST13-019_p1": {
 "against": [
 "ST13-019"
 ],
-"best": 608,
-"best_id": "ST13-019"
+"best": 487,
+"best_id": "ST13-019",
+"method": "orb-art-v2"
 },
 "ST14-007_p1": {
 "against": [
 "ST14-007"
 ],
-"best": 674,
-"best_id": "ST14-007"
+"best": 606,
+"best_id": "ST14-007",
+"method": "orb-art-v2"
 },
 "ST14-010_p1": {
 "against": [
 "ST14-010",
 "ST14-010_r1"
 ],
-"best": 763,
-"best_id": "ST14-010_r1"
+"best": 685,
+"best_id": "ST14-010",
+"method": "orb-art-v2"
 },
 "ST14-013_p1": {
 "against": [
 "ST14-013"
 ],
-"best": 490,
-"best_id": "ST14-013"
+"best": 587,
+"best_id": "ST14-013",
+"method": "orb-art-v2"
 },
 "ST14-016_p1": {
 "against": [
 "ST14-016"
 ],
-"best": 675,
-"best_id": "ST14-016"
+"best": 809,
+"best_id": "ST14-016",
+"method": "orb-art-v2"
 },
 "ST14-017_p1": {
 "against": [
 "ST14-017"
 ],
-"best": 694,
-"best_id": "ST14-017"
+"best": 602,
+"best_id": "ST14-017",
+"method": "orb-art-v2"
 },
 "ST15-002_p2": {
 "against": [
 "ST15-002",
 "ST15-002_p1"
 ],
-"best": 110,
-"best_id": "ST15-002"
+"best": 4,
+"best_id": "ST15-002",
+"method": "orb-art-v2"
 },
 "ST16-003_p1": {
 "against": [
 "ST16-003"
 ],
-"best": 564,
-"best_id": "ST16-003"
+"best": 522,
+"best_id": "ST16-003",
+"method": "orb-art-v2"
 },
 "ST16-004_p2": {
 "against": [
 "ST16-004",
 "ST16-004_p1"
 ],
-"best": 45,
-"best_id": "ST16-004"
+"best": 6,
+"best_id": "ST16-004_p1",
+"method": "orb-art-v2"
 },
 "ST16-005_p1": {
 "against": [
 "ST16-005"
 ],
-"best": 592,
-"best_id": "ST16-005"
+"best": 538,
+"best_id": "ST16-005",
+"method": "orb-art-v2"
 },
 "ST17-002_p1": {
 "against": [
 "ST17-002"
 ],
-"best": 41,
-"best_id": "ST17-002"
+"best": 1,
+"best_id": "ST17-002",
+"method": "orb-art-v2"
 },
 "ST17-003_p2": {
 "against": [
@@ -3940,62 +4469,70 @@
 "ST17-003_p1",
 "ST17-003_p3"
 ],
-"best": 633,
-"best_id": "ST17-003"
+"best": 561,
+"best_id": "ST17-003",
+"method": "orb-art-v2"
 },
 "ST17-005_p1": {
 "against": [
 "ST17-005",
 "ST17-005_p2"
 ],
-"best": 568,
-"best_id": "ST17-005"
+"best": 594,
+"best_id": "ST17-005",
+"method": "orb-art-v2"
 },
 "ST18-001_p2": {
 "against": [
 "ST18-001",
 "ST18-001_p1"
 ],
-"best": 36,
-"best_id": "ST18-001"
+"best": 7,
+"best_id": "ST18-001",
+"method": "orb-art-v2"
 },
 "ST18-001_p3": {
 "against": [
 "ST18-001",
 "ST18-001_p1"
 ],
-"best": 596,
-"best_id": "ST18-001"
+"best": 461,
+"best_id": "ST18-001",
+"method": "orb-art-v2"
 },
 "ST18-002_p2": {
 "against": [
 "ST18-002",
 "ST18-002_p1"
 ],
-"best": 491,
-"best_id": "ST18-002"
+"best": 419,
+"best_id": "ST18-002",
+"method": "orb-art-v2"
 },
 "ST18-003_p1": {
 "against": [
 "ST18-003"
 ],
-"best": 462,
-"best_id": "ST18-003"
+"best": 391,
+"best_id": "ST18-003",
+"method": "orb-art-v2"
 },
 "ST19-002_p2": {
 "against": [
 "ST19-002",
 "ST19-002_p1"
 ],
-"best": 638,
-"best_id": "ST19-002"
+"best": 561,
+"best_id": "ST19-002",
+"method": "orb-art-v2"
 },
 "ST20-003_p1": {
 "against": [
 "ST20-003"
 ],
-"best": 611,
-"best_id": "ST20-003"
+"best": 525,
+"best_id": "ST20-003",
+"method": "orb-art-v2"
 },
 "ST21-003_p2": {
 "against": [
@@ -4003,7 +4540,8 @@
 "ST21-003_p1",
 "ST21-003_p3"
 ],
-"best": 676,
-"best_id": "ST21-003"
+"best": 572,
+"best_id": "ST21-003",
+"method": "orb-art-v2"
 }
 }
