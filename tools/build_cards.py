@@ -62,7 +62,7 @@ class Art:
         self.cv2 = cv2
         self.dir = pathlib.Path(cache_dir); self.dir.mkdir(parents=True, exist_ok=True)
         self.delay = delay
-        self.orb = cv2.ORB_create(nfeatures=1500)
+        self.orb = cv2.ORB_create(nfeatures=1200, scaleFactor=1.15, nlevels=10)
         self.bf = cv2.BFMatcher(cv2.NORM_HAMMING)
         self.feat = {}
 
@@ -88,12 +88,14 @@ class Art:
         im = self.image(card)
         if im is None:
             self.feat[card["id"]] = None; return None
-        cv2 = self.cv2
+        cv2, np = self.cv2, __import__("numpy")
         h, w = im.shape[:2]
         g = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
-        g = cv2.resize(g, (600, int(600 * h / w)))
-        # ignore the bottom text area and the centre "SAMPLE" band region is fine (identical on every preview)
-        mask = None
+        g = cv2.resize(g, (600, 838))
+        # artwork only: skip the cost/power corners, the "SAMPLE" band and everything below it
+        # (text box, name bar, card number) - those are the same template on every card.
+        mask = np.zeros_like(g)
+        mask[int(838 * .10):int(838 * .44), int(600 * .05):int(600 * .95)] = 255
         kp, des = self.orb.detectAndCompute(g, mask)
         self.feat[card["id"]] = (kp, des)
         return kp, des
@@ -115,7 +117,8 @@ class Art:
         return int(inl.sum()) if inl is not None else 0
 
 
-SAME_ART_MIN = 60     # inlier matches at/above this = same illustration (tuned from data/art_checks.json)
+METHOD = "orb-art-v2"
+SAME_ART_MIN = 25     # inlier matches at/above this = same illustration (tuned with the review sheets)
 
 
 def main():
@@ -142,7 +145,7 @@ def main():
         """True/False, or None when it could not be checked. compare_to: list of cards."""
         key = card["id"]
         cached = checks.get(key)
-        if cached and cached.get("against") == sorted(c["id"] for c in compare_to):
+        if cached and cached.get("method") == METHOD and cached.get("against") == sorted(c["id"] for c in compare_to):
             best = cached["best"]
         elif art:
             best, best_id = 0, None
@@ -150,7 +153,7 @@ def main():
                 s = art.same_art_score(card, o)
                 if s is not None and s > best:
                     best, best_id = s, o["id"]
-            checks[key] = {"best": best, "best_id": best_id, "against": sorted(c["id"] for c in compare_to)}
+            checks[key] = {"best": best, "best_id": best_id, "method": METHOD, "against": sorted(c["id"] for c in compare_to)}
         else:
             return None
         if not compare_to:

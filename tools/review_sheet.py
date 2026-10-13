@@ -4,6 +4,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 checks = json.loads((ROOT / "data/art_checks.json").read_text())
 cache = pathlib.Path(sys.argv[1]); out = pathlib.Path(sys.argv[2]); out.mkdir(parents=True, exist_ok=True)
 lo, hi = int(sys.argv[3]), int(sys.argv[4])
+for f in out.glob(f"sheet_{lo}_{hi}_*.jpg"): f.unlink()
 items = sorted([(v["best"], k, v["best_id"]) for k, v in checks.items() if v.get("best_id") and lo <= v["best"] <= hi])
 def load(i):
     im = cv2.imread(str(cache / f"{i}.png"))

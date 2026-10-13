@@ -45,6 +45,14 @@ jobs:
       - name: Build card list (with artwork check)
         run: python tools/build_cards.py --punk punk/japanese --check-art --img-cache .imgcache
 
+      - name: Review sheets (published to the review branch)
+        run: |
+          python tools/review_sheet.py .imgcache review 0 15
+          python tools/review_sheet.py .imgcache review 16 40
+          python tools/review_sheet.py .imgcache review 41 999
+          cd review && git init -q -b review && git add . && git -c user.name=log-pose-bot -c user.email=bot@users.noreply.github.com commit -qm "review sheets"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" review
+
       - name: Save if changed
         run: |
           git config user.name "log-pose-bot"
