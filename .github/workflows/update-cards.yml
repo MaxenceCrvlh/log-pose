@@ -1,0 +1,53 @@
+name: Update card list
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"        # every Monday
+  workflow_dispatch:
+  push:
+    paths:
+      - "tools/**"
+      - ".github/workflows/update-cards.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-cards
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tools
+        run: pip install opencv-python-headless==4.10.0.84 numpy==2.1.3
+
+      - name: Get the Japanese card data (punk-records)
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/buhbbl/punk-records punk
+          git -C punk sparse-checkout set japanese
+
+      - name: Restore downloaded card pictures
+        uses: actions/cache@v4
+        with:
+          path: .imgcache
+          key: imgcache-${{ github.run_id }}
+          restore-keys: imgcache-
+
+      - name: Build card list (with artwork check)
+        run: python tools/build_cards.py --punk punk/japanese --check-art --img-cache .imgcache
+
+      - name: Save if changed
+        run: |
+          git config user.name "log-pose-bot"
+          git config user.email "log-pose-bot@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Update card list" && git push; fi
