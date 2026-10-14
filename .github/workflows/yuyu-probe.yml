@@ -1,0 +1,18 @@
+name: Yuyu probe
+on:
+  push:
+    paths: [".github/workflows/yuyu-probe.yml"]
+permissions:
+  contents: write
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          mkdir out; cd out
+          UA="log-pose-price-check/1.0 (personal collection value; weekly)"
+          for s in op01 op17 eb01 prb01; do
+            curl -s -A "$UA" "https://yuyu-tei.jp/sell/opc/s/$s" -o $s.html; echo "$s $(wc -c < $s.html)" >> sizes.txt; sleep 3
+          done
+          git init -q -b yuyuprobe && git add . && git -c user.name=b -c user.email=b@x commit -qm p
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" yuyuprobe
