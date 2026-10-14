@@ -1,0 +1,4 @@
+{
+  "_comment": "Prints always kept even if the artwork check would drop them (e.g. full-art commons that reuse the regular illustration). Add card ids here.",
+  "always": ["OP01-008_p1", "OP01-034_p1", "OP01-048_p1", "OP01-064_p1"]
+}

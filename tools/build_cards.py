@@ -164,6 +164,9 @@ def main():
             return True
         return best < SAME_ART_MIN.get(card.get("category"), SAME_ART_DEFAULT)
 
+    inc_file = DATA / "include.json"
+    ALWAYS = set(json.loads(inc_file.read_text())["always"]) if inc_file.exists() else set()
+
     sets = []
     unchecked = 0
     for pid in sorted(packs):
@@ -194,6 +197,8 @@ def main():
                     others = [o for p, o in by_code.get(base_code(cid), []) if p != pid]
                     check = art_is_new(c, others)
                     keep = check is not False
+            if cid in ALWAYS:
+                keep = True
             if not keep:
                 continue
             if check is None and (suf and (series == "PRB" or rar in NEEDS_ART_CHECK)):
