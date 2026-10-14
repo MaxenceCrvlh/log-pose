@@ -1,0 +1,36 @@
+name: PC probe
+on:
+  push:
+    paths: [".github/workflows/pc-probe.yml"]
+permissions:
+  contents: write
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install requests beautifulsoup4 lxml
+      - shell: python
+        run: |
+          import requests, re, json, time
+          from bs4 import BeautifulSoup
+          UA={"User-Agent":"log-pose-personal-collection/1.0 (weekly, low volume)"}
+          base="https://www.pricecharting.com/console/one-piece-japanese-romance-dawn"
+          out=[]
+          r=requests.get(base,headers=UA,timeout=60); out.append(f"GET base -> {r.status_code} {len(r.text)}")
+          s=BeautifulSoup(r.text,"lxml"); t=s.find("table",id="games_table")
+          rows=t.select("tbody tr") if t else []
+          out.append(f"rows={len(rows)}")
+          if rows: out.append("ROW0: "+str(rows[0])[:1500]); out.append("ROW-1: "+str(rows[-1])[:800])
+          for f in s.find_all("form"):
+              if "cursor" in str(f): out.append("FORM: "+str(f)[:1200])
+          for m in re.finditer(r".{0,200}cursor.{0,200}", r.text): out.append("CURSOR-CTX: "+m.group(0)); 
+          time.sleep(3)
+          for v in ["?cursor=50","?sort=&cursor=50&format=json"]:
+              r2=requests.get(base+v,headers=UA,timeout=60); out.append(f"GET {v} -> {r2.status_code} ct={r2.headers.get('content-type')} len={len(r2.text)} head={r2.text[:300]!r}"); time.sleep(3)
+          r3=requests.post(base,data={"cursor":"50","format":"json"},headers=UA,timeout=60); out.append(f"POST cursor -> {r3.status_code} ct={r3.headers.get('content-type')} len={len(r3.text)} head={r3.text[:400]!r}")
+          open("probe.txt","w").write("\n\n".join(out[:40]))
+      - run: |
+          mkdir o && mv probe.txt o/ && cd o && git init -q -b pcprobe && git add . && git -c user.name=b -c user.email=b@x commit -qm p
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" pcprobe
