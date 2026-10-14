@@ -1,7 +1,7 @@
 // Log Pose service worker: keeps the app and card list working offline.
 // App files: fetched fresh when online (so updates arrive), saved copy as fallback.
 // Card pictures from the official site: kept once loaded.
-const CACHE = "lp-v3";
+const CACHE = "lp-v4";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./data/cards.json", "./icon-192.png", "./icon-512.png", "./apple-touch-icon.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener("activate", e => {

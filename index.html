@@ -105,6 +105,17 @@ h2{font-family:var(--display);font-weight:700;font-size:22px;text-transform:uppe
 .card:not(.own) img{filter:grayscale(1) contrast(.85);opacity:.42}
 .card .tick{position:absolute;top:5px;right:5px;width:22px;height:22px;border-radius:50%;background:var(--good);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.35)}
 .card:not(.own) .tick{display:none}
+.card .flag{position:absolute;bottom:5px;left:5px;width:22px;height:22px;border-radius:50%;background:var(--warn);color:#fff;display:grid;place-items:center;font-size:12px;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 11px;font-size:13px;font-weight:600;cursor:pointer}
+.tags button[aria-pressed="true"]{background:var(--warn);border-color:var(--warn);color:#fff}
+.nrow{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-top:1px solid var(--line);cursor:pointer;width:100%;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;color:inherit;font:inherit}
+.nrow:first-child{border-top:0}
+.nrow img{width:52px;aspect-ratio:600/838;border-radius:5px;object-fit:cover;flex-shrink:0;border:1px solid var(--line)}
+.nrow .main{flex:1;min-width:0}
+.nrow .t{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nrow .txt{font-size:13.5px;color:var(--muted);margin-top:3px;white-space:pre-wrap;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.chip.fl{background:var(--warn-soft);color:var(--warn)}
 .card .qty{position:absolute;top:5px;left:5px;background:rgba(0,0,0,.72);color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px}
 .card .meta{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-top:5px;font-size:11px;line-height:1.2;min-width:0}
 .card .meta .chip{flex-shrink:0}
@@ -187,16 +198,19 @@ textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:1
 "use strict";
 /* ---------- storage: everything stays on this device ---------- */
 const KEY="logpose.v1";
-const blank=()=>({owned:{},notes:{},skip:{},ui:{tab:"OP",set:{},filter:"all",rar:"",showSkipped:false},updated:0});
+const blank=()=>({owned:{},notes:{},flags:{},skip:{},ui:{tab:"OP",set:{},filter:"all",rar:"",showSkipped:false},updated:0});
 let S;
 try{S=Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||"null")||{});}catch(e){S=blank();}
-S.ui=Object.assign(blank().ui,S.ui||{});
+S.ui=Object.assign(blank().ui,S.ui||{});S.flags=S.flags||{};
 function save(){S.updated=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){toast("Couldn't save: storage is full or blocked");}}
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
 
 /* ---------- data ---------- */
 let DATA=null, BYID={};
-const SERIES=[["OP","Boosters"],["EB","Extra"],["PRB","Premium"],["STATS","Stats"]];
+const SERIES=[["OP","Boosters"],["EB","Extra"],["PRB","Premium"],["NOTES","Notes"],["STATS","Stats"]];
+const FLAGS=[["damage","Damage"],["centering","Centering"],["whitening","Whitening"],["scratch","Scratch"],["printline","Print line"],["dent","Dent / crease"],["grade","To grade"],["upgrade","Upgrade wanted"]];
+const FLAG_LBL=Object.fromEntries(FLAGS);
+const hasNote=id=>!!(S.notes[id]||(S.flags[id]&&S.flags[id].length));
 const RAR_ORDER=["L","R","SR","SEC","SP","TR","P","UC","C"];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -225,10 +239,11 @@ function render(){
   const all=DATA.sets.flatMap(activeCards);const t=stats(all);
   $("#overall").textContent=`${t.own} / ${t.tot} · ${pct(t.pct)}`;
   if(tab==="STATS")return renderStats();
+  if(tab==="NOTES")return renderNotes();
   renderSeries(tab);
 }
 function renderTabs(){
-  $("#tabs").innerHTML=SERIES.map(([k,l])=>`<button data-tab="${k}" ${S.ui.tab===k?'aria-current="page"':""}><b>${k==="STATS"?"★":k}</b>${l}</button>`).join("");
+  $("#tabs").innerHTML=SERIES.map(([k,l])=>`<button data-tab="${k}" ${S.ui.tab===k?'aria-current="page"':""}><b>${k==="STATS"?"★":k==="NOTES"?"✎":k}</b>${l}</button>`).join("");
 }
 function setsOf(series){return DATA.sets.filter(s=>s.series===series);}
 function renderSeries(series){
@@ -278,7 +293,7 @@ function cardHTML(c){
   const q=qty(c.id);
   return`<button class="card ${q?"own":""}" data-id="${esc(c.id)}" aria-label="${esc(c.id)} ${esc(c.name)}${q?", owned":""}">
     <div class="pic"><div class="ph">${esc(c.id)}</div><img loading="lazy" decoding="async" alt="" src="img/${esc(c.id)}.webp" onerror="this.remove()">
-    <span class="tick">✓</span>${q>1?`<span class="qty">×${q}</span>`:""}</div>
+    <span class="tick">✓</span>${q>1?`<span class="qty">×${q}</span>`:""}${hasNote(c.id)?`<span class="flag" title="Has a note">✎</span>`:""}</div>
     <div class="meta"><span class="id">${esc(c.id)}</span>${kindChip(c)}</div>
     <div class="nm">${esc(c.name)}</div></button>`;
 }
@@ -297,6 +312,24 @@ function refreshCard(id){
     const all=DATA.sets.flatMap(activeCards);const t=stats(all);$("#overall").textContent=`${t.own} / ${t.tot} · ${pct(t.pct)}`;
     if(S.ui.filter!=="all"){const c=document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);if(c)c.remove();}
   }
+}
+
+/* ---------- notes view ---------- */
+function renderNotes(){
+  const ids=Object.keys(BYID).filter(hasNote);
+  const f=S.ui.nflag||"";
+  const counts={};for(const id of ids)for(const t of (S.flags[id]||[]))counts[t]=(counts[t]||0)+1;
+  const list=ids.filter(id=>!f||(S.flags[id]||[]).includes(f))
+    .sort((a,b)=>(S.noteAt&&((S.noteAt[b]||0)-(S.noteAt[a]||0)))||a.localeCompare(b,undefined,{numeric:true}));
+  const row=id=>{const c=BYID[id];const fl=(S.flags[id]||[]).map(t=>`<span class="chip fl">${esc(FLAG_LBL[t]||t)}</span>`).join(" ");
+    return`<button class="nrow" data-open="${esc(id)}"><img loading="lazy" alt="" src="img/${esc(id)}.webp" onerror="this.style.visibility='hidden'">
+      <div class="main"><div class="t">${esc(c.name)} <span class="mono muted">${esc(id)}</span></div>
+      <div class="m" style="display:flex;gap:5px;flex-wrap:wrap;margin-top:3px">${kindChip(c)} ${fl} ${qty(id)?`<span class="chip">×${qty(id)} owned</span>`:`<span class="chip">not owned</span>`}</div>
+      ${S.notes[id]?`<div class="txt">${esc(S.notes[id])}</div>`:""}</div></button>`;};
+  $("#main").innerHTML=`<h2>Notes</h2>
+    <p class="note" style="margin:0 0 8px">Cards with a comment or a condition tag. Press and hold any card to add one.</p>
+    <div class="rar"><button data-nflag="" aria-pressed="${!f}">All (${ids.length})</button>${FLAGS.filter(([k])=>counts[k]).map(([k,l])=>`<button data-nflag="${k}" aria-pressed="${f===k}">${l} (${counts[k]})</button>`).join("")}</div>
+    ${list.length?`<div class="panel" style="padding:0">${list.map(row).join("")}</div>`:`<div class="empty">No notes yet. Press and hold a card, then add a tag like <b>Centering</b> or <b>Damage</b> or write a comment.</div>`}`;
 }
 
 /* ---------- stats & backup ---------- */
@@ -329,7 +362,7 @@ function renderStats(){
     </div>`;
 }
 function backup(){
-  const blob=new Blob([JSON.stringify({app:"log-pose",version:1,saved:new Date().toISOString(),owned:S.owned,notes:S.notes,skip:S.skip},null,1)],{type:"application/json"});
+  const blob=new Blob([JSON.stringify({app:"log-pose",version:1,saved:new Date().toISOString(),owned:S.owned,notes:S.notes,flags:S.flags,noteAt:S.noteAt||{},skip:S.skip},null,1)],{type:"application/json"});
   const name=`log-pose-backup-${new Date().toISOString().slice(0,10)}.json`;
   const file=new File([blob],name,{type:"application/json"});
   if(navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file],title:name}).catch(()=>{});return;}
@@ -341,7 +374,7 @@ async function restore(file){
     if(!d||d.app!=="log-pose"||typeof d.owned!=="object")throw 0;
     const n=Object.keys(d.owned).length;
     if(!confirm(`Replace your current collection with this backup (${n} cards owned)?`))return;
-    S.owned=d.owned||{};S.notes=d.notes||{};S.skip=d.skip||{};save();render();toast("Backup restored");
+    S.owned=d.owned||{};S.notes=d.notes||{};S.flags=d.flags||{};S.noteAt=d.noteAt||{};S.skip=d.skip||{};save();render();toast("Backup restored");
   }catch(e){toast("That file isn't a Log Pose backup");}
 }
 async function preload(){
@@ -362,19 +395,23 @@ function openCard(id){
       <div class="detail"><div class="big"><img alt="${esc(c.name)}" src="img/${esc(c.id)}.webp"></div>
       <div class="stack">
         <dl class="kv"><dt>Number</dt><dd class="mono">${esc(c.id)}</dd><dt>Set</dt><dd>${esc(c.set)}</dd><dt>Rarity</dt><dd>${kindChip(c)} ${c.kind==="regular"?"":"<span class='note'>alternate print</span>"}</dd><dt>Type</dt><dd>${esc(c.cat)}</dd></dl>
-        <div><div class="label" style="margin-bottom:6px">Copies owned</div><div class="stepper"><button id="minus" aria-label="One less">−</button><span class="num" id="q">${q}</span><button id="plus" aria-label="One more">+</button></div></div>
-        <div><div class="label" style="margin-bottom:6px">Notes</div><textarea id="note" placeholder="Condition, grade, where you got it…">${esc(S.notes[id]||"")}</textarea></div>
+        <div><div class="label" style="margin-bottom:6px">Copies owned</div><div class="stepper"><button id="minus" aria-label="One less">−</button><span class="num" id="qtyv">${q}</span><button id="plus" aria-label="One more">+</button></div></div>
+        <div><div class="label" style="margin-bottom:6px">Condition</div><div class="tags" id="tags">${FLAGS.map(([k,l])=>`<button data-tag="${k}" aria-pressed="${(S.flags[id]||[]).includes(k)}">${l}</button>`).join("")}</div></div>
+        <div><div class="label" style="margin-bottom:6px">Comment</div><textarea id="note" placeholder="e.g. small whitening top-left corner, centering 60/40…">${esc(S.notes[id]||"")}</textarea></div>
         <label class="switch"><input type="checkbox" id="skip" ${S.skip[id]?"checked":""}> Not collecting this card (hide it and leave it out of totals)</label>
         ${c.unverified?`<p class="note banner" style="margin:0">Artwork not checked yet: if this is a pirate foil or a reprint, tick "Not collecting".</p>`:""}
       </div></div></div></div>`;
     $("#close").onclick=closeSheet;$("#scrim").onclick=e=>{if(e.target.id==="scrim")closeSheet();};
-    $("#minus").onclick=()=>{setQty(id,Math.max(0,qty(id)-1));$("#q").textContent=qty(id);};
-    $("#plus").onclick=()=>{setQty(id,qty(id)+1);$("#q").textContent=qty(id);};
-    $("#note").oninput=e=>{const v=e.target.value;if(v.trim())S.notes[id]=v;else delete S.notes[id];save();};
+    $("#minus").onclick=()=>{setQty(id,Math.max(0,qty(id)-1));$("#qtyv").textContent=qty(id);};
+    $("#plus").onclick=()=>{setQty(id,qty(id)+1);$("#qtyv").textContent=qty(id);};
+    $("#note").oninput=e=>{const v=e.target.value;if(v.trim())S.notes[id]=v;else delete S.notes[id];touchNote(id);save();};
+    $("#tags").onclick=e=>{const b=e.target.closest("[data-tag]");if(!b)return;const t=b.dataset.tag;const a=new Set(S.flags[id]||[]);a.has(t)?a.delete(t):a.add(t);
+      if(a.size)S.flags[id]=[...a];else delete S.flags[id];b.setAttribute("aria-pressed",a.has(t));touchNote(id);save();};
     $("#skip").onchange=e=>{if(e.target.checked)S.skip[id]=true;else delete S.skip[id];save();};
   };
   draw();
 }
+function touchNote(id){S.noteAt=S.noteAt||{};if(hasNote(id))S.noteAt[id]=Date.now();else delete S.noteAt[id];}
 function closeSheet(){$("#sheetRoot").innerHTML="";render();}
 function setQty(id,n){if(n>0)S.owned[id]=n;else delete S.owned[id];save();refreshCard(id);}
 
@@ -402,6 +439,8 @@ document.addEventListener("click",e=>{
   const card=t.closest(".card");
   if(card){if(pressed){pressed=false;return;}const id=card.dataset.id,prev=qty(id);setQty(id,prev?0:1);
     const c=BYID[id];toast(prev?`Removed ${c.id}`:`Added ${c.id} · ${c.name}`,()=>setQty(id,prev));return;}
+  const op=t.closest("[data-open]");if(op)return openCard(op.dataset.open);
+  const nf=t.closest("[data-nflag]");if(nf){S.ui.nflag=nf.dataset.nflag;save();render();return;}
   const tab=t.closest("[data-tab]");if(tab){S.ui.tab=tab.dataset.tab;save();render();$("#scroller").scrollTop=0;return;}
   const set=t.closest("[data-set]");if(set){S.ui.set[S.ui.tab]=set.dataset.set;save();render();return;}
   const f=t.closest("[data-filter]");if(f){S.ui.filter=f.dataset.filter;save();render();return;}

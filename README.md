@@ -16,7 +16,8 @@ A checklist app for a **Japanese One Piece card collection**: the foil cards of 
 
 ## Using it
 - Tap a card to mark it owned (tap again to remove; **Undo** appears for a few seconds).
-- Press and hold a card for details: number of copies, notes, or **Not collecting**.
+- Press and hold a card for details: number of copies, condition tags (damage, centering, whitening…), a comment, or **Not collecting**.
+- The **Notes** tab lists every card with a tag or comment, filterable by tag.
 - **Stats → Download all pictures** saves every card picture for offline use (do it once on Wi-Fi).
 
 ## Backups
