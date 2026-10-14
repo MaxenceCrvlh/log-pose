@@ -2,7 +2,7 @@ name: Update prices
 
 on:
   schedule:
-    - cron: "41 7 * * 2"        # every Tuesday, after the card list update
+    - cron: "41 7 * * 2"        # every Tuesday, after the card list update (weekly)
   workflow_dispatch:
   push:
     paths:
