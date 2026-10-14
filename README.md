@@ -27,3 +27,7 @@ Your collection lives only on your phone. Go to **Stats → Save backup file** a
 `data/cards.json` is built by `tools/build_cards.py` from [punk-records](https://github.com/buhbbl/punk-records), which is generated from the official Japanese card list. A GitHub Action rebuilds it every Monday, so new sets appear on their own. Card pictures load from the official site, onepiece-cardgame.com.
 
 Card images and names ©Eiichiro Oda/Shueisha, Toei Animation, Bandai. This is a personal, non-commercial checklist.
+
+## Prices (personal use)
+- **PriceCharting:** a weekly GitHub job (`tools/pc_prices.py`) reads the Japanese set lists, matches each card (by number, and by picture for alternate prints) and saves ungraded prices **encrypted** in `data/prices.enc`, so this public site doesn't republish PriceCharting's data. Needs the repo secret `PRICE_PASSPHRASE`; enter the same passphrase once in **Stats → Value** to unlock. Card ↔ product matches are in `data/pc_map.json`, match statistics in `data/pc_report.json`.
+- **Yuyu-tei:** enter prices yourself from a card's page (press and hold → Prices). Yuyu-tei doesn't allow automated access, so there's no automatic fetch.

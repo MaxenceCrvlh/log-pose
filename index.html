@@ -115,6 +115,11 @@ h2{font-family:var(--display);font-weight:700;font-size:22px;text-transform:uppe
 .nrow .main{flex:1;min-width:0}
 .nrow .t{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .nrow .txt{font-size:13.5px;color:var(--muted);margin-top:3px;white-space:pre-wrap;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.bar.spread{justify-content:space-between}
+.spark{width:100%;height:auto;display:block;margin-top:6px}
+.pricebox{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px}
+.pricebox a.note{display:block;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .chip.fl{background:var(--warn-soft);color:var(--warn)}
 .card .qty{position:absolute;top:5px;left:5px;background:rgba(0,0,0,.72);color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px}
 .card .meta{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-top:5px;font-size:11px;line-height:1.2;min-width:0}
@@ -198,10 +203,10 @@ textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:1
 "use strict";
 /* ---------- storage: everything stays on this device ---------- */
 const KEY="logpose.v1";
-const blank=()=>({owned:{},notes:{},flags:{},skip:{},ui:{tab:"OP",set:{},filter:"all",rar:"",showSkipped:false},updated:0});
+const blank=()=>({owned:{},notes:{},flags:{},skip:{},yuyu:{},ui:{tab:"OP",set:{},filter:"all",rar:"",showSkipped:false},updated:0});
 let S;
 try{S=Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||"null")||{});}catch(e){S=blank();}
-S.ui=Object.assign(blank().ui,S.ui||{});S.flags=S.flags||{};
+S.ui=Object.assign(blank().ui,S.ui||{});S.flags=S.flags||{};S.yuyu=S.yuyu||{};
 function save(){S.updated=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){toast("Couldn't save: storage is full or blocked");}}
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
 
@@ -230,6 +235,74 @@ async function load(){
     // the set's own cards first, then SPs/reprints of older cards that came in this box
     s.cards.sort((x,y)=>(x.code.startsWith(s.code+"-")?0:1)-(y.code.startsWith(s.code+"-")?0:1)||x.id.localeCompare(y.id,undefined,{numeric:true}));}
   render();
+  loadPrices();
+}
+
+/* ---------- prices: PriceCharting (weekly, encrypted) + Yuyu-tei (entered by hand) ---------- */
+let PCMAP={},PENV=null,PH=null;   // PH = {dates:[...], p:{id:[cents,...]}}
+const PP_KEY="logpose.pp";
+async function loadPrices(){
+  try{PCMAP=await (await fetch("data/pc_map.json",{cache:"no-cache"})).json();}catch(e){PCMAP={};}
+  try{PENV=await (await fetch("data/prices.enc",{cache:"no-cache"})).json();}catch(e){PENV=null;}
+  let pw="";try{pw=localStorage.getItem(PP_KEY)||"";}catch(e){}
+  if(PENV&&pw)await unlock(pw,true);
+}
+async function unlock(pw,quiet){
+  try{
+    const b=x=>Uint8Array.from(atob(x),c=>c.charCodeAt(0));
+    const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveKey"]);
+    const key=await crypto.subtle.deriveKey({name:"PBKDF2",hash:"SHA-256",salt:b(PENV.salt),iterations:PENV.iter},base,{name:"AES-GCM",length:256},false,["decrypt"]);
+    const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b(PENV.iv)},key,b(PENV.ct));
+    PH=JSON.parse(new TextDecoder().decode(pt));
+    try{localStorage.setItem(PP_KEY,pw);}catch(e){}
+    if(!quiet)toast("Prices unlocked");
+    render();return true;
+  }catch(e){if(!quiet)toast("Wrong passphrase");return false;}
+}
+const usd=c=>c==null?"–":"$"+(c/100).toLocaleString(undefined,{minimumFractionDigits:c<10000?2:0,maximumFractionDigits:c<10000?2:0});
+const yen=v=>v==null?"–":"¥"+Math.round(v).toLocaleString();
+function pcNow(id){const r=PH&&PH.p[id];if(!r)return null;for(let i=r.length-1;i>=0;i--)if(r[i]!=null)return r[i];return null;}
+function pcAt(id,i){const r=PH&&PH.p[id];if(!r)return null;for(let k=Math.min(i,r.length-1);k>=0;k--)if(r[k]!=null)return r[k];return null;}
+function yyNow(id){const e=S.yuyu[id];return e&&e.length?e[e.length-1][1]:null;}
+function yyAt(id,date){const e=S.yuyu[id];if(!e)return null;let v=null;for(const [d,x] of e){if(d<=date)v=x;else break;}return v;}
+const ownedIds=()=>Object.keys(S.owned).filter(id=>BYID[id]&&!S.skip[id]);
+function setValue(set){let v=0;for(const c of set.cards){const q=qty(c.id);if(q&&!S.skip[c.id]){const p=pcNow(c.id);if(p)v+=p*q;}}return v;}
+function pcSeries(){if(!PH)return[];const ids=ownedIds();return PH.dates.map((d,i)=>[d,ids.reduce((t,id)=>t+(pcAt(id,i)||0)*qty(id),0)]);}
+function yySeries(){const ids=ownedIds();const dates=[...new Set(ids.flatMap(id=>(S.yuyu[id]||[]).map(e=>e[0])))].sort();
+  return dates.map(d=>[d,ids.reduce((t,id)=>t+(yyAt(id,d)||0)*qty(id),0)]);}
+function chartSVG(pts,fmt,color){
+  if(pts.length<1)return`<div class="note">No data yet.</div>`;
+  const W=320,H=120,P=6;const vs=pts.map(p=>p[1]);let lo=Math.min(...vs),hi=Math.max(...vs);if(hi===lo){hi+=1;lo=Math.max(0,lo-1);}
+  const x=i=>pts.length===1?W/2:P+i*(W-2*P)/(pts.length-1),y=v=>H-P-(v-lo)*(H-2*P)/(hi-lo);
+  const line=pts.map((p,i)=>`${i?"L":"M"}${x(i).toFixed(1)},${y(p[1]).toFixed(1)}`).join("");
+  const area=line+`L${x(pts.length-1).toFixed(1)},${H-P}L${x(0).toFixed(1)},${H-P}Z`;
+  const last=pts[pts.length-1];
+  return`<svg viewBox="0 0 ${W} ${H}" class="spark" role="img" aria-label="Value over time"><path d="${area}" fill="${color}" opacity=".12"/><path d="${line}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${pts.map((p,i)=>`<circle cx="${x(i).toFixed(1)}" cy="${y(p[1]).toFixed(1)}" r="${i===pts.length-1?4:2.5}" fill="${color}"><title>${p[0]}: ${fmt(p[1])}</title></circle>`).join("")}</svg>
+    <div class="bar spread"><span class="note">${pts[0][0]}</span><span class="note">${last[0]}</span></div>`;
+}
+function renderValue(){
+  if(!PENV&&!Object.keys(S.yuyu).length)return`<div class="panel stack"><p class="note" style="margin:0">PriceCharting prices appear here after the weekly price update runs.</p></div>`;
+  const ids=ownedIds();
+  let pcBlock;
+  if(PENV&&!PH)pcBlock=`<p class="note" style="margin:0">Enter your price passphrase to unlock PriceCharting prices on this phone.</p>
+    <div class="bar"><input class="search" id="ppw" type="password" placeholder="Passphrase" autocomplete="current-password"><button class="btn pri" id="ppgo">Unlock</button></div>`;
+  else if(PH){const ser=pcSeries();const now=ser.length?ser[ser.length-1][1]:0;const prev=ser.length>1?ser[ser.length-2][1]:null;
+    const priced=ids.filter(id=>pcNow(id)!=null).length;
+    pcBlock=`<div class="bar spread"><div><div class="label">PriceCharting · ungraded</div><div class="v num" style="font-family:var(--display);font-size:30px;font-weight:700">${usd(now)}</div></div>
+      ${prev!=null?`<div class="num ${now>=prev?"pos":"neg"}" style="font-weight:700">${now>=prev?"▲":"▼"} ${usd(Math.abs(now-prev))}</div>`:""}</div>
+      ${chartSVG(ser,usd,"var(--accent)")}<p class="note" style="margin:0">${priced} of ${ids.length} owned cards have a PriceCharting price · updated ${esc(PH.dates[PH.dates.length-1]||"")}</p>`;}
+  else pcBlock="";
+  const ys=yySeries();const ynow=ys.length?ys[ys.length-1][1]:0;const yp=ids.filter(id=>yyNow(id)!=null).length;
+  const yBlock=`<div><div class="label">Yuyu-tei · entered by you</div><div class="num" style="font-family:var(--display);font-size:30px;font-weight:700">${yen(ynow)}</div></div>
+    ${ys.length?chartSVG(ys,yen,"var(--gold)"):""}<p class="note" style="margin:0">${yp} of ${ids.length} owned cards have a Yuyu-tei price. Add one from a card's page (press and hold).</p>`;
+  const top=ids.map(id=>[id,(pcNow(id)||0)*qty(id)]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  const topBlock=top.length?`<div class="label">Most valuable</div><div>${top.map(([id,v])=>`<button class="nrow" data-open="${esc(id)}" style="padding:7px 0"><img loading="lazy" alt="" src="img/${esc(id)}.webp" style="width:38px"><div class="main"><div class="t">${esc(BYID[id].name)} <span class="mono muted">${esc(id)}</span></div></div><b class="num">${usd(v)}</b></button>`).join("")}</div>`:"";
+  return`<div class="panel stack">${pcBlock}</div><div class="panel stack">${yBlock}</div>${topBlock?`<div class="panel stack">${topBlock}</div>`:""}`;
+}
+async function saveYuyu(id,val){
+  const v=Math.round(Number(String(val).replace(/[^\d.]/g,"")));if(!v)return;
+  const d=new Date().toISOString().slice(0,10);const e=(S.yuyu[id]=S.yuyu[id]||[]);
+  if(e.length&&e[e.length-1][0]===d)e[e.length-1][1]=v;else e.push([d,v]);save();
 }
 
 /* ---------- rendering ---------- */
@@ -259,7 +332,7 @@ function renderSeries(series){
     <div class="sets" id="sets">${chips}</div>
     <div class="sethead"><div><div class="t">${esc(set.code)} · ${esc(set.name)}</div><div class="n">${series==="PRB"?"New illustrations only":"Foils: L · R · SR · SEC · SP · TR + alt arts"}</div>
       <div class="progress"><i style="width:${pct(st.pct)}"></i></div></div>
-      <div class="big"><b class="num">${st.own}</b><span class="muted num"> / ${st.tot}</span><div class="label">${pct(st.pct)}</div></div></div>
+      <div class="big"><b class="num">${st.own}</b><span class="muted num"> / ${st.tot}</span><div class="label">${pct(st.pct)}</div>${PH?`<div class="label num setval" style="color:var(--accent)">≈ ${usd(setValue(set))}</div>`:""}</div></div>
     ${unv?`<div class="banner">Some cards here haven't had their artwork checked yet, so a few reprints or pirate foils may still show. The list updates itself.</div>`:""}
     <div class="tools">
       <input class="search" id="q" type="search" placeholder="Search name or number" value="${esc(S.ui.q||"")}" autocomplete="off">
@@ -339,6 +412,7 @@ function renderStats(){
   const rows=DATA.sets.map(s=>{const st=stats(activeCards(s));return`<div class="srow" data-goto="${s.code}" data-series="${s.series}"><b class="mono">${s.code}</b><div class="progress"><i style="width:${pct(st.pct)}"></i></div><span class="num" style="text-align:right">${st.own}/${st.tot}</span></div>`;}).join("");
   const skipped=Object.keys(S.skip).length;
   $("#main").innerHTML=`
+    <h2>Value</h2>${renderValue()}
     <h2>Collection</h2>
     <div class="tiles">${tile("OP","Boosters")}${tile("EB","Extra")}${tile("PRB","Premium")}</div>
     <h2>By set</h2><div class="panel">${rows}</div>
@@ -362,7 +436,7 @@ function renderStats(){
     </div>`;
 }
 function backup(){
-  const blob=new Blob([JSON.stringify({app:"log-pose",version:1,saved:new Date().toISOString(),owned:S.owned,notes:S.notes,flags:S.flags,noteAt:S.noteAt||{},skip:S.skip},null,1)],{type:"application/json"});
+  const blob=new Blob([JSON.stringify({app:"log-pose",version:1,saved:new Date().toISOString(),owned:S.owned,notes:S.notes,flags:S.flags,yuyu:S.yuyu,noteAt:S.noteAt||{},skip:S.skip},null,1)],{type:"application/json"});
   const name=`log-pose-backup-${new Date().toISOString().slice(0,10)}.json`;
   const file=new File([blob],name,{type:"application/json"});
   if(navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file],title:name}).catch(()=>{});return;}
@@ -374,7 +448,7 @@ async function restore(file){
     if(!d||d.app!=="log-pose"||typeof d.owned!=="object")throw 0;
     const n=Object.keys(d.owned).length;
     if(!confirm(`Replace your current collection with this backup (${n} cards owned)?`))return;
-    S.owned=d.owned||{};S.notes=d.notes||{};S.flags=d.flags||{};S.noteAt=d.noteAt||{};S.skip=d.skip||{};save();render();toast("Backup restored");
+    S.owned=d.owned||{};S.notes=d.notes||{};S.flags=d.flags||{};S.yuyu=d.yuyu||{};S.noteAt=d.noteAt||{};S.skip=d.skip||{};save();render();toast("Backup restored");
   }catch(e){toast("That file isn't a Log Pose backup");}
 }
 async function preload(){
@@ -398,6 +472,14 @@ function openCard(id){
         <div><div class="label" style="margin-bottom:6px">Copies owned</div><div class="stepper"><button id="minus" aria-label="One less">−</button><span class="num" id="qtyv">${q}</span><button id="plus" aria-label="One more">+</button></div></div>
         <div><div class="label" style="margin-bottom:6px">Condition</div><div class="tags" id="tags">${FLAGS.map(([k,l])=>`<button data-tag="${k}" aria-pressed="${(S.flags[id]||[]).includes(k)}">${l}</button>`).join("")}</div></div>
         <div><div class="label" style="margin-bottom:6px">Comment</div><textarea id="note" placeholder="e.g. small whitening top-left corner, centering 60/40…">${esc(S.notes[id]||"")}</textarea></div>
+        <div><div class="label" style="margin-bottom:6px">Prices</div>
+          <div class="pricebox">
+            <div class="bar spread"><span>PriceCharting <span class="note">ungraded</span></span><b class="num">${PCMAP[id]?(PH?usd(pcNow(id)):(PENV?"🔒":"–")):"not matched"}</b></div>
+            ${PCMAP[id]?`<a class="note" href="${esc(PCMAP[id].url)}" target="_blank" rel="noopener">${esc(PCMAP[id].name)} ↗</a>`:""}
+            <div class="bar spread" style="margin-top:8px"><span>Yuyu-tei</span><b class="num" id="yyv">${yen(yyNow(id))}${S.yuyu[id]&&S.yuyu[id].length?` <span class="note">${esc(S.yuyu[id][S.yuyu[id].length-1][0])}</span>`:""}</b></div>
+            <div class="bar"><input class="search" id="yyin" inputmode="numeric" placeholder="Price in ¥" style="min-width:0"><button class="btn sm" id="yysave">Save</button>
+              <a class="btn sm" href="https://yuyu-tei.jp/sell/opc/s/search?search_word=${encodeURIComponent(c.code)}" target="_blank" rel="noopener">Yuyu-tei ↗</a></div>
+          </div></div>
         <label class="switch"><input type="checkbox" id="skip" ${S.skip[id]?"checked":""}> Not collecting this card (hide it and leave it out of totals)</label>
         ${c.unverified?`<p class="note banner" style="margin:0">Artwork not checked yet: if this is a pirate foil or a reprint, tick "Not collecting".</p>`:""}
       </div></div></div></div>`;
@@ -407,6 +489,7 @@ function openCard(id){
     $("#note").oninput=e=>{const v=e.target.value;if(v.trim())S.notes[id]=v;else delete S.notes[id];touchNote(id);save();};
     $("#tags").onclick=e=>{const b=e.target.closest("[data-tag]");if(!b)return;const t=b.dataset.tag;const a=new Set(S.flags[id]||[]);a.has(t)?a.delete(t):a.add(t);
       if(a.size)S.flags[id]=[...a];else delete S.flags[id];b.setAttribute("aria-pressed",a.has(t));touchNote(id);save();};
+    $("#yysave").onclick=()=>{saveYuyu(id,$("#yyin").value);$("#yyin").value="";const e=S.yuyu[id];$("#yyv").innerHTML=`${yen(yyNow(id))}${e&&e.length?` <span class="note">${esc(e[e.length-1][0])}</span>`:""}`;};
     $("#skip").onchange=e=>{if(e.target.checked)S.skip[id]=true;else delete S.skip[id];save();};
   };
   draw();
@@ -448,6 +531,7 @@ document.addEventListener("click",e=>{
   const k=t.closest("[data-kind]");if(k){S.ui.kind=S.ui.kind==="alt"?"":"alt";S.ui.rar="";save();render();return;}
   const g=t.closest("[data-goto]");if(g){S.ui.tab=g.dataset.series;S.ui.set[g.dataset.series]=g.dataset.goto;save();render();$("#scroller").scrollTop=0;return;}
   const th=t.closest("[data-theme-set]");if(th){S.ui.theme=th.dataset.themeSet;save();applyTheme();render();return;}
+  if(t.id==="ppgo"){const v=$("#ppw").value;if(v)unlock(v,false);return;}
   if(t.id==="backup")return backup();
   if(t.id==="preload")return preload();
 });
