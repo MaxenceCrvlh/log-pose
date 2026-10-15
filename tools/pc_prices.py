@@ -218,6 +218,19 @@ def main():
 
     mapping, report = match(cards, products, Pics(a.img_cache))
 
+    # DON!! cards (not in the official card list): taken from PriceCharting's OP / EB set pages
+    dons = []
+    for p in products:
+        nm = p.get("productName", "")
+        if p["_page"].startswith("PRB") or not re.search(r"\bDON!!", nm, re.I):
+            continue
+        dons.append({"id": "DON-" + p["id"], "set": p["_page"], "name": nm, "pid": p["id"],
+                     "img": (p.get("imageUri") or "").rsplit("/", 1)[0] + "/240.jpg",
+                     "url": f"{PC}/game/{p['consoleUri']}/{p['productUri']}"})
+    (DATA / "dons_all.json").write_text(json.dumps(dons, ensure_ascii=False, indent=0), encoding="utf-8")
+    for d in dons:
+        mapping["DON-" + d["pid"]] = next(p for p in products if p["id"] == d["pid"])
+
     # public: which product each card is (no prices)
     pc_map = {cid: {"pid": p["id"], "name": p["productName"],
                     "url": f"{PC}/game/{p['consoleUri']}/{p['productUri']}"} for cid, p in mapping.items()}

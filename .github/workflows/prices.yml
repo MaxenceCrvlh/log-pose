@@ -40,5 +40,5 @@ jobs:
         run: |
           git config user.name "log-pose-bot"
           git config user.email "log-pose-bot@users.noreply.github.com"
-          git add data/pc_map.json data/prices.enc data/pc_report.json
+          git add data/pc_map.json data/prices.enc data/pc_report.json data/dons_all.json
           if git diff --cached --quiet; then echo "No changes"; else git commit -m "Update prices" && git pull --rebase -q && git push; fi
