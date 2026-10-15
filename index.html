@@ -120,6 +120,8 @@ h2{font-family:var(--display);font-weight:700;font-size:22px;text-transform:uppe
 .spark{width:100%;height:auto;display:block;margin-top:6px}
 .pricebox{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px}
 .pricebox a.note{display:block;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip.manga{background:#18202C;color:#fff}
+:root[data-theme="dark"] .chip.manga{background:#E6EAF0;color:#0E1219}
 .chip.don{background:var(--gold-soft);color:var(--gold)}
 .chip.fl{background:var(--warn-soft);color:var(--warn)}
 .card .qty{position:absolute;top:5px;left:5px;background:rgba(0,0,0,.72);color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px}
@@ -217,7 +219,7 @@ const SERIES=[["OP","Boosters"],["EB","Extra"],["PRB","Premium"],["NOTES","Notes
 const FLAGS=[["damage","Damage"],["centering","Centering"],["whitening","Whitening"],["scratch","Scratch"],["printline","Print line"],["dent","Dent / crease"],["grade","To grade"],["upgrade","Upgrade wanted"]];
 const FLAG_LBL=Object.fromEntries(FLAGS);
 const hasNote=id=>!!(S.notes[id]||(S.flags[id]&&S.flags[id].length));
-const RAR_ORDER=["L","R","SR","SEC","SP","TR","P","UC","C","DON"];
+const RAR_ORDER=["L","R","SR","SEC","SP","MANGA","TR","P","UC","C","DON"];
 const imgOf=c=>c&&c.src?c.src:`img/${c?c.id:""}.webp`;
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -237,10 +239,19 @@ async function load(){
     // the set's own cards first, then SPs/reprints of older cards that came in this box
     s.cards.sort((x,y)=>(x.code.startsWith(s.code+"-")?0:1)-(y.code.startsWith(s.code+"-")?0:1)||x.id.localeCompare(y.id,undefined,{numeric:true}));}
   await loadDons();
+  await tagMangas();
   render();
   loadPrices();
 }
 
+/* ---------- manga prints: PriceCharting's product name says "Manga" (the official list doesn't) ---------- */
+async function tagMangas(){
+  try{PCMAP=await (await fetch("data/pc_map.json",{cache:"no-cache"})).json();}catch(e){return;}
+  for(const [id,m] of Object.entries(PCMAP)){
+    const c=BYID[id];
+    if(c&&c.kind!=="don"&&c.kind!=="regular"&&/manga/i.test(m.name)){c.baseR=c.r;c.r="MANGA";c.kind="manga";}
+  }
+}
 /* ---------- DON!! cards (not in the official list): from PriceCharting's OP / EB set pages ---------- */
 async function loadDons(){
   let list=[];try{list=await (await fetch("data/dons_all.json",{cache:"no-cache"})).json();}catch(e){return;}
@@ -352,7 +363,7 @@ function renderSeries(series){
       <input class="search" id="q" type="search" placeholder="Search name or number" value="${esc(S.ui.q||"")}" autocomplete="off">
       <div class="seg" role="group" aria-label="Show">${[["all","All"],["missing","Missing"],["owned","Owned"]].map(([k,l])=>`<button data-filter="${k}" aria-pressed="${S.ui.filter===k}">${l}</button>`).join("")}</div>
     </div>
-    <div class="rar">${["",...rars].map(r=>`<button data-rar="${r}" aria-pressed="${(S.ui.rar||"")===r}">${r||"All rarities"}</button>`).join("")}<button data-kind="alt" aria-pressed="${S.ui.kind==="alt"}">Alt arts</button></div>
+    <div class="rar">${["",...rars].map(r=>`<button data-rar="${r}" aria-pressed="${(S.ui.rar||"")===r}">${r==="MANGA"?"Manga":r||"All rarities"}</button>`).join("")}<button data-kind="alt" aria-pressed="${S.ui.kind==="alt"}">Alt arts</button></div>
     <div class="grid" id="grid"></div>
     <p class="note" style="margin-top:14px">Tap a card to mark it owned · press and hold for details.</p>`;
   drawGrid(set);
@@ -371,6 +382,7 @@ function filtered(set){
   });
 }
 function kindChip(c){
+  if(c.kind==="manga")return`<span class="chip manga">MANGA</span>`;
   if(c.kind==="don")return`<span class="chip don">${/gold/i.test(c.name)?"GOLD DON":"DON"}</span>`;
   if(c.kind==="sp")return`<span class="chip sp">SP</span>`;
   if(c.kind==="tr")return`<span class="chip tr">TR</span>`;
