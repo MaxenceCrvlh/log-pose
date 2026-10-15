@@ -1,7 +1,7 @@
 // Log Pose service worker: keeps the app and card list working offline.
 // App files: fetched fresh when online (so updates arrive), saved copy as fallback.
 // Card pictures from the official site: kept once loaded.
-const CACHE = "lp-v5";
+const CACHE = "lp-v6";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./data/cards.json", "./icon-192.png", "./icon-512.png", "./apple-touch-icon.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener("activate", e => {
@@ -19,6 +19,9 @@ self.addEventListener("fetch", e => {
       if (res.ok) { const cp = res.clone(); caches.open(CACHE).then(c => c.put(r, cp)); }
       return res;
     }).catch(() => caches.match(r, {ignoreSearch: true}).then(m => m || caches.match("./index.html"))));
+  } else if (u.hostname === "storage.googleapis.com" && u.pathname.includes("images.pricecharting.com")) {
+    // DON!! card pictures: keep once loaded
+    e.respondWith(caches.open("lp-cards").then(c => c.match(r.url).then(m => m || fetch(r).then(res => { if (res.ok || res.type === "opaque") c.put(r.url, res.clone()); return res; }))));
   } else if (u.hostname.endsWith("onepiece-cardgame.com")) {
     e.respondWith(caches.open("lp-cards").then(c => c.match(r.url).then(m => m || fetch(r).then(res => { if (res.ok || res.type === "opaque") c.put(r.url, res.clone()); return res; }))));
   } else if (u.hostname === "fonts.googleapis.com" || u.hostname === "fonts.gstatic.com") {

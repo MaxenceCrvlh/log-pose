@@ -7,6 +7,7 @@ A checklist app for a **Japanese One Piece card collection**: the foil cards of 
 ## What counts
 - **OP and EB sets:** Leaders, R, SR, SEC, SP and TR, plus every alternate art. C and UC are left out (not foil), and so are pirate / skull foils (C, UC or R reprints that only add foil, detected by comparing the artwork).
 - **PRB sets:** only new illustrations. Reprints of existing art and DON!! cards are left out.
+- **DON!! cards** (OP and EB sets only) come from PriceCharting's set lists, since the official card list doesn't include them.
 - If a card slips through that you don't collect, open it (press and hold) and tick **Not collecting**.
 
 ## Install on iPhone

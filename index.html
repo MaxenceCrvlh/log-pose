@@ -120,6 +120,7 @@ h2{font-family:var(--display);font-weight:700;font-size:22px;text-transform:uppe
 .spark{width:100%;height:auto;display:block;margin-top:6px}
 .pricebox{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px}
 .pricebox a.note{display:block;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip.don{background:var(--gold-soft);color:var(--gold)}
 .chip.fl{background:var(--warn-soft);color:var(--warn)}
 .card .qty{position:absolute;top:5px;left:5px;background:rgba(0,0,0,.72);color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px}
 .card .meta{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-top:5px;font-size:11px;line-height:1.2;min-width:0}
@@ -216,7 +217,8 @@ const SERIES=[["OP","Boosters"],["EB","Extra"],["PRB","Premium"],["NOTES","Notes
 const FLAGS=[["damage","Damage"],["centering","Centering"],["whitening","Whitening"],["scratch","Scratch"],["printline","Print line"],["dent","Dent / crease"],["grade","To grade"],["upgrade","Upgrade wanted"]];
 const FLAG_LBL=Object.fromEntries(FLAGS);
 const hasNote=id=>!!(S.notes[id]||(S.flags[id]&&S.flags[id].length));
-const RAR_ORDER=["L","R","SR","SEC","SP","TR","P","UC","C"];
+const RAR_ORDER=["L","R","SR","SEC","SP","TR","P","UC","C","DON"];
+const imgOf=c=>c&&c.src?c.src:`img/${c?c.id:""}.webp`;
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const qty=id=>S.owned[id]||0;
@@ -234,10 +236,22 @@ async function load(){
   for(const s of DATA.sets){for(const c of s.cards){c.set=s.code;BYID[c.id]=c;}
     // the set's own cards first, then SPs/reprints of older cards that came in this box
     s.cards.sort((x,y)=>(x.code.startsWith(s.code+"-")?0:1)-(y.code.startsWith(s.code+"-")?0:1)||x.id.localeCompare(y.id,undefined,{numeric:true}));}
+  await loadDons();
   render();
   loadPrices();
 }
 
+/* ---------- DON!! cards (not in the official list): from PriceCharting's OP / EB set pages ---------- */
+async function loadDons(){
+  let list=[];try{list=await (await fetch("data/dons_all.json",{cache:"no-cache"})).json();}catch(e){return;}
+  for(const d of list){
+    if(/pack|box|sleeve/i.test(d.name)||d.set.startsWith("PRB"))continue;     // sealed products, PRB DONs
+    const set=DATA.sets.find(s=>s.code===d.set);if(!set||BYID[d.id])continue;
+    const tag=(d.name.match(/\[([^\]]*)\]/)||[])[1]||"Regular";
+    const c={id:d.id,disp:set.code+" DON",code:"DON",name:"DON!! · "+tag,r:"DON",cat:"DON!!",kind:"don",src:d.img,set:set.code};
+    set.cards.push(c);BYID[c.id]=c;
+  }
+}
 /* ---------- prices: PriceCharting (weekly, encrypted) + Yuyu-tei (entered by hand) ---------- */
 let PCMAP={},PENV=null,PH=null;   // PH = {dates:[...], p:{id:[cents,...]}}
 const PP_KEY="logpose.pp";
@@ -296,7 +310,7 @@ function renderValue(){
   const yBlock=`<div><div class="label">Yuyu-tei · entered by you</div><div class="num" style="font-family:var(--display);font-size:30px;font-weight:700">${yen(ynow)}</div></div>
     ${ys.length?chartSVG(ys,yen,"var(--gold)"):""}<p class="note" style="margin:0">${yp} of ${ids.length} owned cards have a Yuyu-tei price. Add one from a card's page (press and hold).</p>`;
   const top=ids.map(id=>[id,(pcNow(id)||0)*qty(id)]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,10);
-  const topBlock=top.length?`<div class="label">Most valuable</div><div>${top.map(([id,v])=>`<button class="nrow" data-open="${esc(id)}" style="padding:7px 0"><img loading="lazy" alt="" src="img/${esc(id)}.webp" style="width:38px"><div class="main"><div class="t">${esc(BYID[id].name)} <span class="mono muted">${esc(id)}</span></div></div><b class="num">${usd(v)}</b></button>`).join("")}</div>`:"";
+  const topBlock=top.length?`<div class="label">Most valuable</div><div>${top.map(([id,v])=>`<button class="nrow" data-open="${esc(id)}" style="padding:7px 0"><img loading="lazy" alt="" src="${esc(imgOf(BYID[id]))}" style="width:38px"><div class="main"><div class="t">${esc(BYID[id].name)} <span class="mono muted">${esc(id)}</span></div></div><b class="num">${usd(v)}</b></button>`).join("")}</div>`:"";
   return`<div class="panel stack">${pcBlock}</div><div class="panel stack">${yBlock}</div>${topBlock?`<div class="panel stack">${topBlock}</div>`:""}`;
 }
 async function saveYuyu(id,val){
@@ -357,6 +371,7 @@ function filtered(set){
   });
 }
 function kindChip(c){
+  if(c.kind==="don")return`<span class="chip don">${/gold/i.test(c.name)?"GOLD DON":"DON"}</span>`;
   if(c.kind==="sp")return`<span class="chip sp">SP</span>`;
   if(c.kind==="tr")return`<span class="chip tr">TR</span>`;
   if(c.kind==="alt")return`<span class="chip alt">${esc(c.r)} ALT</span>`;
@@ -365,9 +380,9 @@ function kindChip(c){
 function cardHTML(c){
   const q=qty(c.id);
   return`<button class="card ${q?"own":""}" data-id="${esc(c.id)}" aria-label="${esc(c.id)} ${esc(c.name)}${q?", owned":""}">
-    <div class="pic"><div class="ph">${esc(c.id)}</div><img loading="lazy" decoding="async" alt="" src="img/${esc(c.id)}.webp" onerror="this.remove()">
+    <div class="pic"><div class="ph">${esc(c.id)}</div><img loading="lazy" decoding="async" alt="" src="${esc(imgOf(c))}" onerror="this.remove()">
     <span class="tick">✓</span>${q>1?`<span class="qty">×${q}</span>`:""}${hasNote(c.id)?`<span class="flag" title="Has a note">✎</span>`:""}</div>
-    <div class="meta"><span class="id">${esc(c.id)}</span>${kindChip(c)}</div>
+    <div class="meta"><span class="id">${esc(c.disp||c.id)}</span>${kindChip(c)}</div>
     <div class="nm">${esc(c.name)}</div></button>`;
 }
 function drawGrid(set){
@@ -395,7 +410,7 @@ function renderNotes(){
   const list=ids.filter(id=>!f||(S.flags[id]||[]).includes(f))
     .sort((a,b)=>(S.noteAt&&((S.noteAt[b]||0)-(S.noteAt[a]||0)))||a.localeCompare(b,undefined,{numeric:true}));
   const row=id=>{const c=BYID[id];const fl=(S.flags[id]||[]).map(t=>`<span class="chip fl">${esc(FLAG_LBL[t]||t)}</span>`).join(" ");
-    return`<button class="nrow" data-open="${esc(id)}"><img loading="lazy" alt="" src="img/${esc(id)}.webp" onerror="this.style.visibility='hidden'">
+    return`<button class="nrow" data-open="${esc(id)}"><img loading="lazy" alt="" src="${esc(imgOf(BYID[id]))}" onerror="this.style.visibility='hidden'">
       <div class="main"><div class="t">${esc(c.name)} <span class="mono muted">${esc(id)}</span></div>
       <div class="m" style="display:flex;gap:5px;flex-wrap:wrap;margin-top:3px">${kindChip(c)} ${fl} ${qty(id)?`<span class="chip">×${qty(id)} owned</span>`:`<span class="chip">not owned</span>`}</div>
       ${S.notes[id]?`<div class="txt">${esc(S.notes[id])}</div>`:""}</div></button>`;};
@@ -452,7 +467,7 @@ async function restore(file){
   }catch(e){toast("That file isn't a Log Pose backup");}
 }
 async function preload(){
-  const urls=[...new Set(DATA.sets.flatMap(s=>s.cards.map(c=>"img/"+c.id+".webp")))];
+  const urls=[...new Set(DATA.sets.flatMap(s=>s.cards.map(imgOf)))];
   const msg=$("#preloadMsg");let done=0,fail=0;
   const work=async()=>{while(urls.length){const u=urls.pop();try{const r=await fetch(u);if(!r.ok)fail++;}catch(e){fail++;}done++;if(done%10===0)msg.textContent=`${done} pictures saved…`;}};
   msg.textContent="Starting…";await Promise.all([work(),work(),work(),work()]);
@@ -466,9 +481,9 @@ function openCard(id){
     const q=qty(id);
     $("#sheetRoot").innerHTML=`<div class="scrim" id="scrim"><div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(c.id)}">
       <div class="sheet-head"><h3>${esc(c.name)}</h3><button class="x" id="close" aria-label="Close">×</button></div>
-      <div class="detail"><div class="big"><img alt="${esc(c.name)}" src="img/${esc(c.id)}.webp"></div>
+      <div class="detail"><div class="big"><img alt="${esc(c.name)}" src="${esc(imgOf(c))}"></div>
       <div class="stack">
-        <dl class="kv"><dt>Number</dt><dd class="mono">${esc(c.id)}</dd><dt>Set</dt><dd>${esc(c.set)}</dd><dt>Rarity</dt><dd>${kindChip(c)} ${c.kind==="regular"?"":"<span class='note'>alternate print</span>"}</dd><dt>Type</dt><dd>${esc(c.cat)}</dd></dl>
+        <dl class="kv"><dt>Number</dt><dd class="mono">${esc(c.disp||c.id)}</dd><dt>Set</dt><dd>${esc(c.set)}</dd><dt>Rarity</dt><dd>${kindChip(c)} ${c.kind==="regular"?"":"<span class='note'>alternate print</span>"}</dd><dt>Type</dt><dd>${esc(c.cat)}</dd></dl>
         <div><div class="label" style="margin-bottom:6px">Copies owned</div><div class="stepper"><button id="minus" aria-label="One less">−</button><span class="num" id="qtyv">${q}</span><button id="plus" aria-label="One more">+</button></div></div>
         <div><div class="label" style="margin-bottom:6px">Condition</div><div class="tags" id="tags">${FLAGS.map(([k,l])=>`<button data-tag="${k}" aria-pressed="${(S.flags[id]||[]).includes(k)}">${l}</button>`).join("")}</div></div>
         <div><div class="label" style="margin-bottom:6px">Comment</div><textarea id="note" placeholder="e.g. small whitening top-left corner, centering 60/40…">${esc(S.notes[id]||"")}</textarea></div>
@@ -521,7 +536,7 @@ document.addEventListener("click",e=>{
   const t=e.target;
   const card=t.closest(".card");
   if(card){if(pressed){pressed=false;return;}const id=card.dataset.id,prev=qty(id);setQty(id,prev?0:1);
-    const c=BYID[id];toast(prev?`Removed ${c.id}`:`Added ${c.id} · ${c.name}`,()=>setQty(id,prev));return;}
+    const c=BYID[id];toast(prev?`Removed ${c.disp||c.id}`:`Added ${c.disp||c.id} · ${c.name}`,()=>setQty(id,prev));return;}
   const op=t.closest("[data-open]");if(op)return openCard(op.dataset.open);
   const nf=t.closest("[data-nflag]");if(nf){S.ui.nflag=nf.dataset.nflag;save();render();return;}
   const tab=t.closest("[data-tab]");if(tab){S.ui.tab=tab.dataset.tab;save();render();$("#scroller").scrollTop=0;return;}
