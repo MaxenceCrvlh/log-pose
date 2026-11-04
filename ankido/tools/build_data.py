@@ -6,8 +6,14 @@ Inputs (downloaded into a folder passed as the first argument):
   n5.csv .. n1.csv                github.com/jamsinclair/open-anki-jlpt-decks (src/)
   jmdict-examples-eng-*.json      github.com/scriptin/jmdict-simplified releases
 
+  (2nd argument) a KanjiVG checkout: stroke order + the parts each kanji is built from
+  (3rd argument) a folder with kanjidic2-all-*.json and jmdict-all-*.json: French meanings
+  tools/fr_kanji_extra.tsv, tools/fr_words_extra.tsv: French written by hand where the dictionaries have none
+  tools/mnemonics.tsv: original memory stories (English / French)
+  tools/radicals.tsv: names of the parts that aren't kanji themselves
+
 Outputs (into data/):
-  kanji.json   every kanji with a JLPT level or a school grade
+  kanji.json   {"kanji": [...], "parts": {...}}: every kanji with a JLPT level or a school grade
   dict.json    common JMdict words + every JLPT word, with one or two Tatoeba examples
 """
 import csv, glob, json, os, re, sys
@@ -15,6 +21,11 @@ import csv, glob, json, os, re, sys
 SRC = sys.argv[1] if len(sys.argv) > 1 else "src"
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data")
 os.makedirs(OUT, exist_ok=True)
+TOOLS = os.path.dirname(os.path.abspath(__file__))
+def tsv(name):
+    p = os.path.join(TOOLS, name)
+    if not os.path.exists(p): return []
+    return [l.rstrip("\n").split("\t") for l in open(p, encoding="utf-8") if l.strip()]
 
 # ---------- kanji ----------
 PROPER = {"japan", "japanese", "china", "chinese", "korea", "korean", "buddha", "buddhist", "buddhism", "shinto", "confucius",
@@ -75,24 +86,39 @@ for w in jm["words"]:
 def is_common(w):
     return any(x.get("common") for x in w["kanji"]) or any(x.get("common") for x in w["kana"])
 
-# match JLPT entries to JMdict ids
+# match JLPT entries to JMdict ids: same spelling, then same reading, then the closest meaning
+STOP = {"to", "a", "an", "the", "of", "be", "in", "on", "for", "or", "and", "e", "g", "etc", "one", "s", "something", "someone"}
+def toks(s):
+    return set(re.findall(r"[a-z]+", s.lower())) - STOP
+def split_forms(s):
+    return [x.strip().lstrip("～〜~").rstrip("～〜~") for x in re.split(r"[;；、,]", s) if x.strip().lstrip("～〜~")]
 jlpt_by_id = {}
 unmatched = []
 for (e, r), (lvl, mean) in jlpt.items():
-    cands = by_form.get(e, [])
-    best = None
-    for w in cands:
+    forms, rds = split_forms(e), split_forms(r)
+    rds = rds or forms
+    seen, cands = set(), []
+    for f in forms + rds:
+        for w in by_form.get(f, []):
+            if w["id"] not in seen: seen.add(w["id"]); cands.append(w)
+    mt = toks(mean)
+    def score(w):
         kanas = [k["text"] for k in w["kana"]]
-        if r in kanas or e in kanas:
-            best = w if best is None or (is_common(w) and not is_common(best)) else best
-    if best is None and cands:
-        best = next((w for w in cands if is_common(w)), cands[0])
-    if best is None:
-        unmatched.append((e, r, lvl, mean))
+        kanjis = [k["text"] for k in w["kanji"]]
+        gl = toks(" ".join(g["text"] for s in w["sense"][:3] for g in s["gloss"] if g["lang"] == "eng"))
+        sc = 0
+        if any(x in kanjis for x in forms): sc += 4
+        if any(x in kanas for x in rds): sc += 3
+        if is_common(w): sc += 2
+        sc += 2 * len(mt & gl)
+        return sc
+    best = max(cands, key=score) if cands else None
+    if best is None or score(best) < 3:
+        unmatched.append((forms[0] if forms else e, rds[0] if rds else r, lvl, mean))
         continue
     prev = jlpt_by_id.get(best["id"])
     if prev is None or lvl > prev[0]:
-        jlpt_by_id[best["id"]] = (lvl, e, r)
+        jlpt_by_id[best["id"]] = (lvl, forms[0], rds[0])
 
 POS_SHORT = {}
 for tag, desc in jm["tags"].items():
@@ -153,11 +179,6 @@ for i, (e, r, lvl, mean) in enumerate(unmatched):
 # order: JLPT words first (N5..N1), then by headword
 entries.sort(key=lambda x: (-(x.get("j") or 0), 0 if x.get("c") else 1))
 
-with open(os.path.join(OUT, "kanji.json"), "w", encoding="utf-8") as f:
-    json.dump(kanji, f, ensure_ascii=False, separators=(",", ":"))
-with open(os.path.join(OUT, "dict.json"), "w", encoding="utf-8") as f:
-    json.dump({"date": jm.get("dictDate"), "words": entries}, f, ensure_ascii=False, separators=(",", ":"))
-
 print("kanji", len(kanji), "by JLPT", {l: sum(1 for k in kanji if k["j"] == l) for l in (5, 4, 3, 2, 1, 0)})
 print("dict words", len(entries), "JLPT", sum(1 for e in entries if e.get("j")), "unmatched", len(unmatched))
 print("with examples", sum(1 for e in entries if e.get("e")))
@@ -181,3 +202,69 @@ if len(sys.argv) > 2:
             json.dump(paths, f, separators=(",", ":"))
         n += 1
     print("stroke files", n)
+
+# ---------- parts each kanji is built from (KanjiVG) ----------
+parts = {}
+if len(sys.argv) > 2:
+    import xml.etree.ElementTree as ET
+    NS = "{http://kanjivg.tagaini.net}"
+    for k in kanji:
+        p = os.path.join(sys.argv[2], "kanji", format(ord(k["c"]), "05x") + ".svg")
+        if not os.path.exists(p): continue
+        t = re.sub(r"<!DOCTYPE.*?]>", "", open(p, encoding="utf-8").read(), flags=re.S)
+        t = t.replace('xmlns:kvg="https://kanjivg.tagaini.net/"', 'xmlns:kvg="http://kanjivg.tagaini.net"')
+        g = ET.fromstring(t).find('.//{http://www.w3.org/2000/svg}g[@id="kvg:%05x"]' % ord(k["c"]))
+        ps = []
+        for c in g:
+            e = c.get(NS + "element")
+            if c.tag.endswith("g") and e and e != k["c"] and e not in ps: ps.append(e)
+        if ps: k["p"] = ps
+    names = {r[0]: [r[1], r[2]] for r in tsv("radicals.tsv")}
+    used = {c for k in kanji for c in k.get("p", [])}
+    parts = {c: names[c] for c in used if c in names}
+
+# ---------- French ----------
+fr_note = ""
+if len(sys.argv) > 3:
+    kd = json.load(open(sorted(glob.glob(os.path.join(sys.argv[3], "kanjidic2-all-*.json")))[-1], encoding="utf-8"))
+    chars = {c["literal"]: c for c in kd["characters"]}
+    extra = {r[0]: [x.strip() for x in r[1].split(",")] for r in tsv("fr_kanji_extra.tsv")}
+    for k in kanji:
+        c = chars.get(k["c"]); fr = []
+        if c and c.get("readingMeaning"):
+            fr = list(dict.fromkeys(m["value"] for g in c["readingMeaning"]["groups"] for m in g["meanings"] if m["lang"] == "fr"))
+        fr = fr or extra.get(k["c"], [])
+        if fr: k["mf"] = fr[:6]
+    del kd, chars
+    jall = json.load(open(sorted(glob.glob(os.path.join(sys.argv[3], "jmdict-all-*.json")))[-1], encoding="utf-8"))
+    want = {e["i"]: e for e in entries}
+    by_kanji = {}
+    for w in jall["words"]:
+        fs = []
+        for sn in w["sense"]:
+            g = list(dict.fromkeys(x["text"] for x in sn["gloss"] if x["lang"] == "fre"))
+            if g: fs.append("; ".join(g[:5]))
+        if not fs: continue
+        if w["id"] in want: want[w["id"]]["f"] = fs[:4]
+        for k in w["kanji"]: by_kanji.setdefault(k["text"], fs[:4])
+    del jall
+    extra = {r[0]: r[1] for r in tsv("fr_words_extra.tsv")}
+    for e in entries:
+        if "f" in e or not e.get("j"): continue
+        if e["i"] in extra: e["f"] = [extra[e["i"]]]
+        else:
+            for k in e["k"]:
+                if k in by_kanji: e["f"] = by_kanji[k]; break
+    fr_note = f"French: kanji {sum(1 for k in kanji if 'mf' in k)}/{len(kanji)}, words {sum(1 for e in entries if 'f' in e)}/{len(entries)}, JLPT words {sum(1 for e in entries if 'f' in e and e.get('j'))}/{sum(1 for e in entries if e.get('j'))}"
+
+# ---------- memory stories ----------
+mn = {r[0]: [r[1], r[2]] for r in tsv("mnemonics.tsv")}
+for k in kanji:
+    if k["c"] in mn: k["mn"] = mn[k["c"]]
+
+with open(os.path.join(OUT, "kanji.json"), "w", encoding="utf-8") as f:
+    json.dump({"kanji": kanji, "parts": parts}, f, ensure_ascii=False, separators=(",", ":"))
+with open(os.path.join(OUT, "dict.json"), "w", encoding="utf-8") as f:
+    json.dump({"date": jm.get("dictDate"), "words": entries}, f, ensure_ascii=False, separators=(",", ":"))
+print(fr_note)
+print("parts named", len(parts), "kanji with parts", sum(1 for k in kanji if "p" in k), "stories", sum(1 for k in kanji if "mn" in k))
