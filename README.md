@@ -38,12 +38,10 @@ Card images and names ©Eiichiro Oda/Shueisha, Toei Animation, Bandai. This is a
 - **Yuyu-tei:** enter prices yourself from a card's page (press and hold → Prices). Yuyu-tei doesn't allow automated access, so there's no automatic fetch.
 
 ## Buying on Buyee
-Log Pose never orders anything and never touches your Buyee cart. It finds the listing and opens it on Buyee; you press **Add to cart** there.
+Log Pose never orders anything and never touches your Buyee cart. It opens Buyee on the right card in the right shop; you press **Add to cart** there.
 
 1. **Stats → Buyee shopping → My Rakuten shops:** paste one link per shop (a shop or item link from Buyee or Rakuten works, or the shop's code).
-2. **Rakuten key (free, once):** register an app at [webservice.rakuten.co.jp](https://webservice.rakuten.co.jp/) and copy its *Application ID* and *Access key* into the same panel, then **Save and test**. The key stays on your phone and is not written to backups.
-3. In any set tap **🛒 Shop**, then a missing card. You get the in-stock listings for that card number at your shops, cheapest first; tap one to open it on Buyee.
-4. Tick **It's in my Buyee cart** to put a 🛒 on the card until you mark it owned.
+2. In any set tap **🛒 Shop**, then a missing card. Each of your shops has a button that opens Buyee's search for that card number inside that shop.
+3. Tick **It's in my Buyee cart** to put a 🛒 on the card until you mark it owned.
 
-Without a key the sheet still gives one-tap links to the Buyee search for that card and to each of your shops on Buyee. Prices shown are the shops' own, before Buyee's fees.
-
+Optional: with a free Rakuten key (an app registered at [webservice.rakuten.co.jp](https://webservice.rakuten.co.jp/), often unreachable from outside Japan), the in-stock listings and prices at your shops are shown inside Log Pose, cheapest first. The key stays on your phone and is not written to backups.

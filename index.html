@@ -568,6 +568,7 @@ function rk(){try{return JSON.parse(localStorage.getItem(RK_KEY)||"null")||{};}c
 const buyeeItem=code=>"https://buyee.jp/rakuten/detail/"+encodeURIComponent(code);
 const buyeeSearch=kw=>"https://buyee.jp/rakuten/shopping/search/category/0?query="+encodeURIComponent(kw);
 const buyeeShop=code=>"https://buyee.jp/rakuten/shopping/store/top/"+encodeURIComponent(code);
+const buyeeShopSearch=(code,kw)=>"https://buyee.jp/rakuten/shopping/search/store/category/"+encodeURIComponent(code)+"/0?query="+encodeURIComponent(kw);
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const squash=s=>String(s||"").normalize("NFKC").toUpperCase().replace(/[^A-Z0-9]/g,"");
 // a shop's code from whatever was pasted: a Buyee or Rakuten shop / item link, or the code itself
@@ -629,8 +630,9 @@ function openShop(id){
         <div style="margin-top:4px">${kindChip(c)}${yyNow(id)!=null?` <span class="note">Yuyu-tei ${yen(yyNow(id))}</span>`:""}${qty(id)?` <span class="chip">×${qty(id)} owned</span>`:""}</div></div></div>
       <div class="bar"><input class="search" id="skw" type="search" value="${esc(shopKeyword(c))}" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search words" style="min-width:0"><button class="btn pri" id="sgo">Search</button></div>
       <div id="sres"></div>
-      <div><div class="label" style="margin-bottom:6px">Open on Buyee</div>
-        <div class="btnrow"><a class="btn sm" id="sall" href="#" target="_blank" rel="noopener">All Rakuten shops ↗</a>${S.shops.map(s=>`<a class="btn sm" href="${esc(buyeeShop(s.code))}" target="_blank" rel="noopener">${esc(s.name||s.code)} ↗</a>`).join("")}</div></div>
+      <div><div class="label" style="margin-bottom:6px">Search this card on Buyee</div>
+        <div class="stack" style="gap:8px">${S.shops.map(s=>`<a class="btn pri" data-shopsearch="${esc(s.code)}" href="#" target="_blank" rel="noopener">${esc(s.name||s.code)} ↗</a>`).join("")}
+        <a class="btn" id="sall" href="#" target="_blank" rel="noopener">All Rakuten shops ↗</a></div></div>
       <label class="switch"><input type="checkbox" id="incart" ${S.cart[id]?"checked":""}> It's in my Buyee cart (shows 🛒 on the card until I own it)</label>
       <p class="note" style="margin:0">Prices are the shops' own, before Buyee's fees. Nothing is ordered from here: a listing opens on Buyee, where you add it to your cart.</p>
     </div></div></div>`;
@@ -645,7 +647,9 @@ function openShop(id){
   const search=async()=>{
     const my=++run,kw=$("#skw").value.trim(),box=$("#sres");
     $("#sall").href=buyeeSearch(kw||c.code);
-    if(!hasKey||!S.shops.length){box.innerHTML=`<div class="banner" style="margin:0">To see listings from your shops right here, add ${!S.shops.length?"your shops":""}${!S.shops.length&&!hasKey?" and ":""}${!hasKey?"your free Rakuten key":""} in <b>Stats → Buyee shopping</b>. The buttons below work without it.</div>`;return;}
+    document.querySelectorAll("[data-shopsearch]").forEach(a=>a.href=buyeeShopSearch(a.dataset.shopsearch,kw||c.code));
+    if(!S.shops.length){box.innerHTML=`<div class="banner" style="margin:0">Add the shops you buy from in <b>Stats → Buyee shopping</b> to get a button for each one here.</div>`;return;}
+    if(!hasKey){box.innerHTML="";return;}
     if(!kw){box.innerHTML="";return;}
     box.innerHTML=`<p class="note" id="sstat" style="margin:0 0 6px">Looking in ${S.shops.length} shop${S.shops.length>1?"s":""}…</p><div class="panel" id="slist" style="padding:0" hidden></div>`;
     let all=[];const errs=[];
@@ -667,14 +671,14 @@ function openShop(id){
 function renderShopSettings(){
   const k=rk(),named=S.shops.filter(s=>s.name);
   return`<div class="panel stack">
-    <p class="note" style="margin:0">In any set, tap <b>🛒 Shop</b> and then a missing card: Log Pose looks for it at your Rakuten shops, and each listing opens on Buyee ready to add to your cart.</p>
+    <p class="note" style="margin:0">In any set, tap <b>🛒 Shop</b> and then a missing card: you get one button per shop that opens Buyee on that card in that shop, ready to add to your cart.</p>
     <div><div class="label" style="margin-bottom:6px">My Rakuten shops · one per line</div>
       <textarea id="shoplist" placeholder="Paste a shop or item link from Buyee or Rakuten, or the shop's code" autocapitalize="off" autocomplete="off" spellcheck="false">${esc(S.shops.map(s=>s.code).join("\n"))}</textarea>
       ${named.length?`<p class="note" style="margin:4px 0 0">${named.map(s=>`${esc(s.code)} = ${esc(s.name)}`).join(" · ")}</p>`:""}</div>
-    <div><div class="label" style="margin-bottom:6px">Rakuten key</div>
+    <div><div class="label" style="margin-bottom:6px">Rakuten key · optional</div>
       <div class="stack" style="gap:6px"><input class="field" id="rkapp" placeholder="Application ID" value="${esc(k.app||"")}" autocomplete="off" autocapitalize="off" spellcheck="false">
       <input class="field" id="rkkey" type="password" placeholder="Access key" value="${esc(k.key||"")}" autocomplete="off"></div>
-      <p class="note" style="margin:6px 0 0">Free: register an app at <a href="https://webservice.rakuten.co.jp/" target="_blank" rel="noopener">webservice.rakuten.co.jp</a> and copy its two values here. If it asks for the app's website, give <span class="mono">${esc(location.origin)}</span>. The key stays on this phone and is left out of backups.</p></div>
+      <p class="note" style="margin:6px 0 0">Only needed to see prices and listings inside Log Pose instead of on Buyee; Rakuten's developer site often refuses visitors outside Japan, and everything else works without it. Free: register an app at <a href="https://webservice.rakuten.co.jp/" target="_blank" rel="noopener">webservice.rakuten.co.jp</a> and copy its two values here. If it asks for the app's website, give <span class="mono">${esc(location.origin)}</span>. The key stays on this phone and is left out of backups.</p></div>
     <div class="btnrow"><button class="btn pri" id="shopsave">Save</button><button class="btn" id="shoptest">Save and test</button></div>
     <p class="note" id="shopmsg" style="margin:0"></p>
   </div>`;
@@ -691,7 +695,7 @@ function saveShopSettings(quiet){
   try{if(app||key)localStorage.setItem(RK_KEY,JSON.stringify({app,key}));else localStorage.removeItem(RK_KEY);}catch(e){}
   SHOPC.clear();RKMODE="";
   $("#shoplist").value=codes.join("\n");
-  const msg=`Saved ${codes.length} shop${codes.length===1?"":"s"}${app&&key?"":" · no Rakuten key yet, so listings won't show inside the app"}.`+(bad.length?` Couldn't read: ${bad.join(", ")}`:"");
+  const msg=`Saved ${codes.length} shop${codes.length===1?"":"s"}.`+(bad.length?` Couldn't read: ${bad.join(", ")}`:"");
   if(!quiet)$("#shopmsg").textContent=msg;
   return{codes,bad,ready:!!(app&&key)};
 }
