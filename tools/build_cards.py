@@ -1,6 +1,6 @@
-"""Build data/cards.json for Log Pose from the punk-records Japanese dataset.
+"""Build data/cards.json for Log Pose from data/src (the official Japanese card list, see fetch_official.py).
 
-Collection rules (Japanese cards, OP / EB / PRB only):
+Collection rules (Japanese cards):
   OP & EB sets
     - regular prints: only foil rarities -> Leader, R, SR, SEC, SP, TR  (C and UC are not foil)
     - alternate prints (_p1, _p2 ...): Leader / SR / SEC / SP / TR / promo alt prints are always kept
@@ -9,6 +9,10 @@ Collection rules (Japanese cards, OP / EB / PRB only):
   PRB sets
     - _r prints are reprints of existing art -> left out
     - other prints are kept only if the artwork does not exist on any print outside this PRB
+  Promo tab (every print is kept, foil or not - nothing is filtered by artwork)
+    - P      promotion cards with their own number (P-001 ...)
+    - PV     promotion prints of set cards (OP01-001_p3 ...)
+    - LP     cards that only come in limited products (premium collections, gift sets ...)
   DON!! cards are never included.
 
 Artwork comparison: ORB feature matching (robust to frame / crop / foil differences). Needs the
@@ -16,9 +20,10 @@ official images, so it runs in the GitHub Action (python tools/build_cards.py --
 Results are cached in data/art_checks.json so later runs only look at new cards.
 
 Usage:
-  python tools/build_cards.py --punk path/to/punk-records/japanese [--check-art] [--img-cache .imgcache]
+  python tools/fetch_official.py
+  python tools/build_cards.py [--src data/src] [--check-art] [--img-cache .imgcache]
 """
-import argparse, json, pathlib, re, sys, time, urllib.request, datetime
+import argparse, html, json, pathlib, re, sys, time, urllib.request, datetime
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -33,10 +38,17 @@ SET_NAMES = {
     "OP07": "500 Years in the Future", "OP08": "Two Legends", "OP09": "Emperors in the New World",
     "OP10": "Royal Blood", "OP11": "A Fist of Divine Speed", "OP12": "Legacy of the Master",
     "OP13": "Carrying On His Will", "OP14": "The Azure Sea's Seven", "OP15": "Adventure on Kami's Island",
-    "OP16": "The Time of Battle", "OP17": "The World's Strongest Warriors",
+    "OP16": "The Time of Battle", "OP17": "The World's Strongest Warriors", "OP18": "The Dominance of God",
     "EB01": "Memorial Collection", "EB02": "Anime 25th Collection", "EB03": "Heroines Edition",
-    "EB04": "Extra Booster 4", "PRB01": "The Best", "PRB02": "The Best Vol. 2",
+    "EB04": "Egghead Crisis", "EB05": "Heroines Edition Vol. 2", "PRB01": "The Best", "PRB02": "The Best Vol. 2",
 }
+PROMO_PACK, LIMITED_PACK = "550901", "550801"
+# Promo tab: code, short label on the chip, name, which pack, which ids
+PROMO_SETS = [
+    ("P", "P-cards", "Promotion cards", PROMO_PACK, lambda cid: cid.startswith("P-")),
+    ("PV", "Promo prints", "Promo prints of set cards", PROMO_PACK, lambda cid: not cid.startswith("P-")),
+    ("LP", "Limited", "Limited product cards", LIMITED_PACK, lambda cid: True),
+]
 UA = {"User-Agent": "log-pose-builder/1.0 (personal collection checklist; github action)"}
 
 
@@ -45,6 +57,13 @@ def pack_code(pid):
     if not m:
         return None
     return {"1": "OP", "2": "EB", "3": "PRB"}[m.group(1)] + m.group(2)
+
+
+def official_name(title):
+    """'ブースターパック 神の支配【OP-18】' -> '神の支配' (used until a set gets an English name above)."""
+    t = re.sub(r"【[^】]*】", "", title or "").strip()
+    t = re.sub(r"^(ブースターパック|エクストラブースター|プレミアムブースター)\s*", "", t).strip()
+    return t.strip("「」『』 ") or None
 
 
 def base_code(cid):
@@ -127,15 +146,24 @@ SAME_ART_DEFAULT = 40
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--punk", required=True, help="path to punk-records/japanese")
+    ap.add_argument("--src", "--punk", dest="src", default=str(DATA / "src"),
+                    help="folder with one <pack id>.json per product (default: data/src)")
     ap.add_argument("--check-art", action="store_true")
     ap.add_argument("--img-cache", default=".imgcache")
     a = ap.parse_args()
 
-    punk = pathlib.Path(a.punk)
+    src = pathlib.Path(a.src)
+    if (src / "data").is_dir():                          # a punk-records language folder also works
+        src = src / "data"
     packs = {}
-    for f in sorted((punk / "data").glob("*.json")):
+    for f in sorted(src.glob("[0-9]*.json")):
         packs[f.stem] = json.loads(f.read_text(encoding="utf-8"))
+        for c in packs[f.stem]:
+            c["name"] = html.unescape(c.get("name") or "")
+    if not packs:
+        sys.exit(f"No card data in {src} - run tools/fetch_official.py first.")
+    titles_file = src / "packs.json"
+    titles = json.loads(titles_file.read_text(encoding="utf-8")) if titles_file.exists() else {}
     by_code = {}                                         # base code -> [(pack_id, card)]
     for pid, cards in packs.items():
         for c in cards:
@@ -197,6 +225,8 @@ def main():
                     others = [o for p, o in by_code.get(base_code(cid), []) if p != pid]
                     check = art_is_new(c, others)
                     keep = check is not False
+            if rar not in RAR_SHORT:                     # a rarity this script has never seen: show it
+                print(f"  new rarity {rar!r} on {cid} - kept"); keep = True
             if cid in ALWAYS:
                 keep = True
             if not keep:
@@ -210,13 +240,31 @@ def main():
                 **({"unverified": True} if check is None and suf and (series == "PRB" or rar in NEEDS_ART_CHECK) else {}),
             })
         out.sort(key=lambda x: (x["code"], x["id"]))
-        sets.append({"code": code, "series": series, "name": SET_NAMES.get(code, code), "pack": pid,
+        sets.append({"code": code, "series": series,
+                     "name": SET_NAMES.get(code) or official_name(titles.get(pid)) or code, "pack": pid,
                      "cards": out})
 
-    order = {"OP": 0, "EB": 1, "PRB": 2}
-    sets.sort(key=lambda s: (order[s["series"]], s["code"]))
+    # Promo tab: every promotion / limited-product print, foil or not
+    for n, (code, label, name, pid, want) in enumerate(PROMO_SETS):
+        out = []
+        for c in packs.get(pid, []):
+            cid, rar, suf = c["id"], c.get("rarity") or "", suffix(c["id"])
+            if "don" in (c.get("category") or "").lower() or not want(cid):
+                continue
+            kind = "regular" if suf == "" else ("sp" if rar == "Special" else "tr" if rar == "TreasureRare" else "alt")
+            out.append({"id": cid, "code": base_code(cid), "name": c.get("name") or "", "r": RAR_SHORT.get(rar, rar),
+                        "cat": c.get("category") or "", "kind": kind, "img": c.get("img_full_url", "").split("?")[0],
+                        **({"from": c["info"]} if c.get("info") else {})})
+        out.sort(key=lambda x: (x["code"], x["id"]))
+        if out:
+            sets.append({"code": code, "series": "PROMO", "label": label, "name": name, "pack": pid, "n": n, "cards": out})
+
+    order = {"OP": 0, "EB": 1, "PRB": 2, "PROMO": 3}
+    sets.sort(key=lambda s: (order[s["series"]], s.get("n", 0), s["code"]))
+    for s in sets:
+        s.pop("n", None)
     DATA.mkdir(exist_ok=True)
-    doc = {"generated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"), "source": "punk-records (official JP card list)",
+    doc = {"generated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"), "source": "official JP card list",
            "art_checked": bool(art) or unchecked == 0, "sets": sets}
     (DATA / "cards.json").write_text(json.dumps(doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     if art or checks:

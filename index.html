@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Log Pose">
-<meta name="description" content="Japanese One Piece card collection checklist: OP, EB and PRB foils.">
+<meta name="description" content="Japanese One Piece card collection checklist: OP, EB and PRB foils, plus promo cards.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -55,11 +55,13 @@ header.top{display:flex;align-items:flex-end;justify-content:space-between;gap:1
 .sub{color:var(--muted);font-size:13px}
 .label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
 .num{font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
 .mono{font-family:var(--mono);font-size:.88em}
 h2{font-family:var(--display);font-weight:700;font-size:22px;text-transform:uppercase;letter-spacing:.03em;margin:18px 0 8px}
 /* set chips */
 .sets{display:flex;gap:6px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:none;scroll-snap-type:x proximity}
 .sets::-webkit-scrollbar{display:none}
+.setchip .c{white-space:nowrap}
 .setchip{flex:0 0 auto;scroll-snap-align:start;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:6px 10px 7px;cursor:pointer;text-align:left;min-width:64px}
 .setchip .c{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.03em;line-height:1.1}
 .setchip .p{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
@@ -124,6 +126,20 @@ h2{font-family:var(--display);font-weight:700;font-size:22px;text-transform:uppe
 :root[data-theme="dark"] .chip.manga{background:#E6EAF0;color:#0E1219}
 .chip.don{background:var(--gold-soft);color:var(--gold)}
 .chip.fl{background:var(--warn-soft);color:var(--warn)}
+.card .cartb{position:absolute;bottom:5px;right:5px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:11px;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.card.shop:not(.own) img{filter:none;opacity:.9}
+.lrow{display:flex;gap:10px;align-items:center;padding:9px 10px;border-top:1px solid var(--line);text-decoration:none;color:inherit}
+.lrow:first-child{border-top:0}
+.lrow img{width:56px;height:56px;border-radius:6px;object-fit:cover;flex-shrink:0;background:var(--surface2);border:1px solid var(--line)}
+.lrow .main{flex:1;min-width:0}
+.lrow .t{font-size:13px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lrow .s{font-size:12px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lrow .p{font-family:var(--display);font-weight:700;font-size:20px;white-space:nowrap}
+.lrow .go{font-size:11px;font-weight:700;color:var(--accent);text-align:right;white-space:nowrap}
+.lrow.off{opacity:.55}
+.shophead{display:flex;gap:12px;align-items:center}
+.shophead img{width:64px;aspect-ratio:600/838;border-radius:6px;object-fit:cover;border:1px solid var(--line);flex-shrink:0}
+.field{width:100%;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface)}
 .card .qty{position:absolute;top:5px;left:5px;background:rgba(0,0,0,.72);color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px}
 .card .meta{display:flex;justify-content:space-between;align-items:center;gap:4px;margin-top:5px;font-size:11px;line-height:1.2;min-width:0}
 .card .meta .chip{flex-shrink:0}
@@ -148,16 +164,18 @@ nav.tabs button[aria-current="page"]{color:var(--accent)}
 .btn.sm{padding:6px 10px;font-size:13px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px}
 .panel+.panel{margin-top:10px}
-.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+@media (min-width:600px){.tiles{grid-template-columns:repeat(4,1fr)}}
 .tile{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px}
 .tile .v{font-family:var(--display);font-weight:700;font-size:27px;line-height:1.1;margin-top:3px}
 .tile .d{font-size:12px;color:var(--muted)}
-.srow{display:grid;grid-template-columns:62px 1fr 74px;gap:10px;align-items:center;padding:7px 0;border-top:1px solid var(--line);font-size:13.5px;cursor:pointer}
+.srow{display:grid;grid-template-columns:84px 1fr 74px;gap:10px;align-items:center;padding:7px 0;border-top:1px solid var(--line);font-size:13.5px;cursor:pointer}
 .srow:first-child{border-top:0}
 .srow .progress{margin:0}
 .stack{display:flex;flex-direction:column;gap:10px}
 .btnrow{display:flex;gap:8px;flex-wrap:wrap}
 .note{font-size:13px;color:var(--muted)}
+.note a{color:var(--accent)}
 .banner{border:1px dashed var(--warn);background:var(--warn-soft);border-radius:10px;padding:9px 12px;font-size:13px;margin:6px 0}
 /* sheet */
 .scrim{position:fixed;inset:0;background:rgba(10,14,20,.5);z-index:40;display:flex;align-items:flex-end;justify-content:center}
@@ -192,7 +210,7 @@ textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:1
   <div class="scroller" id="scroller">
     <div class="wrap">
       <header class="top">
-        <div><div class="brand">Log <span>Pose</span></div><div class="sub" id="sub">Japanese foil collection</div></div>
+        <div><div class="brand">Log <span>Pose</span></div><div class="sub" id="sub">Japanese card collection</div></div>
         <div class="label num" id="overall"></div>
       </header>
       <main id="main"><div class="empty">Loading the card list…</div></main>
@@ -206,16 +224,20 @@ textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:1
 "use strict";
 /* ---------- storage: everything stays on this device ---------- */
 const KEY="logpose.v1";
-const blank=()=>({owned:{},notes:{},flags:{},skip:{},yuyu:{},ui:{tab:"OP",set:{},filter:"all",rar:"",showSkipped:false},updated:0});
+const blank=()=>({owned:{},notes:{},flags:{},skip:{},yuyu:{},cart:{},shops:[],ui:{tab:"OP",set:{},filter:"all",rar:"",showSkipped:false},updated:0});
 let S;
 try{S=Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||"null")||{});}catch(e){S=blank();}
-S.ui=Object.assign(blank().ui,S.ui||{});S.flags=S.flags||{};S.yuyu=S.yuyu||{};
+S.ui=Object.assign(blank().ui,S.ui||{});S.flags=S.flags||{};S.yuyu=S.yuyu||{};S.cart=S.cart||{};S.shops=Array.isArray(S.shops)?S.shops:[];
 function save(){S.updated=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){toast("Couldn't save: storage is full or blocked");}}
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
 
 /* ---------- data ---------- */
 let DATA=null, BYID={};
-const SERIES=[["OP","Boosters"],["EB","Extra"],["PRB","Premium"],["NOTES","Notes"],["STATS","Stats"]];
+const SERIES=[["OP","Boosters"],["EB","Extra"],["PRB","Premium"],["PROMO","Promo"],["NOTES","Notes"],["STATS","Stats"]];
+const TAB_ICON={STATS:"★",NOTES:"✎",PROMO:"P"};
+const SERIES_NOTE={PRB:"New illustrations only",PROMO:"Every print, foil or not"};
+const famOf=c=>(c.code.match(/^[A-Z]+/)||[""])[0];
+const setLabel=s=>s.label||s.code;
 const FLAGS=[["damage","Damage"],["centering","Centering"],["whitening","Whitening"],["scratch","Scratch"],["printline","Print line"],["dent","Dent / crease"],["grade","To grade"],["upgrade","Upgrade wanted"]];
 const FLAG_LBL=Object.fromEntries(FLAGS);
 const hasNote=id=>!!(S.notes[id]||(S.flags[id]&&S.flags[id].length));
@@ -341,7 +363,7 @@ function render(){
   renderSeries(tab);
 }
 function renderTabs(){
-  $("#tabs").innerHTML=SERIES.map(([k,l])=>`<button data-tab="${k}" ${S.ui.tab===k?'aria-current="page"':""}><b>${k==="STATS"?"★":k==="NOTES"?"✎":k}</b>${l}</button>`).join("");
+  $("#tabs").innerHTML=SERIES.map(([k,l])=>`<button data-tab="${k}" ${S.ui.tab===k?'aria-current="page"':""}><b>${TAB_ICON[k]||k}</b>${l}</button>`).join("");
 }
 function setsOf(series){return DATA.sets.filter(s=>s.series===series);}
 function renderSeries(series){
@@ -349,29 +371,35 @@ function renderSeries(series){
   let code=S.ui.set[series];
   if(!sets.find(s=>s.code===code))code=sets[0]&&sets[0].code;
   const set=sets.find(s=>s.code===code);
-  const chips=sets.map(s=>{const st=stats(activeCards(s));return`<button class="setchip ${st.own===st.tot&&st.tot?"done":""}" data-set="${s.code}" aria-pressed="${s.code===code}"><div class="c">${s.code}</div><div class="p">${st.own}/${st.tot}</div><div class="bar"><i style="width:${pct(st.pct)}"></i></div></button>`;}).join("");
+  if(!set){$("#main").innerHTML=`<div class="empty">Nothing here yet. The card list updates itself every week; open the app once while online.</div>`;return;}
+  const fams=series==="PROMO"?[...new Set(set.cards.map(famOf))]:[];
+  const chips=sets.map(s=>{const st=stats(activeCards(s));return`<button class="setchip ${st.own===st.tot&&st.tot?"done":""}" data-set="${s.code}" aria-pressed="${s.code===code}"><div class="c">${esc(setLabel(s))}</div><div class="p">${st.own}/${st.tot}</div><div class="bar"><i style="width:${pct(st.pct)}"></i></div></button>`;}).join("");
   const st=stats(activeCards(set));
   const rars=RAR_ORDER.filter(r=>set.cards.some(c=>c.r===r));
   const unv=set.cards.some(c=>c.unverified);
   $("#main").innerHTML=`
     <div class="sets" id="sets">${chips}</div>
-    <div class="sethead"><div><div class="t">${esc(set.code)} · ${esc(set.name)}</div><div class="n">${series==="PRB"?"New illustrations only":"Foils: L · R · SR · SEC · SP · TR + alt arts"}</div>
+    <div class="sethead"><div><div class="t">${set.label?esc(set.name):`${esc(set.code)} · ${esc(set.name)}`}</div><div class="n">${SERIES_NOTE[series]||"Foils: L · R · SR · SEC · SP · TR + alt arts"}</div>
       <div class="progress"><i style="width:${pct(st.pct)}"></i></div></div>
       <div class="big"><b class="num">${st.own}</b><span class="muted num"> / ${st.tot}</span><div class="label">${pct(st.pct)}</div>${PH?`<div class="label num setval" style="color:var(--accent)">≈ ${usd(setValue(set))}</div>`:""}</div></div>
     ${unv?`<div class="banner">Some cards here haven't had their artwork checked yet, so a few reprints or pirate foils may still show. The list updates itself.</div>`:""}
     <div class="tools">
       <input class="search" id="q" type="search" placeholder="Search name or number" value="${esc(S.ui.q||"")}" autocomplete="off">
-      <div class="seg" role="group" aria-label="Show">${[["all","All"],["missing","Missing"],["owned","Owned"]].map(([k,l])=>`<button data-filter="${k}" aria-pressed="${S.ui.filter===k}">${l}</button>`).join("")}</div>
+      <div class="seg" role="group" aria-label="Show">${[["all","All"],["missing","Missing"],["owned","Owned"],["shop","🛒 Shop"]].map(([k,l])=>`<button data-filter="${k}" aria-pressed="${S.ui.filter===k}">${l}</button>`).join("")}</div>
     </div>
+    ${fams.length>1?`<div class="rar" style="padding-bottom:0">${["",...fams].map(f=>`<button data-fam="${f}" aria-pressed="${(fams.includes(S.ui.fam)?S.ui.fam:"")===f}">${f?(f==="P"?"P-cards":f+" cards"):"From any set"}</button>`).join("")}</div>`:""}
     <div class="rar">${["",...rars].map(r=>`<button data-rar="${r}" aria-pressed="${(S.ui.rar||"")===r}">${r==="MANGA"?"Manga":r||"All rarities"}</button>`).join("")}<button data-kind="alt" aria-pressed="${S.ui.kind==="alt"}">Alt arts</button></div>
     <div class="grid" id="grid"></div>
-    <p class="note" style="margin-top:14px">Tap a card to mark it owned · press and hold for details.</p>`;
+    <p class="note" style="margin-top:14px">${S.ui.filter==="shop"?"Shop mode: tap a missing card to find it at your shops on Buyee.":"Tap a card to mark it owned · press and hold for details."}</p>`;
   drawGrid(set);
   const active=document.querySelector(".setchip[aria-pressed='true']");if(active)active.scrollIntoView({inline:"center",block:"nearest"});
 }
 function filtered(set){
   const q=(S.ui.q||"").trim().toLowerCase();
+  const fam=set.series==="PROMO"&&S.ui.fam&&set.cards.some(c=>famOf(c)===S.ui.fam)?S.ui.fam:"";
   return set.cards.filter(c=>{
+    if(fam&&famOf(c)!==fam)return false;
+    if(S.ui.filter==="shop"&&qty(c.id))return false;
     if(S.skip[c.id]&&!S.ui.showSkipped)return false;
     if(S.ui.filter==="owned"&&!qty(c.id))return false;
     if(S.ui.filter==="missing"&&qty(c.id))return false;
@@ -391,15 +419,15 @@ function kindChip(c){
 }
 function cardHTML(c){
   const q=qty(c.id);
-  return`<button class="card ${q?"own":""}" data-id="${esc(c.id)}" aria-label="${esc(c.id)} ${esc(c.name)}${q?", owned":""}">
+  return`<button class="card ${q?"own":""} ${S.ui.filter==="shop"?"shop":""}" data-id="${esc(c.id)}" aria-label="${esc(c.id)} ${esc(c.name)}${q?", owned":""}">
     <div class="pic"><div class="ph">${esc(c.id)}</div><img loading="lazy" decoding="async" alt="" src="${esc(imgOf(c))}" onerror="this.remove()">
-    <span class="tick">✓</span>${q>1?`<span class="qty">×${q}</span>`:""}${hasNote(c.id)?`<span class="flag" title="Has a note">✎</span>`:""}</div>
+    <span class="tick">✓</span>${q>1?`<span class="qty">×${q}</span>`:""}${hasNote(c.id)?`<span class="flag" title="Has a note">✎</span>`:""}${S.cart[c.id]&&!q?`<span class="cartb" title="In your Buyee cart">🛒</span>`:""}</div>
     <div class="meta"><span class="id">${esc(c.disp||c.id)}</span>${kindChip(c)}</div>
     <div class="nm">${esc(c.name)}</div></button>`;
 }
 function drawGrid(set){
   const list=filtered(set);
-  $("#grid").innerHTML=list.length?list.map(cardHTML).join(""):`<div class="empty" style="grid-column:1/-1">${S.ui.filter==="missing"?"Nothing missing here. Set complete! 🎉":"No cards match."}</div>`;
+  $("#grid").innerHTML=list.length?list.map(cardHTML).join(""):`<div class="empty" style="grid-column:1/-1">${(S.ui.filter==="missing"||S.ui.filter==="shop")&&!S.ui.q&&!S.ui.rar&&!S.ui.kind?"Nothing missing here. Set complete! 🎉":"No cards match."}</div>`;
 }
 function refreshCard(id){
   const el=document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);
@@ -410,7 +438,8 @@ function refreshCard(id){
     const h=$(".sethead");if(h){h.querySelector(".big b").textContent=st.own;h.querySelector(".progress i").style.width=pct(st.pct);h.querySelector(".big .label").textContent=pct(st.pct);}
     const ch=document.querySelector(`.setchip[data-set="${set.code}"]`);if(ch){ch.querySelector(".p").textContent=`${st.own}/${st.tot}`;ch.querySelector(".bar i").style.width=pct(st.pct);ch.classList.toggle("done",st.own===st.tot);}
     const all=DATA.sets.flatMap(activeCards);const t=stats(all);$("#overall").textContent=`${t.own} / ${t.tot} · ${pct(t.pct)}`;
-    if(S.ui.filter!=="all"){const c=document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);if(c)c.remove();}
+    const gone=S.ui.filter==="owned"?!qty(id):S.ui.filter!=="all"&&qty(id)>0;
+    if(gone){const c=document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);if(c)c.remove();}
   }
 }
 
@@ -436,12 +465,12 @@ function renderNotes(){
 function renderStats(){
   const by=k=>DATA.sets.filter(s=>s.series===k);
   const tile=(k,l)=>{const st=stats(by(k).flatMap(activeCards));return`<div class="tile"><div class="label">${l}</div><div class="v num">${st.own}<span class="muted" style="font-size:16px"> / ${st.tot}</span></div><div class="d">${pct(st.pct)}</div></div>`;};
-  const rows=DATA.sets.map(s=>{const st=stats(activeCards(s));return`<div class="srow" data-goto="${s.code}" data-series="${s.series}"><b class="mono">${s.code}</b><div class="progress"><i style="width:${pct(st.pct)}"></i></div><span class="num" style="text-align:right">${st.own}/${st.tot}</span></div>`;}).join("");
+  const rows=DATA.sets.map(s=>{const st=stats(activeCards(s));return`<div class="srow" data-goto="${s.code}" data-series="${s.series}">${s.label?`<b style="font-size:12.5px">${esc(s.label)}</b>`:`<b class="mono">${s.code}</b>`}<div class="progress"><i style="width:${pct(st.pct)}"></i></div><span class="num" style="text-align:right">${st.own}/${st.tot}</span></div>`;}).join("");
   const skipped=Object.keys(S.skip).length;
   $("#main").innerHTML=`
     <h2>Value</h2>${renderValue()}
     <h2>Collection</h2>
-    <div class="tiles">${tile("OP","Boosters")}${tile("EB","Extra")}${tile("PRB","Premium")}</div>
+    <div class="tiles">${tile("OP","Boosters")}${tile("EB","Extra")}${tile("PRB","Premium")}${tile("PROMO","Promo")}</div>
     <h2>By set</h2><div class="panel">${rows}</div>
     <h2>Backup</h2>
     <div class="panel stack">
@@ -449,6 +478,8 @@ function renderStats(){
       <div class="btnrow"><button class="btn pri" id="backup">Save backup file</button><label class="btn">Restore from file<input type="file" id="restore" accept=".json,application/json" hidden></label></div>
       <p class="note" style="margin:0">Last change: ${S.updated?new Date(S.updated).toLocaleString():"never"}</p>
     </div>
+    <h2>Buyee shopping</h2>
+    ${renderShopSettings()}
     <h2>Offline pictures</h2>
     <div class="panel stack">
       <p class="note" style="margin:0">Pictures are kept on your phone once seen. To have every picture ready offline (e.g. at a card show), download them all once on Wi-Fi.</p>
@@ -459,11 +490,11 @@ function renderStats(){
     <div class="panel stack">
       <label class="switch"><input type="checkbox" id="showSkipped" ${S.ui.showSkipped?"checked":""}> Show cards I marked "not collecting" (${skipped})</label>
       <div class="btnrow"><span class="note">Theme</span><div class="seg">${["auto","light","dark"].map(t=>`<button data-theme-set="${t}" aria-pressed="${(S.ui.theme||"auto")===t}">${t}</button>`).join("")}</div></div>
-      <p class="note" style="margin:0">Card list: ${esc(DATA.generated)} · ${DATA.sets.reduce((n,s)=>n+s.cards.length,0)} cards · from the official Japanese card list.</p>
+      <p class="note" style="margin:0">Card list: ${esc(DATA.generated)} · ${DATA.sets.reduce((n,s)=>n+s.cards.length,0)} cards · from the official Japanese card list.${S.ui.tab==="STATS"&&!DATA.sets.some(s=>s.series==="PROMO")?" Promo cards arrive with the next update.":""}</p>
     </div>`;
 }
 function backup(){
-  const blob=new Blob([JSON.stringify({app:"log-pose",version:1,saved:new Date().toISOString(),owned:S.owned,notes:S.notes,flags:S.flags,yuyu:S.yuyu,noteAt:S.noteAt||{},skip:S.skip},null,1)],{type:"application/json"});
+  const blob=new Blob([JSON.stringify({app:"log-pose",version:1,saved:new Date().toISOString(),owned:S.owned,notes:S.notes,flags:S.flags,yuyu:S.yuyu,noteAt:S.noteAt||{},skip:S.skip,cart:S.cart,shops:S.shops},null,1)],{type:"application/json"});
   const name=`log-pose-backup-${new Date().toISOString().slice(0,10)}.json`;
   const file=new File([blob],name,{type:"application/json"});
   if(navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file],title:name}).catch(()=>{});return;}
@@ -475,7 +506,7 @@ async function restore(file){
     if(!d||d.app!=="log-pose"||typeof d.owned!=="object")throw 0;
     const n=Object.keys(d.owned).length;
     if(!confirm(`Replace your current collection with this backup (${n} cards owned)?`))return;
-    S.owned=d.owned||{};S.notes=d.notes||{};S.flags=d.flags||{};S.yuyu=d.yuyu||{};S.noteAt=d.noteAt||{};S.skip=d.skip||{};save();render();toast("Backup restored");
+    S.owned=d.owned||{};S.notes=d.notes||{};S.flags=d.flags||{};S.yuyu=d.yuyu||{};S.noteAt=d.noteAt||{};S.skip=d.skip||{};S.cart=d.cart||{};if(Array.isArray(d.shops)&&d.shops.length)S.shops=d.shops;save();render();toast("Backup restored");
   }catch(e){toast("That file isn't a Log Pose backup");}
 }
 async function preload(){
@@ -495,7 +526,7 @@ function openCard(id){
       <div class="sheet-head"><h3>${esc(c.name)}</h3><button class="x" id="close" aria-label="Close">×</button></div>
       <div class="detail"><div class="big"><img alt="${esc(c.name)}" src="${esc(imgOf(c))}"></div>
       <div class="stack">
-        <dl class="kv"><dt>Number</dt><dd class="mono">${esc(c.disp||c.id)}</dd><dt>Set</dt><dd>${esc(c.set)}</dd><dt>Rarity</dt><dd>${kindChip(c)} ${c.kind==="regular"?"":"<span class='note'>alternate print</span>"}</dd><dt>Type</dt><dd>${esc(c.cat)}</dd></dl>
+        <dl class="kv"><dt>Number</dt><dd class="mono">${esc(c.disp||c.id)}</dd><dt>Set</dt><dd>${esc(c.set)}</dd><dt>Rarity</dt><dd>${kindChip(c)} ${c.kind==="regular"?"":"<span class='note'>alternate print</span>"}</dd><dt>Type</dt><dd>${esc(c.cat)}</dd>${c.from?`<dt>From</dt><dd>${esc(c.from)}</dd>`:""}</dl>
         <div><div class="label" style="margin-bottom:6px">Copies owned</div><div class="stepper"><button id="minus" aria-label="One less">−</button><span class="num" id="qtyv">${q}</span><button id="plus" aria-label="One more">+</button></div></div>
         <div><div class="label" style="margin-bottom:6px">Condition</div><div class="tags" id="tags">${FLAGS.map(([k,l])=>`<button data-tag="${k}" aria-pressed="${(S.flags[id]||[]).includes(k)}">${l}</button>`).join("")}</div></div>
         <div><div class="label" style="margin-bottom:6px">Comment</div><textarea id="note" placeholder="e.g. small whitening top-left corner, centering 60/40…">${esc(S.notes[id]||"")}</textarea></div>
@@ -507,6 +538,7 @@ function openCard(id){
             <div class="bar"><input class="search" id="yyin" inputmode="numeric" placeholder="Price in ¥" style="min-width:0"><button class="btn sm" id="yysave">Save</button>
               <a class="btn sm" href="https://yuyu-tei.jp/sell/opc/s/search?search_word=${encodeURIComponent(c.code)}" target="_blank" rel="noopener">Yuyu-tei ↗</a></div>
           </div></div>
+        <button class="btn" id="tobuy">🛒 Find on Buyee${S.cart[id]?" · in your cart":""}</button>
         <label class="switch"><input type="checkbox" id="skip" ${S.skip[id]?"checked":""}> Not collecting this card (hide it and leave it out of totals)</label>
         ${c.unverified?`<p class="note banner" style="margin:0">Artwork not checked yet: if this is a pirate foil or a reprint, tick "Not collecting".</p>`:""}
       </div></div></div></div>`;
@@ -517,13 +549,165 @@ function openCard(id){
     $("#tags").onclick=e=>{const b=e.target.closest("[data-tag]");if(!b)return;const t=b.dataset.tag;const a=new Set(S.flags[id]||[]);a.has(t)?a.delete(t):a.add(t);
       if(a.size)S.flags[id]=[...a];else delete S.flags[id];b.setAttribute("aria-pressed",a.has(t));touchNote(id);save();};
     $("#yysave").onclick=()=>{saveYuyu(id,$("#yyin").value);$("#yyin").value="";const e=S.yuyu[id];$("#yyv").innerHTML=`${yen(yyNow(id))}${e&&e.length?` <span class="note">${esc(e[e.length-1][0])}</span>`:""}`;};
+    $("#tobuy").onclick=()=>openShop(id);
     $("#skip").onchange=e=>{if(e.target.checked)S.skip[id]=true;else delete S.skip[id];save();};
   };
   draw();
 }
 function touchNote(id){S.noteAt=S.noteAt||{};if(hasNote(id))S.noteAt[id]=Date.now();else delete S.noteAt[id];}
 function closeSheet(){$("#sheetRoot").innerHTML="";render();}
-function setQty(id,n){if(n>0)S.owned[id]=n;else delete S.owned[id];save();refreshCard(id);}
+function setQty(id,n){if(n>0){S.owned[id]=n;delete S.cart[id];}else delete S.owned[id];save();refreshCard(id);}
+
+/* ---------- Buyee shopping: listings at your Rakuten shops, each one opening on Buyee ---------- */
+// Nothing is ever bought or added to a cart from here: a listing is a link to that item's page on
+// Buyee, where you press "add to cart" yourself. Listings come from Rakuten's public search API,
+// called with your own free key, which stays on this device (not in backups).
+const RK_KEY="logpose.rk";
+const RK_API="https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701";
+function rk(){try{return JSON.parse(localStorage.getItem(RK_KEY)||"null")||{};}catch(e){return{};}}
+const buyeeItem=code=>"https://buyee.jp/rakuten/detail/"+encodeURIComponent(code);
+const buyeeSearch=kw=>"https://buyee.jp/rakuten/shopping/search/category/0?query="+encodeURIComponent(kw);
+const buyeeShop=code=>"https://buyee.jp/rakuten/shopping/store/top/"+encodeURIComponent(code);
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const squash=s=>String(s||"").normalize("NFKC").toUpperCase().replace(/[^A-Z0-9]/g,"");
+// a shop's code from whatever was pasted: a Buyee or Rakuten shop / item link, or the code itself
+function shopCode(line){
+  let t=String(line||"").trim();if(!t)return null;
+  try{t=decodeURIComponent(t);}catch(e){}
+  const m=t.match(/buyee\.jp\/rakuten\/shopping\/store\/top\/([\w-]+)/i)||t.match(/buyee\.jp\/rakuten\/detail\/([\w-]+):/i)
+    ||t.match(/rakuten\.ne\.jp\/gold\/([\w-]+)/i)||t.match(/\/\/(?:www|item|review|search)\.rakuten\.co\.jp\/(?:shop\/)?([\w-]+)/i)
+    ||t.match(/^([\w-]+)(?::\d+)?$/);
+  return m?m[1].toLowerCase():null;
+}
+const shopKeyword=c=>c.kind==="don"?"ドン!!カード":c.code;
+let RKMODE="";
+function jsonp(u){return new Promise((res,rej)=>{
+  const cb="lpcb"+Date.now()+Math.floor(Math.random()*1e4),s=document.createElement("script");
+  const done=()=>{clearTimeout(t);delete window[cb];s.remove();};
+  const t=setTimeout(()=>{done();rej(new Error("Rakuten didn't answer"));},12000);
+  window[cb]=d=>{done();res(d);};
+  s.onerror=()=>{done();rej(new Error("Rakuten refused the request (check the Application ID and Access key)"));};
+  const v=new URL(u);v.searchParams.set("callback",cb);s.src=v.href;document.head.appendChild(s);
+});}
+async function rakuten(params){
+  const k=rk();if(!k.app||!k.key)throw new Error("Add your Rakuten key first");
+  if(navigator.onLine===false)throw new Error("You're offline");
+  const u=new URL(RK_API);
+  for(const [a,b] of Object.entries({applicationId:k.app,accessKey:k.key,format:"json",formatVersion:2,hits:30,...params}))u.searchParams.set(a,b);
+  let d=null;
+  if(RKMODE!=="jsonp"){try{d=await (await fetch(u.href)).json();RKMODE="fetch";}catch(e){d=null;}}
+  if(!d){d=await jsonp(u);RKMODE="jsonp";}
+  if(d.error||d.errors){const e=new Error(d.error_description||d.error||(d.errors&&d.errors.errorMessage)||"Rakuten error");e.code=d.error;throw e;}
+  return d;
+}
+const SHOPC=new Map();
+async function shopItems(shop,kw){
+  const key=shop.code+"|"+kw;
+  const hit=SHOPC.get(key);if(hit&&Date.now()-hit.at<5*60e3)return hit.items;
+  const ask={keyword:kw,shopCode:shop.code,availability:1,sort:"+itemPrice"};
+  let d;
+  try{d=await rakuten(ask);}
+  catch(e){if(e.code!=="too_many_requests")throw e;await sleep(1500);d=await rakuten(ask);}
+  const items=(d.Items||d.items||[]).map(x=>x.Item||x.item||x).map(x=>{
+    const im=(x.mediumImageUrls||x.smallImageUrls||[])[0];
+    return{code:x.itemCode,name:x.itemName||"",price:Number(x.itemPrice),shop:x.shopName||shop.name||shop.code,
+      img:im&&(im.imageUrl||im)||"",stock:x.availability!==0};
+  }).filter(x=>x.code);
+  if(items.length&&items[0].shop&&shop.name!==items[0].shop){shop.name=items[0].shop;save();}
+  SHOPC.set(key,{at:Date.now(),items});
+  await sleep(350);                                   // stay well under Rakuten's request limit
+  return items;
+}
+function openShop(id){
+  const c=BYID[id];if(!c)return;
+  const k=rk(),hasKey=!!(k.app&&k.key);
+  $("#sheetRoot").innerHTML=`<div class="scrim" id="scrim"><div class="sheet" role="dialog" aria-modal="true" aria-label="Find ${esc(c.id)} on Buyee">
+    <div class="sheet-head"><h3>Find on Buyee</h3><button class="x" id="close" aria-label="Close">×</button></div>
+    <div class="stack">
+      <div class="shophead"><img alt="" src="${esc(imgOf(c))}" onerror="this.style.visibility='hidden'">
+        <div style="min-width:0"><div style="font-weight:600">${esc(c.name)}</div><div class="mono muted">${esc(c.disp||c.id)}</div>
+        <div style="margin-top:4px">${kindChip(c)}${yyNow(id)!=null?` <span class="note">Yuyu-tei ${yen(yyNow(id))}</span>`:""}${qty(id)?` <span class="chip">×${qty(id)} owned</span>`:""}</div></div></div>
+      <div class="bar"><input class="search" id="skw" type="search" value="${esc(shopKeyword(c))}" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search words" style="min-width:0"><button class="btn pri" id="sgo">Search</button></div>
+      <div id="sres"></div>
+      <div><div class="label" style="margin-bottom:6px">Open on Buyee</div>
+        <div class="btnrow"><a class="btn sm" id="sall" href="#" target="_blank" rel="noopener">All Rakuten shops ↗</a>${S.shops.map(s=>`<a class="btn sm" href="${esc(buyeeShop(s.code))}" target="_blank" rel="noopener">${esc(s.name||s.code)} ↗</a>`).join("")}</div></div>
+      <label class="switch"><input type="checkbox" id="incart" ${S.cart[id]?"checked":""}> It's in my Buyee cart (shows 🛒 on the card until I own it)</label>
+      <p class="note" style="margin:0">Prices are the shops' own, before Buyee's fees. Nothing is ordered from here: a listing opens on Buyee, where you add it to your cart.</p>
+    </div></div></div>`;
+  $("#close").onclick=closeSheet;$("#scrim").onclick=e=>{if(e.target.id==="scrim")closeSheet();};
+  $("#incart").onchange=e=>{if(e.target.checked)S.cart[id]=Date.now();else delete S.cart[id];save();refreshCard(id);};
+  const want=c.kind==="don"?"":squash(c.code);
+  const row=it=>`<a class="lrow ${it.stock?"":"off"}" href="${esc(buyeeItem(it.code))}" target="_blank" rel="noopener">
+    ${it.img?`<img loading="lazy" alt="" src="${esc(it.img)}" onerror="this.style.visibility='hidden'">`:""}
+    <div class="main"><div class="t">${esc(it.name)}</div><div class="s">${esc(it.shop)}${it.match?"":" · may be another card"}${it.stock?"":" · sold out"}</div></div>
+    <div><div class="p num">${yen(it.price)}</div><div class="go">Buyee ↗</div></div></a>`;
+  let run=0;
+  const search=async()=>{
+    const my=++run,kw=$("#skw").value.trim(),box=$("#sres");
+    $("#sall").href=buyeeSearch(kw||c.code);
+    if(!hasKey||!S.shops.length){box.innerHTML=`<div class="banner" style="margin:0">To see listings from your shops right here, add ${!S.shops.length?"your shops":""}${!S.shops.length&&!hasKey?" and ":""}${!hasKey?"your free Rakuten key":""} in <b>Stats → Buyee shopping</b>. The buttons below work without it.</div>`;return;}
+    if(!kw){box.innerHTML="";return;}
+    box.innerHTML=`<p class="note" id="sstat" style="margin:0 0 6px">Looking in ${S.shops.length} shop${S.shops.length>1?"s":""}…</p><div class="panel" id="slist" style="padding:0" hidden></div>`;
+    let all=[];const errs=[];
+    for(const s of S.shops){
+      try{const got=await shopItems(s,kw);all=all.concat(got);}catch(e){errs.push(`${s.name||s.code}: ${e.message}`);}
+      if(my!==run||!$("#slist"))return;                 // sheet closed, or a newer search started
+      for(const it of all)it.match=!want||squash(it.name).includes(want);
+      all.sort((a,b)=>(b.match-a.match)||(a.price-b.price));
+      if(all.length){$("#slist").hidden=false;$("#slist").innerHTML=all.map(row).join("");}
+    }
+    $("#sstat").innerHTML=(all.length?`${all.length} listing${all.length>1?"s":""} in stock, cheapest first. Tap one to open it on Buyee.`
+      :`Nothing in stock at your shops for “${esc(kw)}”. Try the card's name, or look across all Rakuten shops below.`)
+      +(errs.length?`<br><span style="color:var(--accent)">${errs.map(esc).join("<br>")}</span>`:"");
+  };
+  $("#sgo").onclick=search;
+  $("#skw").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();e.target.blur();search();}};
+  search();
+}
+function renderShopSettings(){
+  const k=rk(),named=S.shops.filter(s=>s.name);
+  return`<div class="panel stack">
+    <p class="note" style="margin:0">In any set, tap <b>🛒 Shop</b> and then a missing card: Log Pose looks for it at your Rakuten shops, and each listing opens on Buyee ready to add to your cart.</p>
+    <div><div class="label" style="margin-bottom:6px">My Rakuten shops · one per line</div>
+      <textarea id="shoplist" placeholder="Paste a shop or item link from Buyee or Rakuten, or the shop's code" autocapitalize="off" autocomplete="off" spellcheck="false">${esc(S.shops.map(s=>s.code).join("\n"))}</textarea>
+      ${named.length?`<p class="note" style="margin:4px 0 0">${named.map(s=>`${esc(s.code)} = ${esc(s.name)}`).join(" · ")}</p>`:""}</div>
+    <div><div class="label" style="margin-bottom:6px">Rakuten key</div>
+      <div class="stack" style="gap:6px"><input class="field" id="rkapp" placeholder="Application ID" value="${esc(k.app||"")}" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <input class="field" id="rkkey" type="password" placeholder="Access key" value="${esc(k.key||"")}" autocomplete="off"></div>
+      <p class="note" style="margin:6px 0 0">Free: register an app at <a href="https://webservice.rakuten.co.jp/" target="_blank" rel="noopener">webservice.rakuten.co.jp</a> and copy its two values here. If it asks for the app's website, give <span class="mono">${esc(location.origin)}</span>. The key stays on this phone and is left out of backups.</p></div>
+    <div class="btnrow"><button class="btn pri" id="shopsave">Save</button><button class="btn" id="shoptest">Save and test</button></div>
+    <p class="note" id="shopmsg" style="margin:0"></p>
+  </div>`;
+}
+function saveShopSettings(quiet){
+  const old=Object.fromEntries(S.shops.map(s=>[s.code,s])),bad=[],codes=[];
+  for(const line of $("#shoplist").value.split(/\n+/)){
+    if(!line.trim())continue;
+    const code=shopCode(line);
+    if(!code)bad.push(line.trim());else if(!codes.includes(code))codes.push(code);
+  }
+  S.shops=codes.map(code=>old[code]||{code,name:""});save();
+  const app=$("#rkapp").value.trim(),key=$("#rkkey").value.trim();
+  try{if(app||key)localStorage.setItem(RK_KEY,JSON.stringify({app,key}));else localStorage.removeItem(RK_KEY);}catch(e){}
+  SHOPC.clear();RKMODE="";
+  $("#shoplist").value=codes.join("\n");
+  const msg=`Saved ${codes.length} shop${codes.length===1?"":"s"}${app&&key?"":" · no Rakuten key yet, so listings won't show inside the app"}.`+(bad.length?` Couldn't read: ${bad.join(", ")}`:"");
+  if(!quiet)$("#shopmsg").textContent=msg;
+  return{codes,bad,ready:!!(app&&key)};
+}
+async function testShop(){
+  const r=saveShopSettings(true),msg=$("#shopmsg");
+  if(!r.ready){msg.textContent="Add both the Application ID and the Access key first.";return;}
+  if(!r.codes.length){msg.textContent="Add at least one shop first.";return;}
+  msg.textContent="Asking Rakuten…";
+  const out=[];
+  for(const s of S.shops){
+    try{const items=await shopItems(s,"ワンピースカード");out.push(`✓ ${s.name||s.code}${items.length?"":" (shop found, but no One Piece card listing: is the code right?)"}`);}
+    catch(e){out.push(`✗ ${s.code}: ${e.message}`);}
+    if(!$("#shopmsg"))return;
+    $("#shopmsg").textContent=out.join(" · ");
+  }
+}
 
 /* ---------- toast ---------- */
 let toastT;
@@ -547,18 +731,23 @@ document.addEventListener("contextmenu",e=>{if(e.target.closest(".card"))e.preve
 document.addEventListener("click",e=>{
   const t=e.target;
   const card=t.closest(".card");
-  if(card){if(pressed){pressed=false;return;}const id=card.dataset.id,prev=qty(id);setQty(id,prev?0:1);
+  if(card){if(pressed){pressed=false;return;}const id=card.dataset.id,prev=qty(id);
+    if(S.ui.filter==="shop")return openShop(id);
+    setQty(id,prev?0:1);
     const c=BYID[id];toast(prev?`Removed ${c.disp||c.id}`:`Added ${c.disp||c.id} · ${c.name}`,()=>setQty(id,prev));return;}
   const op=t.closest("[data-open]");if(op)return openCard(op.dataset.open);
   const nf=t.closest("[data-nflag]");if(nf){S.ui.nflag=nf.dataset.nflag;save();render();return;}
   const tab=t.closest("[data-tab]");if(tab){S.ui.tab=tab.dataset.tab;save();render();$("#scroller").scrollTop=0;return;}
   const set=t.closest("[data-set]");if(set){S.ui.set[S.ui.tab]=set.dataset.set;save();render();return;}
   const f=t.closest("[data-filter]");if(f){S.ui.filter=f.dataset.filter;save();render();return;}
+  const fm=t.closest("[data-fam]");if(fm){S.ui.fam=fm.dataset.fam;save();render();return;}
   const r=t.closest("[data-rar]");if(r){S.ui.rar=r.dataset.rar;S.ui.kind="";save();render();return;}
   const k=t.closest("[data-kind]");if(k){S.ui.kind=S.ui.kind==="alt"?"":"alt";S.ui.rar="";save();render();return;}
   const g=t.closest("[data-goto]");if(g){S.ui.tab=g.dataset.series;S.ui.set[g.dataset.series]=g.dataset.goto;save();render();$("#scroller").scrollTop=0;return;}
   const th=t.closest("[data-theme-set]");if(th){S.ui.theme=th.dataset.themeSet;save();applyTheme();render();return;}
   if(t.id==="ppgo"){const v=$("#ppw").value;if(v)unlock(v,false);return;}
+  if(t.id==="shopsave")return saveShopSettings();
+  if(t.id==="shoptest")return testShop();
   if(t.id==="backup")return backup();
   if(t.id==="preload")return preload();
 });
