@@ -384,7 +384,7 @@ function renderSeries(series){
       <div class="big"><b class="num">${st.own}</b><span class="muted num"> / ${st.tot}</span><div class="label">${pct(st.pct)}</div>${PH?`<div class="label num setval" style="color:var(--accent)">≈ ${usd(setValue(set))}</div>`:""}</div></div>
     ${unv?`<div class="banner">Some cards here haven't had their artwork checked yet, so a few reprints or pirate foils may still show. The list updates itself.</div>`:""}
     <div class="tools">
-      <input class="search" id="q" type="search" placeholder="Search name or number" value="${esc(S.ui.q||"")}" autocomplete="off">
+      <input class="search" id="q" type="search" placeholder="${series==="PROMO"?"Search name, number or product":"Search name or number"}" value="${esc(S.ui.q||"")}" autocomplete="off">
       <div class="seg" role="group" aria-label="Show">${[["all","All"],["missing","Missing"],["owned","Owned"],["shop","🛒 Shop"]].map(([k,l])=>`<button data-filter="${k}" aria-pressed="${S.ui.filter===k}">${l}</button>`).join("")}</div>
     </div>
     ${fams.length>1?`<div class="rar" style="padding-bottom:0">${["",...fams].map(f=>`<button data-fam="${f}" aria-pressed="${(fams.includes(S.ui.fam)?S.ui.fam:"")===f}">${f?(f==="P"?"P-cards":f+" cards"):"From any set"}</button>`).join("")}</div>`:""}
@@ -405,7 +405,7 @@ function filtered(set){
     if(S.ui.filter==="missing"&&qty(c.id))return false;
     if(S.ui.rar&&c.r!==S.ui.rar)return false;
     if(S.ui.kind==="alt"&&c.kind==="regular")return false;
-    if(q&&!(c.id.toLowerCase().includes(q)||c.name.toLowerCase().includes(q)))return false;
+    if(q&&!(c.id.toLowerCase().includes(q)||c.name.toLowerCase().includes(q)||(c.from||"").toLowerCase().includes(q)))return false;
     return true;
   });
 }

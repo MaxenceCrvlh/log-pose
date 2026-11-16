@@ -68,7 +68,7 @@ def parse_packs(page):
     for o in re.finditer(r"(?is)<option\b([^>]*)>(.*?)(?=</option>|<option\b|$)", m.group(1) if m else ""):
         pid = (attr("<o " + o.group(1) + ">", "value") or "").strip()
         if re.fullmatch(r"\d{6}", pid):
-            out[pid] = text(o.group(2))
+            out[pid] = text(text(o.group(2)))            # titles carry an escaped <br>
     return out
 
 
@@ -101,6 +101,7 @@ def parse_cards(page):
         got = div(block, "getInfo")
         if got is not None:
             got = text(re.sub(r"(?is)<h3\b.*?</h3>", "", got)).strip("-－ ")
+            got = re.sub(r"\s*カードリスト$", "", got)        # the product name is a link to its card list
         seen.add(cid)
         cards.append({"id": cid, "name": text(div(block, "cardName") or ""),
                       "rarity": RARITY.get(rar, rar), "category": CATEGORY.get(cat.upper(), CATEGORY.get(cat, cat.title())),
