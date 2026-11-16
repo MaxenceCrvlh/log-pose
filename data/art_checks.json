@@ -251,6 +251,54 @@
 "best_id": "EB04-052",
 "method": "orb-art-v2"
 },
+"EB05-004_p1": {
+"against": [
+"EB05-004"
+],
+"best": 1,
+"best_id": "EB05-004",
+"method": "orb-art-v2"
+},
+"EB05-018_p1": {
+"against": [
+"EB05-018"
+],
+"best": 3,
+"best_id": "EB05-018",
+"method": "orb-art-v2"
+},
+"EB05-028_p1": {
+"against": [
+"EB05-028"
+],
+"best": 6,
+"best_id": "EB05-028",
+"method": "orb-art-v2"
+},
+"EB05-037_p1": {
+"against": [
+"EB05-037"
+],
+"best": 7,
+"best_id": "EB05-037",
+"method": "orb-art-v2"
+},
+"EB05-043_p1": {
+"against": [
+"EB05-043"
+],
+"best": 2,
+"best_id": "EB05-043",
+"method": "orb-art-v2"
+},
+"EB05-057_p1": {
+"against": [
+"EB05-057"
+],
+"best": 7,
+"best_id": "EB05-057",
+"method": "orb-art-v2"
+},
 "OP01-006_p1": {
 "against": [
 "OP01-006",
@@ -311,7 +359,8 @@
 "OP01-016_p4",
 "OP01-016_p5",
 "OP01-016_p6",
-"OP01-016_p8"
+"OP01-016_p8",
+"OP01-016_p9"
 ],
 "best": 7,
 "best_id": "OP01-016_p1",
