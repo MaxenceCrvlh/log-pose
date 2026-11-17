@@ -569,6 +569,15 @@ const buyeeItem=code=>"https://buyee.jp/rakuten/detail/"+encodeURIComponent(code
 const buyeeSearch=kw=>"https://buyee.jp/rakuten/shopping/search/category/0?query="+encodeURIComponent(kw);
 const buyeeShop=code=>"https://buyee.jp/rakuten/shopping/store/top/"+encodeURIComponent(code);
 const buyeeShopSearch=(code,kw)=>"https://buyee.jp/rakuten/shopping/search/store/category/"+encodeURIComponent(code)+"/0?query="+encodeURIComponent(kw);
+// Installed on an iPhone home screen, outside links open in a throwaway in-app browser that is not
+// logged in to Buyee. Safari's own x-safari-https: scheme sends them to Safari instead (iOS 17+).
+const IOS_APP=navigator.standalone===true;
+const inSafari=()=>IOS_APP&&S.ui.safari!==false;
+document.addEventListener("click",e=>{
+  const a=e.target.closest&&e.target.closest("a[data-buyee]");
+  if(!a||!inSafari()||!/^https:\/\//.test(a.href))return;
+  e.preventDefault();location.href="x-safari-"+a.href;
+});
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const squash=s=>String(s||"").normalize("NFKC").toUpperCase().replace(/[^A-Z0-9]/g,"");
 // a shop's code from whatever was pasted: a Buyee or Rakuten shop / item link, or the code itself
@@ -631,15 +640,15 @@ function openShop(id){
       <div class="bar"><input class="search" id="skw" type="search" value="${esc(shopKeyword(c))}" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search words" style="min-width:0"><button class="btn pri" id="sgo">Search</button></div>
       <div id="sres"></div>
       <div><div class="label" style="margin-bottom:6px">Search this card on Buyee</div>
-        <div class="stack" style="gap:8px">${S.shops.map(s=>`<a class="btn pri" data-shopsearch="${esc(s.code)}" href="#" target="_blank" rel="noopener">${esc(s.name||s.code)} ↗</a>`).join("")}
-        <a class="btn" id="sall" href="#" target="_blank" rel="noopener">All Rakuten shops ↗</a></div></div>
+        <div class="stack" style="gap:8px">${S.shops.map(s=>`<a class="btn pri" data-buyee data-shopsearch="${esc(s.code)}" href="#" target="_blank" rel="noopener">${esc(s.name||s.code)} ↗</a>`).join("")}
+        <a class="btn" data-buyee id="sall" href="#" target="_blank" rel="noopener">All Rakuten shops ↗</a></div></div>
       <label class="switch"><input type="checkbox" id="incart" ${S.cart[id]?"checked":""}> It's in my Buyee cart (shows 🛒 on the card until I own it)</label>
       <p class="note" style="margin:0">Prices are the shops' own, before Buyee's fees. Nothing is ordered from here: a listing opens on Buyee, where you add it to your cart.</p>
     </div></div></div>`;
   $("#close").onclick=closeSheet;$("#scrim").onclick=e=>{if(e.target.id==="scrim")closeSheet();};
   $("#incart").onchange=e=>{if(e.target.checked)S.cart[id]=Date.now();else delete S.cart[id];save();refreshCard(id);};
   const want=c.kind==="don"?"":squash(c.code);
-  const row=it=>`<a class="lrow ${it.stock?"":"off"}" href="${esc(buyeeItem(it.code))}" target="_blank" rel="noopener">
+  const row=it=>`<a class="lrow ${it.stock?"":"off"}" data-buyee href="${esc(buyeeItem(it.code))}" target="_blank" rel="noopener">
     ${it.img?`<img loading="lazy" alt="" src="${esc(it.img)}" onerror="this.style.visibility='hidden'">`:""}
     <div class="main"><div class="t">${esc(it.name)}</div><div class="s">${esc(it.shop)}${it.match?"":" · may be another card"}${it.stock?"":" · sold out"}</div></div>
     <div><div class="p num">${yen(it.price)}</div><div class="go">Buyee ↗</div></div></a>`;
@@ -679,6 +688,7 @@ function renderShopSettings(){
       <div class="stack" style="gap:6px"><input class="field" id="rkapp" placeholder="Application ID" value="${esc(k.app||"")}" autocomplete="off" autocapitalize="off" spellcheck="false">
       <input class="field" id="rkkey" type="password" placeholder="Access key" value="${esc(k.key||"")}" autocomplete="off"></div>
       <p class="note" style="margin:6px 0 0">Only needed to see prices and listings inside Log Pose instead of on Buyee; Rakuten's developer site often refuses visitors outside Japan, and everything else works without it. Free: register an app at <a href="https://webservice.rakuten.co.jp/" target="_blank" rel="noopener">webservice.rakuten.co.jp</a> and copy its two values here. If it asks for the app's website, give <span class="mono">${esc(location.origin)}</span>. The key stays on this phone and is left out of backups.</p></div>
+    ${IOS_APP?`<label class="switch"><input type="checkbox" id="shopsafari" ${S.ui.safari!==false?"checked":""}> Open Buyee in Safari, where I'm logged in (turn off if the buttons do nothing)</label>`:""}
     <div class="btnrow"><button class="btn pri" id="shopsave">Save</button><button class="btn" id="shoptest">Save and test</button></div>
     <p class="note" id="shopmsg" style="margin:0"></p>
   </div>`;
@@ -755,6 +765,7 @@ document.addEventListener("click",e=>{
   if(t.id==="backup")return backup();
   if(t.id==="preload")return preload();
 });
+document.addEventListener("change",e=>{if(e.target.id==="shopsafari"){S.ui.safari=e.target.checked;save();}});
 document.addEventListener("input",e=>{if(e.target.id==="q"){S.ui.q=e.target.value;save();const code=S.ui.set[S.ui.tab]||setsOf(S.ui.tab)[0].code;drawGrid(DATA.sets.find(s=>s.code===code));}});
 document.addEventListener("change",e=>{
   if(e.target.id==="restore"&&e.target.files[0])restore(e.target.files[0]);
