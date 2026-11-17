@@ -83,7 +83,7 @@ h2{font-family:var(--display);font-weight:700;font-size:22px;text-transform:uppe
 .progress i{display:block;height:100%;background:var(--accent);transition:width .25s}
 .tools{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:10px 0 4px}
 .tools .search{flex:1 1 180px;min-width:0}
-@media (max-width:420px){.tools .seg{flex:1 1 100%;display:flex}.tools .seg button{flex:1}}
+@media (max-width:420px){.tools .seg{flex:1 1 100%;display:flex}.tools .seg button{flex:1;padding:8px 2px;white-space:nowrap}}
 .search{flex:1;min-width:150px;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface)}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
 .seg button{border:0;background:none;padding:8px 11px;font-size:13px;font-weight:600;cursor:pointer;color:var(--muted)}
@@ -126,7 +126,13 @@ h2{font-family:var(--display);font-weight:700;font-size:22px;text-transform:uppe
 :root[data-theme="dark"] .chip.manga{background:#E6EAF0;color:#0E1219}
 .chip.don{background:var(--gold-soft);color:var(--gold)}
 .chip.fl{background:var(--warn-soft);color:var(--warn)}
-.card .cartb{position:absolute;bottom:5px;right:5px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:11px;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.card .ordb{position:absolute;left:5px;right:5px;bottom:5px;padding:3px 0;border-radius:5px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;letter-spacing:.06em;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.orow{display:flex;gap:10px;align-items:center;padding:8px 10px;border-top:1px solid var(--line)}
+.orow:first-child{border-top:0}
+.orow .open{flex:1;min-width:0;display:flex;gap:10px;align-items:center;border:0;background:none;padding:0;text-align:left;color:inherit;cursor:pointer}
+.orow img{width:38px;aspect-ratio:600/838;border-radius:4px;object-fit:cover;flex-shrink:0;border:1px solid var(--line)}
+.orow .t{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.orow .s{font-size:12px;color:var(--muted)}
 .card.shop:not(.own) img{filter:none;opacity:.9}
 .lrow{display:flex;gap:10px;align-items:center;padding:9px 10px;border-top:1px solid var(--line);text-decoration:none;color:inherit}
 .lrow:first-child{border-top:0}
@@ -238,6 +244,9 @@ const TAB_ICON={STATS:"★",NOTES:"✎",PROMO:"P"};
 const SERIES_NOTE={PRB:"New illustrations only",PROMO:"Every print, foil or not"};
 const famOf=c=>(c.code.match(/^[A-Z]+/)||[""])[0];
 const setLabel=s=>s.label||s.code;
+// "ordered": bought or in the basket, not in hand yet. Kept in S.cart as {card id: when}; cleared once owned.
+const ordered=id=>!!S.cart[id]&&!qty(id);
+const orderedIn=cards=>cards.filter(c=>ordered(c.id)).length;
 const FLAGS=[["damage","Damage"],["centering","Centering"],["whitening","Whitening"],["scratch","Scratch"],["printline","Print line"],["dent","Dent / crease"],["grade","To grade"],["upgrade","Upgrade wanted"]];
 const FLAG_LBL=Object.fromEntries(FLAGS);
 const hasNote=id=>!!(S.notes[id]||(S.flags[id]&&S.flags[id].length));
@@ -381,16 +390,16 @@ function renderSeries(series){
     <div class="sets" id="sets">${chips}</div>
     <div class="sethead"><div><div class="t">${set.label?esc(set.name):`${esc(set.code)} · ${esc(set.name)}`}</div><div class="n">${SERIES_NOTE[series]||"Foils: L · R · SR · SEC · SP · TR + alt arts"}</div>
       <div class="progress"><i style="width:${pct(st.pct)}"></i></div></div>
-      <div class="big"><b class="num">${st.own}</b><span class="muted num"> / ${st.tot}</span><div class="label">${pct(st.pct)}</div>${PH?`<div class="label num setval" style="color:var(--accent)">≈ ${usd(setValue(set))}</div>`:""}</div></div>
+      <div class="big"><b class="num">${st.own}</b><span class="muted num"> / ${st.tot}</span><div class="label">${pct(st.pct)}</div><div class="label num ordn" style="color:var(--accent)"${orderedIn(activeCards(set))?"":" hidden"}>${orderedIn(activeCards(set))} ordered</div>${PH?`<div class="label num setval" style="color:var(--accent)">≈ ${usd(setValue(set))}</div>`:""}</div></div>
     ${unv?`<div class="banner">Some cards here haven't had their artwork checked yet, so a few reprints or pirate foils may still show. The list updates itself.</div>`:""}
     <div class="tools">
       <input class="search" id="q" type="search" placeholder="${series==="PROMO"?"Search name, number or product":"Search name or number"}" value="${esc(S.ui.q||"")}" autocomplete="off">
-      <div class="seg" role="group" aria-label="Show">${[["all","All"],["missing","Missing"],["owned","Owned"],["shop","🛒 Shop"]].map(([k,l])=>`<button data-filter="${k}" aria-pressed="${S.ui.filter===k}">${l}</button>`).join("")}</div>
+      <div class="seg" role="group" aria-label="Show">${[["all","All"],["missing","Missing"],["ordered","Ordered"],["owned","Owned"],["shop","🛒 Shop"]].map(([k,l])=>`<button data-filter="${k}" aria-pressed="${S.ui.filter===k}">${l}</button>`).join("")}</div>
     </div>
     ${fams.length>1?`<div class="rar" style="padding-bottom:0">${["",...fams].map(f=>`<button data-fam="${f}" aria-pressed="${(fams.includes(S.ui.fam)?S.ui.fam:"")===f}">${f?(f==="P"?"P-cards":f+" cards"):"From any set"}</button>`).join("")}</div>`:""}
     <div class="rar">${["",...rars].map(r=>`<button data-rar="${r}" aria-pressed="${(S.ui.rar||"")===r}">${r==="MANGA"?"Manga":r||"All rarities"}</button>`).join("")}<button data-kind="alt" aria-pressed="${S.ui.kind==="alt"}">Alt arts</button></div>
     <div class="grid" id="grid"></div>
-    <p class="note" style="margin-top:14px">${S.ui.filter==="shop"?"Shop mode: tap a missing card to find it at your shops on Buyee.":"Tap a card to mark it owned · press and hold for details."}</p>`;
+    <p class="note" style="margin-top:14px">${S.ui.filter==="shop"?"Shop mode: tap a missing card to find it at your shops on Buyee.":S.ui.filter==="ordered"?"Cards you ordered that haven't arrived. Tap one when it arrives to mark it owned · press and hold for details.":"Tap a card to mark it owned · press and hold for details."}</p>`;
   drawGrid(set);
   const active=document.querySelector(".setchip[aria-pressed='true']");if(active)active.scrollIntoView({inline:"center",block:"nearest"});
 }
@@ -402,6 +411,7 @@ function filtered(set){
     if(S.ui.filter==="shop"&&qty(c.id))return false;
     if(S.skip[c.id]&&!S.ui.showSkipped)return false;
     if(S.ui.filter==="owned"&&!qty(c.id))return false;
+    if(S.ui.filter==="ordered"&&!ordered(c.id))return false;
     if(S.ui.filter==="missing"&&qty(c.id))return false;
     if(S.ui.rar&&c.r!==S.ui.rar)return false;
     if(S.ui.kind==="alt"&&c.kind==="regular")return false;
@@ -419,15 +429,15 @@ function kindChip(c){
 }
 function cardHTML(c){
   const q=qty(c.id);
-  return`<button class="card ${q?"own":""} ${S.ui.filter==="shop"?"shop":""}" data-id="${esc(c.id)}" aria-label="${esc(c.id)} ${esc(c.name)}${q?", owned":""}">
+  return`<button class="card ${q?"own":""} ${S.ui.filter==="shop"?"shop":""}" data-id="${esc(c.id)}" aria-label="${esc(c.id)} ${esc(c.name)}${q?", owned":ordered(c.id)?", ordered":""}">
     <div class="pic"><div class="ph">${esc(c.id)}</div><img loading="lazy" decoding="async" alt="" src="${esc(imgOf(c))}" onerror="this.remove()">
-    <span class="tick">✓</span>${q>1?`<span class="qty">×${q}</span>`:""}${hasNote(c.id)?`<span class="flag" title="Has a note">✎</span>`:""}${S.cart[c.id]&&!q?`<span class="cartb" title="In your Buyee cart">🛒</span>`:""}</div>
+    <span class="tick">✓</span>${q>1?`<span class="qty">×${q}</span>`:""}${hasNote(c.id)?`<span class="flag" title="Has a note">✎</span>`:""}${ordered(c.id)?`<span class="ordb">ORDERED</span>`:""}</div>
     <div class="meta"><span class="id">${esc(c.disp||c.id)}</span>${kindChip(c)}</div>
     <div class="nm">${esc(c.name)}</div></button>`;
 }
 function drawGrid(set){
   const list=filtered(set);
-  $("#grid").innerHTML=list.length?list.map(cardHTML).join(""):`<div class="empty" style="grid-column:1/-1">${(S.ui.filter==="missing"||S.ui.filter==="shop")&&!S.ui.q&&!S.ui.rar&&!S.ui.kind?"Nothing missing here. Set complete! 🎉":"No cards match."}</div>`;
+  $("#grid").innerHTML=list.length?list.map(cardHTML).join(""):`<div class="empty" style="grid-column:1/-1">${S.ui.filter==="ordered"&&!S.ui.q&&!S.ui.rar&&!S.ui.kind?"Nothing on order in this set. Mark a card as ordered from 🛒 Shop, or press and hold it.":(S.ui.filter==="missing"||S.ui.filter==="shop")&&!S.ui.q&&!S.ui.rar&&!S.ui.kind?"Nothing missing here. Set complete! 🎉":"No cards match."}</div>`;
 }
 function refreshCard(id){
   const el=document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);
@@ -435,10 +445,10 @@ function refreshCard(id){
   const tab=S.ui.tab;
   if(tab!=="STATS"){ // update header numbers without rebuilding the grid
     const set=DATA.sets.find(s=>s.code===BYID[id].set);const st=stats(activeCards(set));
-    const h=$(".sethead");if(h){h.querySelector(".big b").textContent=st.own;h.querySelector(".progress i").style.width=pct(st.pct);h.querySelector(".big .label").textContent=pct(st.pct);}
+    const h=$(".sethead");if(h){h.querySelector(".big b").textContent=st.own;h.querySelector(".progress i").style.width=pct(st.pct);h.querySelector(".big .label").textContent=pct(st.pct);const on=h.querySelector(".ordn"),n=orderedIn(activeCards(set));if(on){on.hidden=!n;on.textContent=`${n} ordered`;}}
     const ch=document.querySelector(`.setchip[data-set="${set.code}"]`);if(ch){ch.querySelector(".p").textContent=`${st.own}/${st.tot}`;ch.querySelector(".bar i").style.width=pct(st.pct);ch.classList.toggle("done",st.own===st.tot);}
     const all=DATA.sets.flatMap(activeCards);const t=stats(all);$("#overall").textContent=`${t.own} / ${t.tot} · ${pct(t.pct)}`;
-    const gone=S.ui.filter==="owned"?!qty(id):S.ui.filter!=="all"&&qty(id)>0;
+    const gone=S.ui.filter==="owned"?!qty(id):S.ui.filter==="ordered"?!ordered(id):S.ui.filter!=="all"&&qty(id)>0;
     if(gone){const c=document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);if(c)c.remove();}
   }
 }
@@ -467,6 +477,7 @@ function renderStats(){
   const tile=(k,l)=>{const st=stats(by(k).flatMap(activeCards));return`<div class="tile"><div class="label">${l}</div><div class="v num">${st.own}<span class="muted" style="font-size:16px"> / ${st.tot}</span></div><div class="d">${pct(st.pct)}</div></div>`;};
   const rows=DATA.sets.map(s=>{const st=stats(activeCards(s));return`<div class="srow" data-goto="${s.code}" data-series="${s.series}">${s.label?`<b style="font-size:12.5px">${esc(s.label)}</b>`:`<b class="mono">${s.code}</b>`}<div class="progress"><i style="width:${pct(st.pct)}"></i></div><span class="num" style="text-align:right">${st.own}/${st.tot}</span></div>`;}).join("");
   const skipped=Object.keys(S.skip).length;
+  const onOrder=Object.keys(S.cart).filter(id=>BYID[id]&&ordered(id)).sort((a,b)=>S.cart[b]-S.cart[a]);
   $("#main").innerHTML=`
     <h2>Value</h2>${renderValue()}
     <h2>Collection</h2>
@@ -478,6 +489,9 @@ function renderStats(){
       <div class="btnrow"><button class="btn pri" id="backup">Save backup file</button><label class="btn">Restore from file<input type="file" id="restore" accept=".json,application/json" hidden></label></div>
       <p class="note" style="margin:0">Last change: ${S.updated?new Date(S.updated).toLocaleString():"never"}</p>
     </div>
+    <h2>On order${onOrder.length?` · ${onOrder.length}`:""}</h2>
+    ${onOrder.length?`<div class="panel" style="padding:0">${onOrder.map(id=>{const c=BYID[id];return`<div class="orow"><button class="open" data-open="${esc(id)}"><img loading="lazy" alt="" src="${esc(imgOf(c))}" onerror="this.style.visibility='hidden'"><span style="min-width:0"><div class="t">${esc(c.name)}</div><div class="s"><span class="mono">${esc(c.disp||c.id)}</span> · ordered ${new Date(S.cart[id]).toLocaleDateString(undefined,{month:"short",day:"numeric"})}</div></span></button><button class="btn sm" data-got="${esc(id)}">Received</button></div>`;}).join("")}</div>`
+      :`<p class="note" style="margin:0">Nothing on order. When you buy a card, tick <b>I ordered it</b> in 🛒 Shop (or press and hold the card): it shows ORDERED until it arrives.</p>`}
     <h2>Buyee shopping</h2>
     ${renderShopSettings()}
     <h2>Offline pictures</h2>
@@ -538,7 +552,8 @@ function openCard(id){
             <div class="bar"><input class="search" id="yyin" inputmode="numeric" placeholder="Price in ¥" style="min-width:0"><button class="btn sm" id="yysave">Save</button>
               <a class="btn sm" href="https://yuyu-tei.jp/sell/opc/s/search?search_word=${encodeURIComponent(c.code)}" target="_blank" rel="noopener">Yuyu-tei ↗</a></div>
           </div></div>
-        <button class="btn" id="tobuy">🛒 Find on Buyee${S.cart[id]?" · in your cart":""}</button>
+        <label class="switch"${q?" hidden":""}><input type="checkbox" id="ord" ${S.cart[id]?"checked":""}> Ordered, not received yet</label>
+        <button class="btn" id="tobuy">🛒 Find on Buyee</button>
         <label class="switch"><input type="checkbox" id="skip" ${S.skip[id]?"checked":""}> Not collecting this card (hide it and leave it out of totals)</label>
         ${c.unverified?`<p class="note banner" style="margin:0">Artwork not checked yet: if this is a pirate foil or a reprint, tick "Not collecting".</p>`:""}
       </div></div></div></div>`;
@@ -550,6 +565,7 @@ function openCard(id){
       if(a.size)S.flags[id]=[...a];else delete S.flags[id];b.setAttribute("aria-pressed",a.has(t));touchNote(id);save();};
     $("#yysave").onclick=()=>{saveYuyu(id,$("#yyin").value);$("#yyin").value="";const e=S.yuyu[id];$("#yyv").innerHTML=`${yen(yyNow(id))}${e&&e.length?` <span class="note">${esc(e[e.length-1][0])}</span>`:""}`;};
     $("#tobuy").onclick=()=>openShop(id);
+    $("#ord").onchange=e=>{if(e.target.checked)S.cart[id]=Date.now();else delete S.cart[id];save();refreshCard(id);};
     $("#skip").onchange=e=>{if(e.target.checked)S.skip[id]=true;else delete S.skip[id];save();};
   };
   draw();
@@ -642,7 +658,7 @@ function openShop(id){
       <div><div class="label" style="margin-bottom:6px">Search this card on Buyee</div>
         <div class="stack" style="gap:8px">${S.shops.map(s=>`<a class="btn pri" data-buyee data-shopsearch="${esc(s.code)}" href="#" target="_blank" rel="noopener">${esc(s.name||s.code)} ↗</a>`).join("")}
         <a class="btn" data-buyee id="sall" href="#" target="_blank" rel="noopener">All Rakuten shops ↗</a></div></div>
-      <label class="switch"><input type="checkbox" id="incart" ${S.cart[id]?"checked":""}> It's in my Buyee cart (shows 🛒 on the card until I own it)</label>
+      <label class="switch"><input type="checkbox" id="incart" ${S.cart[id]?"checked":""}> I ordered it (the card shows ORDERED until it arrives and I mark it owned)</label>
       <p class="note" style="margin:0">Prices are the shops' own, before Buyee's fees. Nothing is ordered from here: a listing opens on Buyee, where you add it to your cart.</p>
     </div></div></div>`;
   $("#close").onclick=closeSheet;$("#scrim").onclick=e=>{if(e.target.id==="scrim")closeSheet();};
@@ -747,8 +763,11 @@ document.addEventListener("click",e=>{
   const card=t.closest(".card");
   if(card){if(pressed){pressed=false;return;}const id=card.dataset.id,prev=qty(id);
     if(S.ui.filter==="shop")return openShop(id);
+    const was=S.cart[id];
     setQty(id,prev?0:1);
-    const c=BYID[id];toast(prev?`Removed ${c.disp||c.id}`:`Added ${c.disp||c.id} · ${c.name}`,()=>setQty(id,prev));return;}
+    const c=BYID[id];toast(prev?`Removed ${c.disp||c.id}`:`${was?"Received":"Added"} ${c.disp||c.id} · ${c.name}`,()=>{if(was)S.cart[id]=was;setQty(id,prev);if(S.ui.filter==="ordered")render();});return;}
+  const got=t.closest("[data-got]");if(got){const id=got.dataset.got,was=S.cart[id],c=BYID[id];setQty(id,1);render();
+    toast(`Received ${c.disp||c.id} · ${c.name}`,()=>{if(was)S.cart[id]=was;setQty(id,0);render();});return;}
   const op=t.closest("[data-open]");if(op)return openCard(op.dataset.open);
   const nf=t.closest("[data-nflag]");if(nf){S.ui.nflag=nf.dataset.nflag;save();render();return;}
   const tab=t.closest("[data-tab]");if(tab){S.ui.tab=tab.dataset.tab;save();render();$("#scroller").scrollTop=0;return;}

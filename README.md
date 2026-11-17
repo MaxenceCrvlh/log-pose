@@ -42,6 +42,6 @@ Log Pose never orders anything and never touches your Buyee cart. It opens Buyee
 
 1. **Stats → Buyee shopping → My Rakuten shops:** paste one link per shop (a shop or item link from Buyee or Rakuten works, or the shop's code).
 2. In any set tap **🛒 Shop**, then a missing card. Each of your shops has a button that opens Buyee's search for that card number inside that shop.
-3. Tick **It's in my Buyee cart** to put a 🛒 on the card until you mark it owned.
+3. Tick **I ordered it**: the card shows **ORDERED** until it arrives. The **Ordered** filter lists what is on its way in a set, and **Stats → On order** lists everything, with a **Received** button that marks the card owned.
 
 Optional: with a free Rakuten key (an app registered at [webservice.rakuten.co.jp](https://webservice.rakuten.co.jp/), often unreachable from outside Japan), the in-stock listings and prices at your shops are shown inside Log Pose, cheapest first. The key stays on your phone and is not written to backups.
