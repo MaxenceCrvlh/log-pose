@@ -7,7 +7,7 @@ A checklist app for a **Japanese One Piece card collection**: the foil cards of 
 ## What counts
 - **OP and EB sets:** Leaders, R, SR, SEC, SP and TR, plus every alternate art. C and UC are left out (not foil), and so are pirate / skull foils (C, UC or R reprints that only add foil, detected by comparing the artwork).
 - **PRB sets:** only new illustrations. Reprints of existing art and DON!! cards are left out.
-- **Promo tab:** every print is listed, foil or not, in three groups: **P-cards** (P-001 and so on), **Promo prints** (promotion versions of set cards) and **Limited** (cards that only come in limited products such as premium collections and gift sets). Use the *OP cards / ST cards / …* buttons to narrow a group down.
+- **Promo tab:** every promo and limited-product print, foil or not, grouped by where it came from: Shonen Jump, V Jump, Saikyo Jump, other books and magazines, promo packs, promo card sets, battle packs, tie-ups (7-Eleven, MOS Burger …), events and meetups, FILM RED, tournament prizes, Premium Card Collections, and special sets. Inside a group, cards are split by release, newest first, with the on-sale date when the official list gives one and how many of that release you own. Press and hold a promo to see where it came from, when, and the other cards of the same release. The grouping lives in `tools/promo_sources.py` (`python tools/promo_sources.py` prints how every source is classified).
 - **DON!! cards** (OP and EB sets only) come from PriceCharting's set lists, since the official card list doesn't include them.
 - If a card slips through that you don't collect, open it (press and hold) and tick **Not collecting**.
 

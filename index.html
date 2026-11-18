@@ -99,6 +99,20 @@ h2{font-family:var(--display);font-weight:700;font-size:22px;text-transform:uppe
 @media (min-width:800px){.grid{--cols:5}}
 @media (min-width:1000px){.grid{--cols:6}}
 @media (max-width:340px){.grid{--cols:2}}
+.relh{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;padding:12px 2px 2px;border-top:1px solid var(--line);margin-top:4px}
+.grid>.relh:first-child{border-top:0;margin-top:0;padding-top:0}
+.relh .rt{flex:1;min-width:0}
+.relh .en{font-weight:700;font-size:14px;line-height:1.3}
+.relh .ja{font-size:11.5px;color:var(--muted);line-height:1.35;margin-top:1px}
+.relh .rd{font-size:12px;color:var(--accent);font-weight:600;white-space:nowrap}
+.relh .rc{font-size:12.5px;font-weight:700;white-space:nowrap;color:var(--muted)}
+.relh .rc.done{color:var(--ok,#2e8b57)}
+.sib{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+.sib button{flex:0 0 auto;width:54px;border:0;background:none;padding:0;cursor:pointer;position:relative}
+.sib img{width:54px;aspect-ratio:600/838;border-radius:4px;object-fit:cover;border:1px solid var(--line);display:block}
+.sib button:not(.own) img{filter:grayscale(1);opacity:.55}
+.sib button.cur img{outline:2px solid var(--accent);outline-offset:1px}
+.sib span{display:block;font-size:9.5px;color:var(--muted);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
 .card{position:relative;display:block;width:100%;min-width:0;border:0;padding:0;background:none;color:inherit;font:inherit;cursor:pointer;text-align:left;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none}
 .card .pic{position:relative;aspect-ratio:600/838;border-radius:7px;overflow:hidden;background:var(--surface2);border:1px solid var(--line)}
 .card img{width:100%;height:100%;object-fit:cover;display:block;transition:filter .2s,opacity .2s;pointer-events:none}
@@ -243,6 +257,12 @@ const SERIES=[["OP","Boosters"],["EB","Extra"],["PRB","Premium"],["PROMO","Promo
 const TAB_ICON={STATS:"★",NOTES:"✎",PROMO:"P"};
 const SERIES_NOTE={PRB:"New illustrations only",PROMO:"Every print, foil or not"};
 const famOf=c=>(c.code.match(/^[A-Z]+/)||[""])[0];
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const niceDate=d=>{if(!d)return"";const p=d.split("-");return p.length===3?`${+p[2]} ${MON[p[1]-1]} ${p[0]}`:p.length===2?`${MON[p[1]-1]} ${p[0]}`:p[0];};
+// "on sale" for a magazine date (the text says 売), otherwise just the month/year in the source's name
+const relDate=c=>c.date?(c.date.length===10?`on sale ${niceDate(c.date)}`:niceDate(c.date)):"";
+const sameRelease=c=>c.from?BYID_SET(c).cards.filter(x=>x.from===c.from):[c];
+const BYID_SET=c=>DATA.sets.find(s=>s.code===c.set);
 const setLabel=s=>s.label||s.code;
 // "ordered": bought or in the basket, not in hand yet. Kept in S.cart as {card id: when}; cleared once owned.
 const ordered=id=>!!S.cart[id]&&!qty(id);
@@ -268,7 +288,7 @@ async function load(){
   }
   for(const s of DATA.sets){for(const c of s.cards){c.set=s.code;BYID[c.id]=c;}
     // the set's own cards first, then SPs/reprints of older cards that came in this box
-    s.cards.sort((x,y)=>(x.code.startsWith(s.code+"-")?0:1)-(y.code.startsWith(s.code+"-")?0:1)||x.id.localeCompare(y.id,undefined,{numeric:true}));}
+    if(s.series!=="PROMO")s.cards.sort((x,y)=>(x.code.startsWith(s.code+"-")?0:1)-(y.code.startsWith(s.code+"-")?0:1)||x.id.localeCompare(y.id,undefined,{numeric:true}));}
   await loadDons();
   await tagMangas();
   render();
@@ -388,7 +408,7 @@ function renderSeries(series){
   const unv=set.cards.some(c=>c.unverified);
   $("#main").innerHTML=`
     <div class="sets" id="sets">${chips}</div>
-    <div class="sethead"><div><div class="t">${set.label?esc(set.name):`${esc(set.code)} · ${esc(set.name)}`}</div><div class="n">${SERIES_NOTE[series]||"Foils: L · R · SR · SEC · SP · TR + alt arts"}</div>
+    <div class="sethead"><div><div class="t">${set.label?esc(set.name):`${esc(set.code)} · ${esc(set.name)}`}</div><div class="n">${set.desc?esc(set.desc):SERIES_NOTE[series]||"Foils: L · R · SR · SEC · SP · TR + alt arts"}</div>
       <div class="progress"><i style="width:${pct(st.pct)}"></i></div></div>
       <div class="big"><b class="num">${st.own}</b><span class="muted num"> / ${st.tot}</span><div class="label">${pct(st.pct)}</div><div class="label num ordn" style="color:var(--accent)"${orderedIn(activeCards(set))?"":" hidden"}>${orderedIn(activeCards(set))} ordered</div>${PH?`<div class="label num setval" style="color:var(--accent)">≈ ${usd(setValue(set))}</div>`:""}</div></div>
     ${unv?`<div class="banner">Some cards here haven't had their artwork checked yet, so a few reprints or pirate foils may still show. The list updates itself.</div>`:""}
@@ -415,7 +435,7 @@ function filtered(set){
     if(S.ui.filter==="missing"&&qty(c.id))return false;
     if(S.ui.rar&&c.r!==S.ui.rar)return false;
     if(S.ui.kind==="alt"&&c.kind==="regular")return false;
-    if(q&&!(c.id.toLowerCase().includes(q)||c.name.toLowerCase().includes(q)||(c.from||"").toLowerCase().includes(q)))return false;
+    if(q&&!(c.id.toLowerCase().includes(q)||c.name.toLowerCase().includes(q)||(c.from||"").toLowerCase().includes(q)||(c.en||"").toLowerCase().includes(q)))return false;
     return true;
   });
 }
@@ -435,8 +455,19 @@ function cardHTML(c){
     <div class="meta"><span class="id">${esc(c.disp||c.id)}</span>${kindChip(c)}</div>
     <div class="nm">${esc(c.name)}</div></button>`;
 }
+function relCount(set,from){const cs=activeCards(set).filter(c=>(c.from||"")===from);return[cs.filter(c=>qty(c.id)).length,cs.length];}
+function relHead(set,c){
+  const [o,t]=relCount(set,c.from||"");
+  return`<div class="relh" data-from="${esc(c.from||"")}"><div class="rt"><div class="en">${esc(c.en||c.from||"Other")}</div>${c.from&&c.en?`<div class="ja">${esc(c.from)}</div>`:""}</div>
+    <div style="text-align:right">${c.date?`<div class="rd">${esc(relDate(c))}</div>`:""}<div class="rc num ${o===t&&t?"done":""}">${o}/${t}</div></div></div>`;
+}
 function drawGrid(set){
   const list=filtered(set);
+  if(list.length&&set.series==="PROMO"){
+    let last=null,html="";
+    for(const c of list){if((c.from||"")!==last){last=c.from||"";html+=relHead(set,c);}html+=cardHTML(c);}
+    $("#grid").innerHTML=html;return;
+  }
   $("#grid").innerHTML=list.length?list.map(cardHTML).join(""):`<div class="empty" style="grid-column:1/-1">${S.ui.filter==="ordered"&&!S.ui.q&&!S.ui.rar&&!S.ui.kind?"Nothing on order in this set. Mark a card as ordered from 🛒 Shop, or press and hold it.":(S.ui.filter==="missing"||S.ui.filter==="shop")&&!S.ui.q&&!S.ui.rar&&!S.ui.kind?"Nothing missing here. Set complete! 🎉":"No cards match."}</div>`;
 }
 function refreshCard(id){
@@ -445,11 +476,13 @@ function refreshCard(id){
   const tab=S.ui.tab;
   if(tab!=="STATS"){ // update header numbers without rebuilding the grid
     const set=DATA.sets.find(s=>s.code===BYID[id].set);const st=stats(activeCards(set));
+    if(set.series==="PROMO")for(const h of document.querySelectorAll(".relh"))if(h.dataset.from===(BYID[id].from||"")){const [o,t]=relCount(set,h.dataset.from),rc=h.querySelector(".rc");rc.textContent=`${o}/${t}`;rc.classList.toggle("done",o===t&&t>0);}
     const h=$(".sethead");if(h){h.querySelector(".big b").textContent=st.own;h.querySelector(".progress i").style.width=pct(st.pct);h.querySelector(".big .label").textContent=pct(st.pct);const on=h.querySelector(".ordn"),n=orderedIn(activeCards(set));if(on){on.hidden=!n;on.textContent=`${n} ordered`;}}
     const ch=document.querySelector(`.setchip[data-set="${set.code}"]`);if(ch){ch.querySelector(".p").textContent=`${st.own}/${st.tot}`;ch.querySelector(".bar i").style.width=pct(st.pct);ch.classList.toggle("done",st.own===st.tot);}
     const all=DATA.sets.flatMap(activeCards);const t=stats(all);$("#overall").textContent=`${t.own} / ${t.tot} · ${pct(t.pct)}`;
     const gone=S.ui.filter==="owned"?!qty(id):S.ui.filter==="ordered"?!ordered(id):S.ui.filter!=="all"&&qty(id)>0;
-    if(gone){const c=document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);if(c)c.remove();}
+    if(gone){const c=document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);if(c){const prev=c.previousElementSibling,next=c.nextElementSibling;c.remove();
+      if(prev&&prev.classList.contains("relh")&&(!next||next.classList.contains("relh")))prev.remove();}}
   }
 }
 
@@ -540,7 +573,9 @@ function openCard(id){
       <div class="sheet-head"><h3>${esc(c.name)}</h3><button class="x" id="close" aria-label="Close">×</button></div>
       <div class="detail"><div class="big"><img alt="${esc(c.name)}" src="${esc(imgOf(c))}"></div>
       <div class="stack">
-        <dl class="kv"><dt>Number</dt><dd class="mono">${esc(c.disp||c.id)}</dd><dt>Set</dt><dd>${esc(c.set)}</dd><dt>Rarity</dt><dd>${kindChip(c)} ${c.kind==="regular"?"":"<span class='note'>alternate print</span>"}</dd><dt>Type</dt><dd>${esc(c.cat)}</dd>${c.from?`<dt>From</dt><dd>${esc(c.from)}</dd>`:""}</dl>
+        <dl class="kv"><dt>Number</dt><dd class="mono">${esc(c.disp||c.id)}</dd><dt>${c.from?"Group":"Set"}</dt><dd>${c.from?esc(BYID_SET(c).name):esc(c.set)}</dd><dt>Rarity</dt><dd>${kindChip(c)} ${c.kind==="regular"?"":"<span class='note'>alternate print</span>"}</dd><dt>Type</dt><dd>${esc(c.cat)}</dd>${c.from?`<dt>From</dt><dd>${esc(c.en||c.from)}${c.en?`<div class="note" style="margin-top:2px">${esc(c.from)}</div>`:""}</dd>`:""}${c.date?`<dt>Released</dt><dd>${esc(relDate(c).replace(/^on sale/,"On sale"))}</dd>`:c.from?`<dt>Released</dt><dd class="note">No date on the official list</dd>`:""}</dl>
+        ${c.from&&sameRelease(c).length>1?(()=>{const sib=sameRelease(c),own=sib.filter(x=>qty(x.id)).length;return`<div><div class="label" style="margin-bottom:6px">Same release · ${own}/${sib.length} owned</div>
+          <div class="sib">${sib.map(x=>`<button class="${qty(x.id)?"own":""} ${x.id===c.id?"cur":""}" data-open="${esc(x.id)}" aria-label="${esc(x.id)} ${esc(x.name)}"><img loading="lazy" alt="" src="${esc(imgOf(x))}" onerror="this.style.visibility='hidden'"><span>${esc(x.disp||x.id)}</span></button>`).join("")}</div></div>`;})():""}
         <div><div class="label" style="margin-bottom:6px">Copies owned</div><div class="stepper"><button id="minus" aria-label="One less">−</button><span class="num" id="qtyv">${q}</span><button id="plus" aria-label="One more">+</button></div></div>
         <div><div class="label" style="margin-bottom:6px">Condition</div><div class="tags" id="tags">${FLAGS.map(([k,l])=>`<button data-tag="${k}" aria-pressed="${(S.flags[id]||[]).includes(k)}">${l}</button>`).join("")}</div></div>
         <div><div class="label" style="margin-bottom:6px">Comment</div><textarea id="note" placeholder="e.g. small whitening top-left corner, centering 60/40…">${esc(S.notes[id]||"")}</textarea></div>

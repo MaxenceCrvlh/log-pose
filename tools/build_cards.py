@@ -10,9 +10,8 @@ Collection rules (Japanese cards):
     - _r prints are reprints of existing art -> left out
     - other prints are kept only if the artwork does not exist on any print outside this PRB
   Promo tab (every print is kept, foil or not - nothing is filtered by artwork)
-    - P      promotion cards with their own number (P-001 ...)
-    - PV     promotion prints of set cards (OP01-001_p3 ...)
-    - LP     cards that only come in limited products (premium collections, gift sets ...)
+    promotion cards and limited-product cards, grouped by where they came from (Shonen Jump, V Jump,
+    promo packs, tournaments, 7-Eleven ...); each card keeps the release it came from and its date.
   DON!! cards are never included.
 
 Artwork comparison: ORB feature matching (robust to frame / crop / foil differences). Needs the
@@ -43,12 +42,9 @@ SET_NAMES = {
     "EB04": "Egghead Crisis", "EB05": "Heroines Edition Vol. 2", "PRB01": "The Best", "PRB02": "The Best Vol. 2",
 }
 PROMO_PACK, LIMITED_PACK = "550901", "550801"
-# Promo tab: code, short label on the chip, name, which pack, which ids
-PROMO_SETS = [
-    ("P", "P-cards", "Promotion cards", PROMO_PACK, lambda cid: cid.startswith("P-")),
-    ("PV", "Promo prints", "Promo prints of set cards", PROMO_PACK, lambda cid: not cid.startswith("P-")),
-    ("LP", "Limited", "Limited product cards", LIMITED_PACK, lambda cid: True),
-]
+# Promo tab: grouped by where the card came from (Shonen Jump, promo packs, 7-Eleven ...), see promo_sources.py
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import promo_sources  # noqa: E402
 UA = {"User-Agent": "log-pose-builder/1.0 (personal collection checklist; github action)"}
 
 
@@ -244,20 +240,34 @@ def main():
                      "name": SET_NAMES.get(code) or official_name(titles.get(pid)) or code, "pack": pid,
                      "cards": out})
 
-    # Promo tab: every promotion / limited-product print, foil or not
-    for n, (code, label, name, pid, want) in enumerate(PROMO_SETS):
-        out = []
+    # Promo tab: every promotion / limited-product print, foil or not, grouped by where it came from
+    natural = lambda t: [int(x) if x.isdigit() else x.lower() for x in re.split(r"(\d+)", t)]
+    groups, seen_ids = {g: [] for g in promo_sources.GROUP_CODES}, set()
+    for pid in (PROMO_PACK, LIMITED_PACK):
         for c in packs.get(pid, []):
             cid, rar, suf = c["id"], c.get("rarity") or "", suffix(c["id"])
-            if "don" in (c.get("category") or "").lower() or not want(cid):
+            if "don" in (c.get("category") or "").lower() or cid in seen_ids:
                 continue
+            seen_ids.add(cid)
             kind = "regular" if suf == "" else ("sp" if rar == "Special" else "tr" if rar == "TreasureRare" else "alt")
-            out.append({"id": cid, "code": base_code(cid), "name": c.get("name") or "", "r": RAR_SHORT.get(rar, rar),
-                        "cat": c.get("category") or "", "kind": kind, "img": c.get("img_full_url", "").split("?")[0],
-                        **({"from": c["info"]} if c.get("info") else {})})
-        out.sort(key=lambda x: (x["code"], x["id"]))
+            src = c.get("info") or ""
+            g, en, date = promo_sources.classify(src) if src else ("OTHER", "", "")
+            groups[g].append({"id": cid, "code": base_code(cid), "name": c.get("name") or "", "r": RAR_SHORT.get(rar, rar),
+                              "cat": c.get("category") or "", "kind": kind, "img": c.get("img_full_url", "").split("?")[0],
+                              **({"from": src} if src else {}), **({"en": en} if en else {}), **({"date": date} if date else {})})
+    for n, (code, label, name, desc) in enumerate(promo_sources.GROUPS):
+        out = groups[code]
+        # newest release first; releases without a date after, by name; cards by number inside a release
+        out.sort(key=lambda x: natural(x.get("en") or x.get("from", "")), reverse=True)
+        out.sort(key=lambda x: x.get("date", ""), reverse=True)
+        rel = {}
+        for x in out:
+            rel.setdefault(x.get("from", ""), len(rel))
+        out.sort(key=lambda x: (rel[x.get("from", "")], natural(x["id"])))
         if out:
-            sets.append({"code": code, "series": "PROMO", "label": label, "name": name, "pack": pid, "n": n, "cards": out})
+            sets.append({"code": code, "series": "PROMO", "label": label, "name": name, "desc": desc, "pack": PROMO_PACK,
+                         "n": n, "cards": out})
+            print(f"  promo {code}: {len(out)} cards from {len(rel)} releases")
 
     order = {"OP": 0, "EB": 1, "PRB": 2, "PROMO": 3}
     sets.sort(key=lambda s: (order[s["series"]], s.get("n", 0), s["code"]))
